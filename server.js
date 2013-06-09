@@ -39,7 +39,7 @@ requirejs(['http',
 function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderView, ThingView, ThingListView) {
 
     var argv = optimist.argv;
-    var env = argv['env'] || 'local';
+    var config = argv['config'] || 'local';
 
     // Preload some Things ...
     var Things = new ThingList([
@@ -95,8 +95,8 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
     });
 
     // Make sure that environment specific data is available at route to 'js/env.json' ...
-    server.get('/js/env.json', function(req, res) {
-        res.sendfile('configs/env/' + env + '.json');
+    server.get('/js/config.json', function(req, res) {
+        res.sendfile('configs/' + config + '.json');
     });
 
     // Now make sure that static files are set (order important note 'js/env.json' above) ...

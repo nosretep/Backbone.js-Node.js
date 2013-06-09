@@ -2,13 +2,13 @@ requirejs([
     'jquery',
     'underscore',
     'backbone',
-    'configs',
+    'config',
     'models/thing',
     'collections/thing_list',
     'views/layout',
     'views/thing',
     'views/thing_list'],
-    function($, _, Backbone, Configs, Thing, ThingList, LayoutView, ThingView, ThingListView) {
+    function($, _, Backbone, Config, Thing, ThingList, LayoutView, ThingView, ThingListView) {
 
         window.App = {};
 

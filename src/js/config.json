@@ -1,0 +1,6 @@
+{
+	"developerNote" : {
+		"line1" : "This file will be overwritten by grunt at deploy.",
+		"line2" : "This file's path will be hijacked by server.js."
+	}
+}
