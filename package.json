@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-requirejs-express-backbonejs",
+  "description": "Reusing Backbone.js models/collections/views on the web client and server with Node.js, RequireJS, and Express",
+  "author": "I guess anyone",
+  "dependencies": {
+    "requirejs": "2.1.5",
+    "express": "3.2.3",
+    "jquery": "1.8.3",
+    "underscore": "1.4.4",
+    "backbone": "1.0.0",
+    "ejs": "0.7.2"
+  },
+  "devDependencies": {
+    "less-middleware": "0.1.11"
+  },
+  "engine": "node 0.10.4"
+}
