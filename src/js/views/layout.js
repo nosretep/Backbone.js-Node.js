@@ -6,7 +6,7 @@ define(['underscore', 'backbone', 'text!templates/layout.html'],
                 this.$el.html(this.template());
                 return this;
             },
-            updateContent: function(view) {
+            setContent: function(view) {
                 if (this.currentView) {
                     this.currentView.remove();
                     this.currentView.unbind();

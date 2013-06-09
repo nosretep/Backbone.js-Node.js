@@ -31,7 +31,7 @@ requirejs([
                         var thingListView = new ThingListView({
                             'collection': collection
                         })
-                        layoutView.updateContent(thingListView);
+                        layoutView.setContent(thingListView);
                     }
                 })
             },
@@ -42,7 +42,7 @@ requirejs([
                             var thingView = new ThingView({
                                 'model': model
                             })
-                            layoutView.updateContent(thingView);
+                            layoutView.setContent(thingView);
                         }
                     });
             }

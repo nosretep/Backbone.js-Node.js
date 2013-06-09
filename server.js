@@ -37,12 +37,14 @@ requirejs(['http',
 
 function(http, express, Backbone, User, ThingList, LayoutView, HeaderView, ThingView, ThingListView) {
 
+    // Preload some Things ...
     var Things = new ThingList([
-        {'title' : 'Thing 1', 'id' : guid()},
-        {'title' : 'Thing 2', 'id' : guid()},
-        {'title' : 'Thing 3', 'id' : guid()}
+        {'title' : 'Thing 1', 'id' : '26b8adcc-c390-b5bd-162a-8c245471f582'},
+        {'title' : 'Thing 2', 'id' : '8f80bbfb-ccac-26d6-5055-5120f69fe80b'},
+        {'title' : 'Thing 3', 'id' : 'dd543e76-2585-55ad-f4a5-afe77014d71c'}
     ]);
 
+    // Fake a logged in user for the meantime ...
     var loggedInUser = new User({ 'username' : 'firstName lastName'});
 
     var server = express();
@@ -113,26 +115,16 @@ function(http, express, Backbone, User, ThingList, LayoutView, HeaderView, Thing
 
         } else {
 
-            var layoutView = new LayoutView();
-                layoutView.render();
-
-            var headerView = new HeaderView({'model' : loggedInUser});
-                headerView.render();
-
-                layoutView.$el.find('header').append(headerView.$el);
-
-            var thingListView = new ThingListView({'collection' : Things});
-
-                layoutView.updateContent(thingListView);
+            var thingListView = new ThingListView({'collection': Things});
 
             res.render('src/index.html', {
-                'content' : layoutView.$el.html()
+                'content' : generatePageContent(thingListView)
             });
         }
     });
 
     server.get('/things/:id', function(req, res) {
-        
+
         var thingId = req.params.id;
         var thing = Things.get(thingId);
 
@@ -142,21 +134,11 @@ function(http, express, Backbone, User, ThingList, LayoutView, HeaderView, Thing
             res.end(JSON.stringify(thing.toJSON()));
 
         } else {
+
+            var thingView = new ThingView({'model': thing});
             
-            var layoutView = new LayoutView();
-                layoutView.render();
-
-            var headerView = new HeaderView({'model' : loggedInUser});
-                headerView.render();
-
-                layoutView.$el.find('header').append(headerView.$el);
-
-            var thingView = new ThingView({'model' : thing});
-
-                layoutView.updateContent(thingView);
-
             res.render('src/index.html', {
-                'content' : layoutView.$el.html()
+                'content' : generatePageContent(thingView)
             });
         }
     });
@@ -164,6 +146,20 @@ function(http, express, Backbone, User, ThingList, LayoutView, HeaderView, Thing
     http.createServer(server).listen(server.get('port'), function(){
         console.log('Express server listening on port ' + server.get('port'));
     }); 
+
+    function generatePageContent(view) {
+
+        var layoutView = new LayoutView();
+            layoutView.render();
+
+        var headerView = new HeaderView({'model' : loggedInUser});
+            headerView.render();
+
+            layoutView.$el.find('header').append(headerView.$el);
+            layoutView.setContent(view);
+            
+        return layoutView.$el.html()
+    }
 
     function s4() {
       return Math.floor((1 + Math.random()) * 0x10000)
