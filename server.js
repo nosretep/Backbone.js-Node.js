@@ -27,6 +27,7 @@ requirejs(['jquery', 'backbone'], function($, Backbone) { Backbone.$ = $; });
 
 requirejs(['http', 
            'express',
+           'optimist',
            'backbone',
            'models/user',
            'collections/thing_list',
@@ -35,7 +36,10 @@ requirejs(['http',
            'views/thing',
            'views/thing_list'], 
 
-function(http, express, Backbone, User, ThingList, LayoutView, HeaderView, ThingView, ThingListView) {
+function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderView, ThingView, ThingListView) {
+
+    var argv = optimist.argv;
+    var env = argv['env'] || 'local';
 
     // Preload some Things ...
     var Things = new ThingList([
@@ -92,7 +96,7 @@ function(http, express, Backbone, User, ThingList, LayoutView, HeaderView, Thing
 
     // Make sure that environment specific data is available at route to 'js/env.json' ...
     server.get('/js/env.json', function(req, res) {
-        res.sendfile('configs/env/local.json');
+        res.sendfile('configs/env/' + env + '.json');
     });
 
     // Now make sure that static files are set (order important note 'js/env.json' above) ...
