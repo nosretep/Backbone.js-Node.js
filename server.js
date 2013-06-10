@@ -23,6 +23,7 @@ requirejs.config({
     }
 });
 
+// Odd step needed to set Backbone.$ ...
 requirejs(['jquery', 'backbone'], function($, Backbone) { Backbone.$ = $; });
 
 requirejs(['http', 
@@ -40,6 +41,7 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
 
     var argv = optimist.argv;
     var config = argv['config'] || 'local';
+    var baseHtmlFile = (argv['dist']) ? 'dist/index.html' : 'src/index.html';
 
     // Preload some Things ...
     var Things = new ThingList([
@@ -53,10 +55,9 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
 
     var server = express();
 
+    // Develpment mode configuration ...
     server.configure('development', function(){
-        /*
-         * See http://dylantsblog.wordpress.com/2013/03/16/less-middleware-using-less-with-node-js/
-         */
+        // Less configuration ...
         server.use(require('less-middleware')({
             src: __dirname + '/src/less',
             dest: __dirname + '/src/css',
@@ -65,18 +66,7 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
 //            ,
 //            debug: true
         }));
-        
-        /*
-         * Keep development configure above the generic configure!
-         * Look at 'troubleshooting' https://github.com/emberfeather/less.js-middleware (scroll to bottom)
-         * Want to declare static paths after less-middleware.
-         */
-        
-        /*
-         * next line not needed because this folder is already static
-         * server.use(express.static(__dirname + '/css'));
-         */
-        
+        // Non pretty error handling when in development ...
         server.use(express.errorHandler());
     });
 
@@ -103,7 +93,6 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
     server.configure(function(){
         server.use('/js', express.static(__dirname + '/src/js'));
         server.use('/css', express.static(__dirname + '/src/css'));
-        server.use('/img', express.static(__dirname + '/src/img'));
     });
     
     server.get('/', function(req, res) {
@@ -121,7 +110,7 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
 
             var thingListView = new ThingListView({'collection': Things});
 
-            res.render('src/index.html', {
+            res.render(baseHtmlFile, {
                 'content' : generatePageContent(thingListView)
             });
         }
@@ -141,10 +130,20 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
 
             var thingView = new ThingView({'model': thing});
             
-            res.render('src/index.html', {
+            res.render(baseHtmlFile, {
                 'content' : generatePageContent(thingView)
             });
         }
+    });
+
+    // Applicable when 'dist=true' ...
+    server.get('/all.min.js', function(req, res) {
+        res.sendfile('dist/all.min.js');
+    });
+
+    // Applicable when 'dist=true' ...
+    server.get('/all.min.css', function(req, res) {
+        res.sendfile('dist/all.min.css');
     });
     
     http.createServer(server).listen(server.get('port'), function(){
@@ -163,7 +162,7 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
             layoutView.setContent(view);
             
         return layoutView.$el.html()
-    }
+    };
 
     function s4() {
       return Math.floor((1 + Math.random()) * 0x10000)
@@ -174,7 +173,7 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
     function guid() {
       return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
              s4() + '-' + s4() + s4() + s4();
-    }
+    };
 
 });
 
