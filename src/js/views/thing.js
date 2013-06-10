@@ -3,6 +3,7 @@ define(['underscore', 'backbone', 'text!templates/thing.html'],
         var ThingView = Backbone.View.extend({
             template: _.template(thingViewTemplate),
             render : function() {
+                this.$el.addClass('thing');
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             }

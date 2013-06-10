@@ -58,8 +58,8 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
          * See http://dylantsblog.wordpress.com/2013/03/16/less-middleware-using-less-with-node-js/
          */
         server.use(require('less-middleware')({
-            src: __dirname + '/less',
-            dest: __dirname + '/css',
+            src: __dirname + '/src/less',
+            dest: __dirname + '/src/css',
             prefix: '/css',
             compress: true
 //            ,

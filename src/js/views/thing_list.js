@@ -1,8 +1,9 @@
 define(['backbone', 'views/thing_list_item'],
     function (Backbone, ThingListItemView) {
         var ThingListView = Backbone.View.extend({
-            tag: 'ul',
+            tagName: 'ul',
             render : function() {
+                this.$el.addClass('things');
                 this.collection.each(this.appendThing, this);
                 return this;
             },
