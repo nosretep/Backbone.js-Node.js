@@ -2,7 +2,7 @@
 module.exports = function(grunt) {
 
     var pkg = grunt.file.readJSON('package.json'); // grunt.config.data.pkg ...
-    var config = grunt.option('config') || 'local'; // Run as >grunt -config {environment} ... // grunt.config.data.env ...
+    var config = grunt.option('config') || 'local'; // Run as >grunt -config {config}
 
     // Custom task for creating folders and moving the index file ...
     grunt.registerTask('first', 'First task', function() {
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         grunt.file.copy('src/index.html', 'dist/index.html');        
     });
 
-    // Custom task for moving config specific JSON data from 'config/' to '/js/jsondata' ...
+    // Custom task for moving config specific JSON data from 'config/' to '/js/config.json' ...
     grunt.registerTask('injectConfig', 'inject configs into jsondata', function() {
         // Simply copy the config file into the /temp/js ...
         grunt.file.copy('configs/' + config + '.json', 'temp/js/config.json');
@@ -43,7 +43,6 @@ module.exports = function(grunt) {
         },
         requirejs: {
             compile: {
-                // !! You can drop your app.build.js config wholesale into 'options'
                 options: {
                     baseUrl: './temp/js',
                     optimize: 'uglify',
@@ -89,14 +88,12 @@ module.exports = function(grunt) {
                         {
                             pattern: /<!--<REPLACE_CSS>-->([^]*)<!--<\/REPLACE_CSS>-->/ig,
                             replacement: function (match, p1, offset, string) {
-                                // TODO: figure a way to generate the returned string like <%= pkg.name %> in the properties above ...
                                 return '<link rel="stylesheet" href="/all.min.css" />';
                             }
                         },
                         {
                             pattern: /<!--<REPLACE_JS>-->([^]*)<!--<\/REPLACE_JS>-->/ig,
                             replacement: function (match, p1, offset, string) {
-                                // TODO: figure a way to generate the returned string like <%= pkg.name %> in the properties above ...
                                 return '<script src="/all.min.js"></script>';
                             }
                         }
@@ -116,7 +113,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         
-        // create the 'temp' and 'dist' directories, copy 'dev_index.html' to 'dist/index.html'
+        // create the 'temp' and 'dist' directories, copy 'index.html' to 'dist/index.html'
         'first', 
         
         // copy 'js' and 'css' directories to 'temp/js' and 'temp/css'

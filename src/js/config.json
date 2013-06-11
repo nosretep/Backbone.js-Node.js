@@ -1,6 +1,8 @@
 {
 	"developerNote" : {
-		"line1" : "This file will be overwritten by grunt at deploy.",
-		"line2" : "This file's path will be hijacked by server.js."
+		"line0" : "This file doesn't really exist.",
+		"line1" : "This file will be overwritten by grunt at build/deploy (see Gruntfile.js).",
+		"line2" : "This file's path will be hijacked to serve another file (see server.js).",
+		"line3" : "This file doesn't really exit."
 	}
 }

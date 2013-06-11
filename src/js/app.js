@@ -30,18 +30,18 @@ requirejs([
                     'success': function(collection) {
                         var thingListView = new ThingListView({
                             'collection': collection
-                        })
+                        });
                         layoutView.setContent(thingListView);
                     }
                 })
             },
             thing: function(id) {
-                var thing = new Thing({'id' : id});
-                    thing.fetch({
+                (new Thing({'id' : id}))
+                    .fetch({
                         'success': function(model) {
                             var thingView = new ThingView({
                                 'model': model
-                            })
+                            });
                             layoutView.setContent(thingView);
                         }
                     });
