@@ -1,1 +1,1 @@
-ul.things{padding:0;margin:0;list-style-type:none}ul.things li.thing{color:red}ul.things li.thing a{color:red}
+div.things ul.thing_list{padding:0 0 10px;margin:0;list-style-type:none}div.things ul.thing_list li.thing{color:red}div.things ul.thing_list li.thing a{color:red}

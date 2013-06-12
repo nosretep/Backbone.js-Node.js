@@ -7,8 +7,21 @@ requirejs([
     'collections/thing_list',
     'views/layout',
     'views/thing',
-    'views/thing_list'],
-    function($, _, Backbone, Config, Thing, ThingList, LayoutView, ThingView, ThingListView) {
+    'views/thing_list',
+    'views/thing_new',
+    'views/thing_edit'],
+    function(
+        $,
+        _,
+        Backbone,
+        Config,
+        Thing,
+        ThingList,
+        LayoutView,
+        ThingView,
+        ThingListView,
+        ThingNewView,
+        ThingEditView) {
 
         window.App = {};
 
@@ -22,10 +35,12 @@ requirejs([
         // Create Router class ...
         var AppRouter = Backbone.Router.extend({
             routes: {
-                'things': 'things',
-                'things/:id': 'thing'
+                'things': 'thingsIndex',
+                'things/new': 'thingNew',
+                'things/:id': 'thingShow',
+                'things/:id/edit': 'thingEdit'
             },
-            things: function() {
+            thingsIndex: function() {
                 Things.fetch({
                     'success': function(collection) {
                         var thingListView = new ThingListView({
@@ -35,7 +50,7 @@ requirejs([
                     }
                 })
             },
-            thing: function(id) {
+            thingShow: function(id) {
                 (new Thing({'id' : id}))
                     .fetch({
                         'success': function(model) {
@@ -43,6 +58,23 @@ requirejs([
                                 'model': model
                             });
                             layoutView.setContent(thingView);
+                        }
+                    });
+            },
+            thingNew: function() {
+                var thingNewView = new ThingNewView({
+                    'model' : new Thing()
+                });
+                layoutView.setContent(thingNewView);
+            },
+            thingEdit: function(id) {
+                (new Thing({'id' : id}))
+                    .fetch({
+                        'success': function(model) {
+                            var thingEditView = new ThingEditView({
+                                'model': model
+                            });
+                            layoutView.setContent(thingEditView);
                         }
                     });
             }
@@ -54,7 +86,7 @@ requirejs([
         // If we're being served from 'file://' then pushState false ...
         Backbone.history.start({
             pushState: true, //!Utils.isFilePath()
-            silent: true
+            silent: false
         });
 
         // This code ensures that that app links go through the appRouter ...

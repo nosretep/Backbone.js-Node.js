@@ -26,18 +26,37 @@ requirejs.config({
 // Odd step needed to set Backbone.$ ...
 requirejs(['jquery', 'backbone'], function($, Backbone) { Backbone.$ = $; });
 
-requirejs(['http', 
-           'express',
-           'optimist',
-           'backbone',
-           'models/user',
-           'collections/thing_list',
-           'views/layout',
-           'views/header',
-           'views/thing',
-           'views/thing_list'], 
+requirejs([
+    'http', 
+    'express',
+    'optimist',
+    'jquery',
+    'backbone',
+    'models/user',
+    'models/thing',
+    'collections/thing_list',
+    'views/layout',
+    'views/header',
+    'views/thing',
+    'views/thing_list',
+    'views/thing_new',
+    'views/thing_edit'], 
 
-function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderView, ThingView, ThingListView) {
+function(
+    http,
+    express,
+    optimist,
+    $,
+    Backbone,
+    User,
+    Thing,
+    ThingList,
+    LayoutView,
+    HeaderView,
+    ThingView,
+    ThingListView,
+    ThingNewView,
+    ThingEditView) {
 
     var argv = optimist.argv;
     var config = argv['config'] || 'local';
@@ -100,6 +119,7 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
         res.redirect('/things')
     });
 
+    // I'm not sure if I recommend this (as html) ...
     server.get('/things', function(req, res) {
 
         if (req.isJSONRequest) {
@@ -117,6 +137,16 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
         }
     });
 
+    // I'm not sure if I recommend this (as html) ...
+    server.get('/things/new', function(req, res) {
+        var thingNewView = new ThingNewView({'model': new Thing()});
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(thingNewView)
+        });
+    });
+
+    // I'm not sure if I recommend this (as html) ...
     server.get('/things/:id', function(req, res) {
 
         var thingId = req.params.id;
@@ -135,6 +165,43 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
                 'content' : generatePageContent(thingView)
             });
         }
+    });
+
+    // I'm not sure if I recommend this (as html) ...
+    server.get('/things/:id/edit', function(req, res) {
+        var id = req.params.id;
+
+        var thingEditView = new ThingEditView({'model': Things.get(id)});
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(thingEditView)
+        });
+    });
+
+    server.post('/things', function(req, res) {
+        getJSONFromRequestBody(req).then(function(thingRaw) {
+
+            var thing = Things.create(thingRaw);
+                thing.set('id', guid());
+
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(thing));
+        });
+    });
+
+    server.put('/things/:id', function(req, res) {
+        var id = req.params.id;
+
+        getJSONFromRequestBody(req).then(function(thingRaw) {
+
+            var thing = Things.get(id);
+            var title = thingRaw.title;
+
+            thing.set('title', title);
+
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(thing));
+        });
     });
 
     // Applicable when 'dist=true' ...
@@ -163,6 +230,25 @@ function(http, express, optimist, Backbone, User, ThingList, LayoutView, HeaderV
             layoutView.setContent(view);
             
         return layoutView.$el.html()
+    };
+
+    function getJSONFromRequestBody(req) {
+        
+        var defer = $.Deferred();
+
+        if (req.body) {
+            defer.resolve(req.body);
+        } else {
+            var dataStr = '';
+            req.addListener('data', function(chunk) {
+                dataStr += chunk;
+            });
+            req.addListener('end', function() {
+                defer.resolve(JSON.parse(dataStr));
+            });
+        }
+
+        return defer.promise();
     };
 
     function s4() {
