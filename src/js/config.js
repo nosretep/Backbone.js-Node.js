@@ -1,4 +1,4 @@
-define(['underscore', 'json!config.json'],
+define(['underscore', 'json!data/config.json'],
 function(_, configJSON) {    
 
     var config = {}; 

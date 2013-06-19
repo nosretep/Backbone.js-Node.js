@@ -105,7 +105,7 @@ function(
     });
 
     // Make sure that environment specific data is available at route to 'js/env.json' ...
-    server.get('/js/config.json', function(req, res) {
+    server.get('/js/data/config.json', function(req, res) {
         res.sendfile('configs/' + config + '.json');
     });
 

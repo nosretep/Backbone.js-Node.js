@@ -20,7 +20,11 @@
     "grunt-string-replace" : "~0.2.4",
     "grunt-contrib-copy" : "~0.4.1",
     "grunt-css": "~0.5.4",
-    "almond": "~0.2.5"
+    "almond": "~0.2.5",
+    "buster": "0.6.12",
+    "buster-amd": "0.3.0",
+    "grunt-buster": "0.2.1",
+    "phantomjs":"1.9.1-0"
   },
   "engine": "node 0.10.4"
 }
