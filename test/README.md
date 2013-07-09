@@ -5,7 +5,6 @@
 
 In terminal #1
 ```bash
-cd test_frameworks/buster
 buster-server
 ```
 
@@ -13,7 +12,7 @@ Open http://localhost:1111 in your browser (click the giant 'Capture' button)
 
 In terminal #2
 ```bash
-cd test_frameworks/buster
+cd {the app directory}
 buster-test
 ```
 
