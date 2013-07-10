@@ -7,8 +7,8 @@ describe('Thing model test', function(run) {
                 var thing = new Thing();
                 	thing.set('test_name', 'test_value');
                 	
-                //expect(thing.get('test_name')).toEqual('test_value');
-                expect(thing.get('test_name')).toEqual('TRYING TO FAIL');
+                expect(thing.get('test_name')).toEqual('test_value');
+                //expect(thing.get('test_name')).toEqual('TRYING TO FAIL');
             });
         });
     });
