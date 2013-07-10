@@ -21,7 +21,7 @@ describe('Thing view test', function(run) {
 
             it('should have "span.thing_title" containing the thing title', function() {
                 assert.match(thingView.$('span.thing_title')[0], {
-                    innerText: thing.get('title')
+                    innerHTML: thing.get('title')
                 })
             });
 
