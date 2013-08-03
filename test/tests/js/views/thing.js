@@ -12,20 +12,20 @@ describe('Thing view test', function(run) {
 
             thingView.render();
 
-            it('should have "div.thing" as the root element', function() {
+            it('should have div.thing as the root element', function() {
                 assert.match(thingView.el, {
                     tagName: 'div',
                     className: 'thing'
                 })
             });
 
-            it('should have "span.thing_title" containing the thing title', function() {
+            it('should have span.thing_title containing the thing title', function() {
                 assert.match(thingView.$('span.thing_title')[0], {
                     innerHTML: thing.get('title')
                 })
             });
 
-            it('should have link to "edit" page', function() {
+            it('should have link to edit page', function() {
                 assert.match(thingView.$('a')[0], {
                     href: '/things/' + thing.get('id') + '/edit'
                 })
