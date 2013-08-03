@@ -13,18 +13,20 @@
   },
   "devDependencies": {
     "less-middleware": "0.1.11",
-    "grunt": "~0.4.1",
-    "grunt-contrib-requirejs": "~0.4.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-string-replace" : "~0.2.4",
-    "grunt-contrib-copy" : "~0.4.1",
-    "grunt-css": "~0.5.4",
-    "almond": "~0.2.5",
+    "grunt": "0.4.1",
+    "grunt-contrib-requirejs": "0.4.0",
+    "grunt-contrib-uglify": "0.2.0",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-string-replace" : "0.2.4",
+    "grunt-contrib-copy" : "0.4.1",
+    "grunt-css": "0.5.4",
+    "almond": "0.2.5",
     "buster": "0.6.12",
     "buster-amd": "0.3.0"
   },
-  "engine": "node 0.10.4",
+  "engines": {
+    "node": "0.10.4"
+  },
   "scripts": {
     "test": "export DISPLAY=:0:0 ; buster-server & buster_pid=$! ; sleep 60 ; firefox -no-remote http://localhost:1111/capture & firefox_pid=$! ; sleep 60 ; buster-test --reporter xml > test-reports.xml ; kill -9 ${firefox_pid} & kill -9 ${buster_pid} &"
   }
