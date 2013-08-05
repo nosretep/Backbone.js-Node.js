@@ -1,5 +1,3 @@
-buster.spec.expose();
-
 define(['views/thing', 'models/thing'], function(ThingView, Thing) {
 
     buster.testCase('Thing view', {
@@ -12,8 +10,9 @@ define(['views/thing', 'models/thing'], function(ThingView, Thing) {
             });
 
             this.thingView.render();
-        },
-
+        }
+        ,
+        
         "should have div.thing as the root element" : function() {
             assert.match(this.thingView.el, {
                 tagName: 'div',
@@ -21,6 +20,7 @@ define(['views/thing', 'models/thing'], function(ThingView, Thing) {
             })
         }
         ,
+
         "should have span.thing_title containing the thing title" : function() {
             assert.match(this.thingView.$('span.thing_title')[0], {
                 innerHTML: this.thing.get('title')

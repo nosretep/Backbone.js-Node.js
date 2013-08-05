@@ -1,6 +1,6 @@
 var config = module.exports;
 config['browser-all'] = {
-  autoRun: false,
+  //autoRun: false,
   environment: 'browser',
   rootPath: '..',
   sources: [

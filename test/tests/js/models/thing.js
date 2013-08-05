@@ -1,5 +1,3 @@
-buster.spec.expose();
-
 define(['models/thing'], function(Thing) {
 
     buster.testCase('Thing model', {

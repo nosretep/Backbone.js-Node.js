@@ -26,8 +26,5 @@
   },
   "engines": {
     "node": "0.10.4"
-  },
-  "scripts": {
-    "test": "export DISPLAY=:0:0 ; node_modules/.bin/buster-server & buster_pid=$! ; sleep 60 ; firefox -no-remote http://localhost:1111/capture & firefox_pid=$! ; sleep 60 ; node_modules/.bin/buster-test --reporter xml > test-reports.xml ; kill -9 ${firefox_pid} & kill -9 ${buster_pid} &"
   }
 }
