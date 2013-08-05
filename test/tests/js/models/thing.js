@@ -4,8 +4,15 @@ define(['models/thing'], function(Thing) {
     
         "should have setter and getter" : function() {
             var thing = new Thing();
-                thing.set('test_name', 'test_value');
-            expect(thing.get('test_name')).toEqual('test_value');
+                thing.set('firstName', 'Joe');
+            expect(thing.get('firstName')).toEqual('Joe');
+        }
+        ,
+
+        "should get fullName" : function() {
+        	var thing = new Thing();
+        		thing.set({'firstName' : 'Bob', 'lastName' : 'Jones'});
+        	expect(thing.fullName()).toEqual('Bob Jones');
         }
     })
 });

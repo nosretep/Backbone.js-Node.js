@@ -6,6 +6,9 @@ define(['underscore', 'backbone', 'text!templates/thing.html'],
                 this.$el.addClass('thing');
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
+            },
+            spaceManShout: function() {
+                alert('Spaceman!!!!!!');
             }
         });
         return ThingView;
