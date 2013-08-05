@@ -1,36 +1,37 @@
 buster.spec.expose();
 
-describe('Thing view test', function(run) {
-    require(['views/thing', 'models/thing'], function(ThingView, Thing) {
-        run(function() {
+define(['views/thing', 'models/thing'], function(ThingView, Thing) {
 
-            var thing =  new Thing({'id':'thingId','title':'thing title'});
+    buster.testCase('Thing view', {
 
-            var thingView = new ThingView({
-                'model': thing
+        setUp : function() {
+            this.thing =  new Thing({'id':'thingId','title':'thing title'});
+
+            this.thingView = new ThingView({
+                'model': this.thing
             });
 
-            thingView.render();
+            this.thingView.render();
+        },
 
-            it('should have div.thing as the root element', function() {
-                assert.match(thingView.el, {
-                    tagName: 'div',
-                    className: 'thing'
-                })
-            });
+        "should have div.thing as the root element" : function() {
+            assert.match(this.thingView.el, {
+                tagName: 'div',
+                className: 'thing'
+            })
+        }
+        ,
+        "should have span.thing_title containing the thing title" : function() {
+            assert.match(this.thingView.$('span.thing_title')[0], {
+                innerHTML: this.thing.get('title')
+            })
+        }
+        ,
 
-            it('should have span.thing_title containing the thing title', function() {
-                assert.match(thingView.$('span.thing_title')[0], {
-                    innerHTML: thing.get('title')
-                })
-            });
-
-            it('should have link to edit page', function() {
-                assert.match(thingView.$('a')[0], {
-                    href: '/things/' + thing.get('id') + '/edit'
-                })
-            });
-
-        });
-    });
+        "should have link to edit page" : function() {
+            assert.match(this.thingView.$('a')[0], {
+                href: '/things/' + this.thing.get('id') + '/edit'
+            })
+        }
+    })
 });
