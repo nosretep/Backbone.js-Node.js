@@ -23,7 +23,8 @@
     "almond": "0.2.5",
     "buster": "0.6.12",
     "buster-amd": "0.3.0",
-    "buster-coverage": "git://github.com/ebi/buster-coverage.git"
+    "buster-coverage": "git://github.com/ebi/buster-coverage.git",
+    "jshint":"2.1.9"
   },
   "engines": {
     "node": "0.10.4"

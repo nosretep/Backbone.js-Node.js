@@ -1,0 +1,4 @@
+src/*.html
+src/js/libs/*
+src/js/templates/*
+src/js/data/*

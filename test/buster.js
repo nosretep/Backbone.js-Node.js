@@ -19,6 +19,7 @@ config['browser-all'] = {
     ]
     ,
     "buster-coverage": {
+        isModulePattern: false,
         format: 'cobertura',
         coverageExclusions: [
             'js/libs/', 
