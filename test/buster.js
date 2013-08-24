@@ -15,12 +15,14 @@ config['browser-all'] = {
     extensions: [ 
         require('buster-amd')
         , 
-        require("buster-coverage")
+        require('buster-coverage')
     ]
     ,
-    "buster-coverage": {
+    'buster-coverage': {
         isModulePattern: false,
-        format: 'cobertura',
+        format: 'lcov',
+        outputDirectory: 'test/ci-reports',
+        combinedResultsOnly: true,
         coverageExclusions: [
             'js/libs/', 
             'js/data/config.json',
