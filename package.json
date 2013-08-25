@@ -24,7 +24,9 @@
     "buster": "0.6.12",
     "buster-amd": "0.3.0",
     "buster-coverage": "git://github.com/ebi/buster-coverage.git",
-    "jshint":"2.1.9"
+    "jshint":"2.1.9",
+    "mocha":"1.12.0",
+    "selenium-webdriver":"2.35.0"
   },
   "engines": {
     "node": "0.10.4"
