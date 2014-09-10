@@ -1,5 +1,12 @@
+var jsdom = require("jsdom").jsdom;
+jsdom.env({
+	html : "<html><body></body></html>",
+	done : function(errs, window) {
+		global.window = window;
+	}
+});
+
 var requirejs = require('requirejs');
- 
 requirejs.config({
     nodeRequire: require,
     baseUrl: './src/js',
@@ -8,27 +15,19 @@ requirejs.config({
         'collections' : 'collections',
         'text': 'libs/text',
         'json': 'libs/json'
-    },
-    shim: {
-        'jquery' : {
-            exports: '$'  
-        },
-        'underscore' : {
-            exports: '_'  
-        },
-        'backbone': {
-            deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
-        }
     }
 });
 
 // Odd step needed to set Backbone.$ ...
-requirejs(['jquery', 'backbone'], function($, Backbone) { Backbone.$ = $; });
+requirejs([ 'jquery', 'backbone' ], function($, Backbone) {
+	Backbone.$ = $;
+});
 
 requirejs([
     'http', 
     'express',
+    'body-parser',
+    'express-error-handler',
     'optimist',
     'jquery',
     'backbone',
@@ -45,6 +44,8 @@ requirejs([
 function(
     http,
     express,
+    bodyParser,
+    errorHandler,
     optimist,
     $,
     Backbone,
@@ -70,13 +71,12 @@ function(
     ]);
 
     // Fake a logged in user for the meantime ...
-    var loggedInUser = new User({ 'username' : 'firstName lastName'});
+    var loggedInUser = new User({ 'username' : 'George Washington'});
 
     var server = express();
 
-    // Develpment mode configuration ... 
-    // export NODE_ENV=development | production | arbitrary ...
-    server.configure('development', function(){
+ // development only
+    if ('development' == server.get('env')) {
         // Less configuration ...
         server.use(require('less-middleware')({
             src: __dirname + '/src/less',
@@ -87,33 +87,33 @@ function(
 //            debug: true
         }));
         // Non pretty error handling when in development ...
-        server.use(express.errorHandler());
-    });
+        server.use(errorHandler());
+    }
 
     // Configure server ...
-    server.configure(function(){
-        server.set('port', 8888);
-        server.engine('.html', require('ejs').__express);
-        server.set('views', __dirname + '/');
+    server.set('port', 8888);
+    server.engine('.html', require('ejs').__express);
+    server.set('views', __dirname + '/');
 
-        server.use(function (req, res, next) {
-            req.isJSONRequest = /json/.test(req.headers['accept']);
-            next();
-        });
-
-        server.use(express.bodyParser());
+    server.use(function (req, res, next) {
+        req.isJSONRequest = /json/.test(req.headers['accept']);
+        next();
     });
+
+//    server.use(bodyParser());
+    server.use(bodyParser.urlencoded({
+	  extended: true
+	}));
+    server.use(bodyParser.json());
 
     // Make sure that environment specific data is available at route to 'js/env.json' ...
     server.get('/js/data/config.json', function(req, res) {
-        res.sendfile('configs/' + config + '.json');
+        res.sendFile('configs/' + config + '.json', { root: __dirname });
     });
 
     // Now make sure that static files are set (order important note 'js/env.json' above) ...
-    server.configure(function(){
-        server.use('/js', express.static(__dirname + '/src/js'));
-        server.use('/css', express.static(__dirname + '/src/css'));
-    });
+    server.use('/js', express.static(__dirname + '/src/js'));
+    server.use('/css', express.static(__dirname + '/src/css'));
     
     server.get('/', function(req, res) {
         res.redirect('/things')
@@ -206,12 +206,12 @@ function(
 
     // Applicable when 'dist=true' ...
     server.get('/all.min.js', function(req, res) {
-        res.sendfile('dist/all.min.js');
+        res.sendFile('dist/all.min.js');
     });
 
     // Applicable when 'dist=true' ...
     server.get('/all.min.css', function(req, res) {
-        res.sendfile('dist/all.min.css');
+        res.sendFile('dist/all.min.css');
     });
     
     http.createServer(server).listen(server.get('port'), function(){

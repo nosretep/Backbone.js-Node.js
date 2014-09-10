@@ -4,3 +4,4 @@ node_modules/
 .gitconfig
 coverage/
 test-reports.xml
+.project
