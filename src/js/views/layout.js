@@ -13,7 +13,11 @@ define([
                 setContent: function(view) {
                     this.removeChildViews();
                     this.addChildView(view);
-
+                    
+                    if (typeof document !== 'undefined') {
+                    	document.title = view.getTitle();
+                    };
+                    
                     view.render();
                     this.$el.find('div#content').html('').append(view.el);
                 }

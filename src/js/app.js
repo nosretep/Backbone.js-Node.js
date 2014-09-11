@@ -69,7 +69,6 @@ requirejs([
                 })
             },
             thingShow: function(id) {
-            	console.log(id);
                 (new Thing({'id' : id}))
                     .fetch({
                         'success': function(model) {

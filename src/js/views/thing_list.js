@@ -1,6 +1,7 @@
 define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_list.html', 'views/thing_list_item'],
     function (_, Backbone, ProtoView, thingListViewTemplate, ThingListItemView) {
 		return ProtoView.extend({
+			title: 'Thing list',
             template: _.template(thingListViewTemplate),
             render : function() {
                 this.$el.addClass('things');

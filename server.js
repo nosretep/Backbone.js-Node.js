@@ -79,9 +79,9 @@ function(
 
     // Preload some Things ...
     var Things = new ThingList([
-        {'title' : 'Thing 1', 'id' : '26b8adcc-c390-b5bd-162a-8c245471f582'},
-        {'title' : 'Thing 2', 'id' : '8f80bbfb-ccac-26d6-5055-5120f69fe80b'},
-        {'title' : 'Thing 3', 'id' : 'dd543e76-2585-55ad-f4a5-afe77014d71c'}
+        {'title' : 'Thing 1', 'id' : '26b8adcc-c390-b5bd-162a-8c245471f582', 'created' : new Date()},
+        {'title' : 'Thing 2', 'id' : '8f80bbfb-ccac-26d6-5055-5120f69fe80b', 'created' : new Date()},
+        {'title' : 'Thing 3', 'id' : 'dd543e76-2585-55ad-f4a5-afe77014d71c', 'created' : new Date()}
     ]);
 
     // Fake a logged in user for the meantime ...
@@ -142,15 +142,13 @@ function(
         if (req.isJSONRequest) {
 
             res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(Things.toJSON()));
+            res.end(JSON.stringify(Things.sort().toJSON()));
 
         } else {
 
             var thingListView = new ThingListView({'collection': Things});
 
-            res.render(baseHtmlFile, {
-                'content' : generatePageContent(thingListView)
-            });
+            res.render(baseHtmlFile, generatePageContentAndTitle(thingListView));
         }
     });
 
@@ -158,9 +156,7 @@ function(
     server.get('/things/new', function(req, res) {
         var thingNewView = new ThingNewView({'model': new Thing()});
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(thingNewView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(thingNewView));
     });
 
     // I'm not sure if I recommend this (as html) ...
@@ -178,9 +174,7 @@ function(
 
             var thingView = new ThingView({'model': thing});
             
-            res.render(baseHtmlFile, {
-                'content' : generatePageContent(thingView)
-            });
+            res.render(baseHtmlFile, generatePageContentAndTitle(thingView));
         }
     });
 
@@ -190,16 +184,18 @@ function(
 
         var thingEditView = new ThingEditView({'model': Things.get(id)});
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(thingEditView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(thingEditView));
     });
 
     server.post('/things', function(req, res) {
         getJSONFromRequestBody(req).then(function(thingRaw) {
 
-            var thing = Things.create(thingRaw);
+            var thing = new Thing();
+            	thing.set('title', thingRaw.title)
                 thing.set('id', guid());
+                thing.set('created', new Date());
+                
+            Things.add(thing);
 
             res.writeHead(200, {"Content-Type": "application/json"});
             res.end(JSON.stringify(thing));
@@ -224,49 +220,37 @@ function(
     server.get('/about', function(req, res) {
         var aboutView = new AboutView();
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(aboutView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(aboutView));
     });
     
     server.get('/contact', function(req, res) {
         var contactView = new ContactView();
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(contactView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(contactView));
     });
 
     server.get('/benefits/seo', function(req, res) {
         var seoView = new SeoView();
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(seoView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(seoView));
     });
     
     server.get('/benefits/bandwidth', function(req, res) {
         var bandwidthView = new BandwidthView();
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(bandwidthView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(bandwidthView));
     });
     
     server.get('/benefits/faster', function(req, res) {
         var fasterView = new FasterView();
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(fasterView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(fasterView));
     });
     
     server.get('/benefits/shareable', function(req, res) {
         var shareableView = new ShareableView();
         
-        res.render(baseHtmlFile, {
-            'content' : generatePageContent(shareableView)
-        });
+        res.render(baseHtmlFile, generatePageContentAndTitle(shareableView));
     });
     
     // Applicable when 'dist=true' ...
@@ -283,7 +267,7 @@ function(
         console.log('Express server listening on port ' + server.get('port'));
     }); 
 
-    function generatePageContent(view) {
+    function generatePageContentAndTitle(view) {
 
         var layoutView = new LayoutView();
             layoutView.render();
@@ -299,7 +283,11 @@ function(
             
             layoutView.setContent(view);
             
-        return layoutView.$el.html()
+        return {
+        	'content' : layoutView.$el.html(),
+        	'title' : view.getTitle()
+        }
+
     };
 
     function getJSONFromRequestBody(req) {
