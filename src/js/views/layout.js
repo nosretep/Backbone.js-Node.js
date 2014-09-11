@@ -14,6 +14,7 @@ define([
                     this.removeChildViews();
                     this.addChildView(view);
                     
+                    // FIXME: not a fan of this ...
                     if (typeof document !== 'undefined') {
                     	document.title = view.getTitle();
                     };

@@ -255,12 +255,12 @@ function(
     
     // Applicable when 'dist=true' ...
     server.get('/all.min.js', function(req, res) {
-        res.sendFile('dist/all.min.js');
+        res.sendFile('dist/all.min.js', { root: __dirname });
     });
 
     // Applicable when 'dist=true' ...
     server.get('/all.min.css', function(req, res) {
-        res.sendFile('dist/all.min.css');
+        res.sendFile('dist/all.min.css', { root: __dirname });
     });
     
     http.createServer(server).listen(server.get('port'), function(){
