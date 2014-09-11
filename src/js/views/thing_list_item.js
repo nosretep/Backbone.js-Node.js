@@ -1,6 +1,6 @@
-define(['underscore', 'backbone', 'text!templates/thing_list_item.html'],
-    function (_, Backbone, thingListItemViewTemplate) {
-        var ThingListItemView = Backbone.View.extend({
+define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_list_item.html'],
+    function (_, Backbone, ProtoView, thingListItemViewTemplate) {
+		return ProtoView.extend({
             tagName: 'li',
             template: _.template(thingListItemViewTemplate),
             render : function() {
@@ -9,6 +9,5 @@ define(['underscore', 'backbone', 'text!templates/thing_list_item.html'],
                 return this;
             }
         });
-        return ThingListItemView;
     }
 );

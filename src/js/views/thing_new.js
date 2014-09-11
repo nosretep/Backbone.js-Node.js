@@ -1,6 +1,6 @@
-define(['underscore', 'backbone', 'text!templates/thing_new.html'],
-    function (_, Backbone, thingNewViewTemplate) {
-        var ThingNewView = Backbone.View.extend({
+define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_new.html'],
+    function (_, Backbone, ProtoView, thingNewViewTemplate) {
+		return ProtoView.extend({
             template: _.template(thingNewViewTemplate),
             render : function() {
                 this.$el.addClass('thing_new');
@@ -22,6 +22,5 @@ define(['underscore', 'backbone', 'text!templates/thing_new.html'],
                 });
             }
         });
-        return ThingNewView;
     }
 );

@@ -36,10 +36,17 @@ requirejs([
     'collections/thing_list',
     'views/layout',
     'views/header',
+    'views/footer',
     'views/thing',
     'views/thing_list',
     'views/thing_new',
-    'views/thing_edit'], 
+    'views/thing_edit',
+    'views/contact',
+    'views/about',
+    'views/benefits/seo',
+    'views/benefits/bandwidth',
+    'views/benefits/faster',
+    'views/benefits/shareable'], 
 
 function(
     http,
@@ -54,10 +61,17 @@ function(
     ThingList,
     LayoutView,
     HeaderView,
+    FooterView,
     ThingView,
     ThingListView,
     ThingNewView,
-    ThingEditView) {
+    ThingEditView,
+    ContactView,
+    AboutView,
+    SeoView,
+    BandwidthView,
+    FasterView,
+    ShareableView) {
 
     var argv = optimist.argv;
     var config = argv['config'] || 'local';
@@ -71,7 +85,7 @@ function(
     ]);
 
     // Fake a logged in user for the meantime ...
-    var loggedInUser = new User({ 'username' : 'George Washington'});
+    var loggedInUser = new User({ 'username' : 'Example User'});
 
     var server = express();
 
@@ -207,6 +221,54 @@ function(
         });
     });
 
+    server.get('/about', function(req, res) {
+        var aboutView = new AboutView();
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(aboutView)
+        });
+    });
+    
+    server.get('/contact', function(req, res) {
+        var contactView = new ContactView();
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(contactView)
+        });
+    });
+
+    server.get('/benefits/seo', function(req, res) {
+        var seoView = new SeoView();
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(seoView)
+        });
+    });
+    
+    server.get('/benefits/bandwidth', function(req, res) {
+        var bandwidthView = new BandwidthView();
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(bandwidthView)
+        });
+    });
+    
+    server.get('/benefits/faster', function(req, res) {
+        var fasterView = new FasterView();
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(fasterView)
+        });
+    });
+    
+    server.get('/benefits/shareable', function(req, res) {
+        var shareableView = new ShareableView();
+        
+        res.render(baseHtmlFile, {
+            'content' : generatePageContent(shareableView)
+        });
+    });
+    
     // Applicable when 'dist=true' ...
     server.get('/all.min.js', function(req, res) {
         res.sendFile('dist/all.min.js');
@@ -228,8 +290,13 @@ function(
 
         var headerView = new HeaderView({'model' : loggedInUser});
             headerView.render();
+            
+        var footerView = new FooterView({'model' : loggedInUser});
+        	footerView.render();
 
             layoutView.$el.find('header').append(headerView.$el);
+            layoutView.$el.find('footer').append(footerView.$el);
+            
             layoutView.setContent(view);
             
         return layoutView.$el.html()
