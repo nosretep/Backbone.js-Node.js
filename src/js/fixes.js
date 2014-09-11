@@ -1,3 +1,3 @@
-requirejs(['jquery', 'underscore', 'backbone'], function($, _, Backbone) {
+requirejs(['jquery', 'underscore', 'backbone', 'bootstrap'], function($, _, Backbone, bootstrap) {
     return {};
 });

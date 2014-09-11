@@ -51,6 +51,7 @@ requirejs([
                 })
             },
             thingShow: function(id) {
+            	console.log(id);
                 (new Thing({'id' : id}))
                     .fetch({
                         'success': function(model) {
@@ -85,7 +86,7 @@ requirejs([
 
         // If we're being served from 'file://' then pushState false ...
         Backbone.history.start({
-            pushState: true, //!Utils.isFilePath()
+            pushState: true,
             silent: false
         });
 

@@ -96,11 +96,14 @@ function(
     server.set('views', __dirname + '/');
 
     server.use(function (req, res, next) {
-        req.isJSONRequest = /json/.test(req.headers['accept']);
+        if(/application\/json/.test(req.get('accept'))) {
+        	req.isJSONRequest = true;
+        } else {
+        	req.isJSONRequest = false;
+        }
         next();
     });
 
-//    server.use(bodyParser());
     server.use(bodyParser.urlencoded({
 	  extended: true
 	}));
