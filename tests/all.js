@@ -43,7 +43,13 @@ requirejs.config({
     }
 });
 
+//Odd step needed to set Backbone.$ ...
+requirejs([ 'jquery', 'backbone' ], function($, Backbone) {
+	Backbone.$ = $;
+});
+
 define([
 	"tests/collections/thing_list",
-	"tests/models/thing"
+	"tests/models/thing",
+	"tests/views/thing"
 ]);
