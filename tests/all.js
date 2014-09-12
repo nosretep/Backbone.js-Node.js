@@ -30,6 +30,7 @@ requirejs([ 'jquery', 'backbone' ], function($, Backbone) {
 });
 
 define([
+    'tests/catch_all',
 	'tests/collections/thing_list',
 	'tests/models/thing',
 	'tests/views/thing'

@@ -20,7 +20,7 @@ define({
 
 	reporters: [ 'console', 'lcovhtml' ],
 	
-	excludeInstrumentation: /^(configs|dist|html-report|node_modules|test|tests)\//
+	excludeInstrumentation: /^(configs|dist|html-report|node_modules|test|tests|src\/js\/libs)\//
 });
 
 
