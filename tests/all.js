@@ -1,6 +1,6 @@
-var jsdom = require("jsdom").jsdom;
+var jsdom = require('jsdom').jsdom;
 jsdom.env({
-	html : "<html><body></body></html>",
+	html : '<html><body></body></html>',
 	done : function(errs, window) {
 		global.window = window;
 	}
@@ -30,8 +30,8 @@ requirejs([ 'jquery', 'backbone' ], function($, Backbone) {
 });
 
 define([
-	"tests/collections/thing_list",
-	"tests/models/thing",
-	"tests/views/thing"
+	'tests/collections/thing_list',
+	'tests/models/thing',
+	'tests/views/thing'
 ]);
 

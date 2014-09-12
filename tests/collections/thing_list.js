@@ -1,11 +1,11 @@
-define(["intern!object", "intern/chai!assert", "collections/thing_list"],
+define(['intern!object', 'intern/chai!assert', 'collections/thing_list'],
 	function (registerSuite, assert, ThingList) {
 	registerSuite({
-		"name": "ThingList collection tests",
-		"load": function () {
+		'name': 'ThingList collection tests',
+		'load': function () {
 			assert.isNotNull(ThingList);
 		},
-		"sort": function() {
+		'sort': function() {
 			var Things = new ThingList();
 			
 			Things.add({'title':'number one', 'created': new Date('January 1, 2005') });

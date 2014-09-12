@@ -12,13 +12,15 @@ define({
 		]
 	},
 	
-	suites: [ "myPackage/tests/all" ],
+	suites: [ 'myPackage/tests/all' ],
 
 	useLoader: {
 	  'host-node': 'requirejs'
 	},
 
-	excludeInstrumentation: /./
+	reporters: [ 'console', 'lcovhtml' ],
+	
+	excludeInstrumentation: /^(configs|dist|html-report|node_modules|test|tests)\//
 });
 
 
