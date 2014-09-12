@@ -22,25 +22,6 @@ requirejs.config({
         'json': 'libs/json',
         'tests': '../../tests'
     }
-,
-    shim: {
-        'jquery' : {
-            exports: '$'  
-        }
-    	,
-        'underscore' : {
-            exports: '_'  
-        }
-        ,
-        'backbone': {
-            deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
-        }
-        ,
-        'bootstrap': {
-        	deps: ['jquery']
-        }
-    }
 });
 
 //Odd step needed to set Backbone.$ ...
@@ -53,3 +34,4 @@ define([
 	"tests/models/thing",
 	"tests/views/thing"
 ]);
+

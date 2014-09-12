@@ -1,22 +1,33 @@
 define({
 
 	// TODO: look at http://pastebin.com/t65DHiC2 for better loader strategies ...
+	// http://servercoredump.com/question/23771155/functional-test-runner-hangs-amd-loader-baseurl-configuration
 	
 	loader: {
 		packages: [ 
-			{ name: 'myPackage', location: '.' }
+			{ name: 'myPackage', location: '.' },
+			{ name: 'jquery', location: './node_modules/jquery'},
+			{ name: 'underscore', location: './node_modules/underscore' },
+			{ name: 'backbone', location: './node_modules/backbone' }
 		]
 	},
 	
 	suites: [ "myPackage/tests/all" ],
 
 	useLoader: {
-	  'host-node': 'requirejs',
-	  'host-browser': '../../node_modules/requirejs/require.js'
+	  'host-node': 'requirejs'
 	},
 
 	excludeInstrumentation: /./
 });
+
+
+
+
+
+
+
+
 
 //// Learn more about configuring this file at <https://github.com/theintern/intern/wiki/Configuring-Intern>.
 //// These default settings work OK for most people. The options that *must* be changed below are the

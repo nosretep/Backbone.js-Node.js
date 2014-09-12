@@ -1,6 +1,7 @@
 define(['intern!object', 'intern/chai!assert', 'views/thing', 'models/thing'],
 	function (registerSuite, assert, ThingView, Thing) {
 	registerSuite({
+		'name': 'Thing view tests',
 		'load': function () {
 			assert.isNotNull(ThingView);
 			assert.isNotNull(Thing);

@@ -1,6 +1,7 @@
 define(["intern!object", "intern/chai!assert", "models/thing"],
 	function (registerSuite, assert, Thing) {
 	registerSuite({
+		"name": "Thing model tests",
 		"load": function () {
 			assert.isNotNull(Thing);
 		},

@@ -1,6 +1,7 @@
 define(["intern!object", "intern/chai!assert", "collections/thing_list"],
 	function (registerSuite, assert, ThingList) {
 	registerSuite({
+		"name": "ThingList collection tests",
 		"load": function () {
 			assert.isNotNull(ThingList);
 		},
