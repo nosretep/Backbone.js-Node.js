@@ -33,6 +33,7 @@ requirejs([
     'backbone',
     'models/user',
     'models/thing',
+    'models/generic',
     'collections/thing_list',
     'views/layout',
     'views/header',
@@ -41,12 +42,8 @@ requirejs([
     'views/thing_list',
     'views/thing_new',
     'views/thing_edit',
-    'views/contact',
-    'views/about',
-    'views/benefits/seo',
-    'views/benefits/bandwidth',
-    'views/benefits/faster',
-    'views/benefits/shareable'], 
+    'views/generic',
+    'json!data/generic.json'], 
 
 function(
     http,
@@ -58,6 +55,7 @@ function(
     Backbone,
     User,
     Thing,
+    Generic,
     ThingList,
     LayoutView,
     HeaderView,
@@ -66,12 +64,8 @@ function(
     ThingListView,
     ThingNewView,
     ThingEditView,
-    ContactView,
-    AboutView,
-    SeoView,
-    BandwidthView,
-    FasterView,
-    ShareableView) {
+    GenericView,
+    genericJSON) {
 
     var argv = optimist.argv;
     var config = argv['config'] || 'local';
@@ -131,6 +125,16 @@ function(
     // Now make sure that static files are set (order important note 'js/env.json' above) ...
     server.use('/js', express.static(__dirname + '/src/js'));
     server.use('/css', express.static(__dirname + '/src/css'));
+    
+    // Applicable when 'dist=true' ...
+    server.get('/all.min.js', function(req, res) {
+        res.sendFile('dist/all.min.js', { root: __dirname });
+    });
+
+    // Applicable when 'dist=true' ...
+    server.get('/all.min.css', function(req, res) {
+        res.sendFile('dist/all.min.css', { root: __dirname });
+    });
     
     server.get('/', function(req, res) {
         res.redirect('/things')
@@ -216,53 +220,19 @@ function(
             res.end(JSON.stringify(thing));
         });
     });
-
-    server.get('/about', function(req, res) {
-        var aboutView = new AboutView();
-        
-        res.render(baseHtmlFile, generatePageContentAndTitle(aboutView));
-    });
     
-    server.get('/contact', function(req, res) {
-        var contactView = new ContactView();
+    server.get('/*', function(req, res) {
+    	var path = req.params[0];
+    	
+    	var generic = new Generic(genericJSON[path]);
+    	
+    	var genericView = new GenericView({
+    		'model' : generic
+    	});
+    	
+    	res.render(baseHtmlFile, generatePageContentAndTitle(genericView));
+    });
         
-        res.render(baseHtmlFile, generatePageContentAndTitle(contactView));
-    });
-
-    server.get('/benefits/seo', function(req, res) {
-        var seoView = new SeoView();
-        
-        res.render(baseHtmlFile, generatePageContentAndTitle(seoView));
-    });
-    
-    server.get('/benefits/bandwidth', function(req, res) {
-        var bandwidthView = new BandwidthView();
-        
-        res.render(baseHtmlFile, generatePageContentAndTitle(bandwidthView));
-    });
-    
-    server.get('/benefits/faster', function(req, res) {
-        var fasterView = new FasterView();
-        
-        res.render(baseHtmlFile, generatePageContentAndTitle(fasterView));
-    });
-    
-    server.get('/benefits/shareable', function(req, res) {
-        var shareableView = new ShareableView();
-        
-        res.render(baseHtmlFile, generatePageContentAndTitle(shareableView));
-    });
-    
-    // Applicable when 'dist=true' ...
-    server.get('/all.min.js', function(req, res) {
-        res.sendFile('dist/all.min.js', { root: __dirname });
-    });
-
-    // Applicable when 'dist=true' ...
-    server.get('/all.min.css', function(req, res) {
-        res.sendFile('dist/all.min.css', { root: __dirname });
-    });
-    
     http.createServer(server).listen(server.get('port'), function(){
         console.log('Express server listening on port ' + server.get('port'));
     }); 

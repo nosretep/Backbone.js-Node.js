@@ -26,21 +26,13 @@ define([
 		,
 		'views/thing_new'
 		,
-	    'views/contact'
-		,
-	    'views/about'
-	    ,
-	    'views/benefits/seo'
-	    ,
-	    'views/benefits/bandwidth'
-	    ,
-	    'views/benefits/faster'
-	    ,
-	    'views/benefits/shareable'
+	    'views/generic'
 		,
 		'models/thing'
 		,
 		'models/user'
+		,
+		'models/generic'
 		,
 		'collections/thing_list'],
 		

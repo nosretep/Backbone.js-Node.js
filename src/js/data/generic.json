@@ -1,0 +1,31 @@
+{
+    "about" : {
+        "title" : "About",
+        "content" : "About page content"
+    }
+    ,
+    "contact" : {
+        "title" : "Contact",
+        "content" : "Address, and email address to contact us, perhaps a form."
+    }
+    ,
+    "benefits\/bandwidth" : {
+        "title" : "Benefits ~ Bandwidth",
+        "content" : "Less bandwidth because after the initial page draw, your server will only be serving JSON data used to build each page."
+    }
+    ,
+    "benefits\/faster" : {
+        "title" : "Benefits ~ Faster",
+        "content" : "Faster page draws because the user's browser will only request the content that is associated with each url. Headers, menus, and other static components will only be requested on the first page that a user visits."
+    }
+    ,
+    "benefits\/seo" : {
+        "title" : "Benefits ~ SEO",
+        "content" : "Seo friendly because search engine spiders will find real urls that lead to real content."
+    }
+    ,
+    "benefits\/shareable" : {
+        "title" : "Benefits ~ Shareable",
+        "content" : "Shareable because users can grab the url from the browser's address bar."
+    }
+}

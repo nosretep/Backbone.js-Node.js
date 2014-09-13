@@ -4,37 +4,31 @@ requirejs([
     'backbone',
     'config',
     'models/thing',
+    'models/generic',
     'collections/thing_list',
     'views/layout',
     'views/thing',
     'views/thing_list',
     'views/thing_new',
     'views/thing_edit',
-    'views/contact',
-    'views/about',
-    'views/benefits/seo',
-    'views/benefits/bandwidth',
-    'views/benefits/faster',
-    'views/benefits/shareable'],
+    'views/generic',
+    'json!data/generic.json'],
     function(
         $,
         _,
         Backbone,
         Config,
         Thing,
+        Generic,
         ThingList,
         LayoutView,
         ThingView,
         ThingListView,
         ThingNewView,
         ThingEditView,
-        ContactView,
-        AboutView,
-        SeoView,
-        BandwidthView,
-        FasterView,
-        ShareableView) {
-
+        GenericView,
+        genericJSON) {
+	
         window.App = {};
 
         var Things = new ThingList();
@@ -51,12 +45,14 @@ requirejs([
                 'things/new': 'thingNew',
                 'things/:id': 'thingShow',
                 'things/:id/edit': 'thingEdit',
-                'contact' : 'contactPage',
-                'about' : 'aboutPage',
-                'benefits/seo' : 'seoPage',
-                'benefits/bandwidth' : 'bandwidthPage',
-                'benefits/faster' : 'fasterPage',
-                'benefits/shareable' : 'shareablePage'
+                '*path' : 'genericPage'
+            },
+            genericPage: function(path) {
+            	var generic = new Generic(genericJSON[path]);
+                var genericView = new GenericView({
+                    'model': generic
+                });
+                layoutView.setContent(genericView);
             },
             thingsIndex: function() {
                 Things.fetch({
@@ -95,30 +91,6 @@ requirejs([
                             layoutView.setContent(thingEditView);
                         }
                     });
-            },
-            contactPage: function() {
-                var contactView = new ContactView();
-                layoutView.setContent(contactView);            	
-            },
-            aboutPage: function() {
-                var aboutView = new AboutView();
-                layoutView.setContent(aboutView);            	
-            },
-            seoPage: function() {
-                var seoView = new SeoView();
-                layoutView.setContent(seoView);            	
-            },
-            bandwidthPage: function() {
-                var bandwidthView = new BandwidthView();
-                layoutView.setContent(bandwidthView);            	
-            },
-            fasterPage: function() {
-                var fasterView = new FasterView();
-                layoutView.setContent(fasterView);            	
-            },
-            shareablePage: function() {
-                var shareableView = new ShareableView();
-                layoutView.setContent(shareableView);            	
             }
         });
 
@@ -128,7 +100,8 @@ requirejs([
         // If we're being served from 'file://' then pushState false ...
         Backbone.history.start({
             pushState: true,
-            silent: false
+            silent: false 	// this means that the router will route to mapped method
+            				// important for setting up events within view.
         });
 
         // This code ensures that that app links go through the appRouter ...
