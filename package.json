@@ -5,20 +5,19 @@
   "dependencies": {
     "backbone": "^1.1.2",
     "body-parser": "^1.8.1",
+    "chromedriver": "^2.10.0-1",
     "ejs": "^1.0.0",
     "express": "^4.9.0",
     "express-error-handler": "^0.5.4",
     "jquery": "^2.1.1",
     "jsdom": "^1.0.0-pre.6",
+    "leadfoot": "^1.1.0",
     "optimist": "^0.6.1",
     "requirejs": "^2.1.15",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
     "almond": "0.2.5",
-    "buster": "0.6.12",
-    "buster-amd": "0.3.0",
-    "buster-coverage": "git://github.com/ebi/buster-coverage.git",
     "grunt": "0.4.1",
     "grunt-contrib-concat": "0.3.0",
     "grunt-contrib-copy": "0.4.1",
@@ -27,10 +26,7 @@
     "grunt-css": "0.5.4",
     "grunt-string-replace": "0.2.4",
     "intern": "^2.0.3",
-    "jshint": "2.1.9",
-    "less-middleware": "0.1.11",
-    "mocha": "1.12.0",
-    "selenium-webdriver": "2.35.0"
+    "less-middleware": "0.1.11"
   },
   "engines": {
     "node": "*"

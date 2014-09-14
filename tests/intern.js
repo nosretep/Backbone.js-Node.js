@@ -1,7 +1,23 @@
 define({
+	
+	// The port on which the instrumenting proxy will listen
+	proxyPort: 9000,
+ 
+	// A fully qualified URL to the Intern proxy
+	proxyUrl: 'http://localhost:9000/',
 
-	// TODO: look at http://pastebin.com/t65DHiC2 for better loader strategies ...
-	// http://servercoredump.com/question/23771155/functional-test-runner-hangs-amd-loader-baseurl-configuration
+	capabilities: {
+		'selenium-version': '2.43.0'
+	},
+
+	environments: [
+	   { browserName: 'safari' }, { browserName: 'chrome' }
+	],
+	
+	webdriver: {
+		host: 'localhost',
+		port: 4444
+	},
 	
 	loader: {
 		packages: [ 
@@ -12,13 +28,19 @@ define({
 		]
 	},
 	
+	// Name of the tunnel class to use for WebDriver tests
+//	tunnel: 'SauceLabsTunnel',
+	
 	suites: [ 'myPackage/tests/all' ],
 
+	// Functional test suite(s) to run in each browser once non-functional tests are completed
+	functionalSuites: [ 'myPackage/tests/functional' ],
+	
 	useLoader: {
 	  'host-node': 'requirejs'
 	},
 
-	reporters: [ 'console', 'lcovhtml' ],
+	reporters: [ 'console', 'lcovhtml', 'cobertura' ],
 	
 	excludeInstrumentation: /^(configs|dist|html-report|node_modules|test|tests|src\/js\/libs)\//
 });
