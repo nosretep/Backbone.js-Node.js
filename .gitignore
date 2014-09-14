@@ -7,3 +7,4 @@ test-reports.xml
 .project
 dist/
 html-report/
+cobertura-coverage.xml
