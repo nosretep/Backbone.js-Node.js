@@ -1,7 +1,7 @@
 define(['backbone'], 
     function(Backbone) {
         var Thing = Backbone.Model.extend({
-	            urlRoot: '/things',
+	            urlRoot: '/api/things',
 	            fullName: function() {
 	            	return this.get('firstName') + " " + this.get('lastName');
 	            }

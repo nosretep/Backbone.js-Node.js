@@ -104,17 +104,17 @@ function(
     server.set('views', __dirname + '/');
 
     server.use(function (req, res, next) {
+    	req.isJSONRequest = false;
         if(/application\/json/.test(req.get('accept'))) {
         	req.isJSONRequest = true;
-        } else {
-        	req.isJSONRequest = false;
         }
         next();
     });
 
     server.use(bodyParser.urlencoded({
-	  extended: true
+    	extended: true
 	}));
+    
     server.use(bodyParser.json());
 
     // Make sure that environment specific data is available at route to 'js/env.json' ...
@@ -140,58 +140,42 @@ function(
         res.redirect('/things')
     });
 
-    // I'm not sure if I recommend this (as html) ...
     server.get('/things', function(req, res) {
-
-        if (req.isJSONRequest) {
-
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(Things.sort().toJSON()));
-
-        } else {
-
-            var thingListView = new ThingListView({'collection': Things});
-
-            res.render(baseHtmlFile, generatePageContentAndTitle(thingListView));
-        }
+        var thingListView = new ThingListView({'collection': Things});
+        res.render(baseHtmlFile, generatePageContentAndTitle(thingListView));
     });
-
-    // I'm not sure if I recommend this (as html) ...
+    
     server.get('/things/new', function(req, res) {
         var thingNewView = new ThingNewView({'model': new Thing()});
-        
         res.render(baseHtmlFile, generatePageContentAndTitle(thingNewView));
     });
 
-    // I'm not sure if I recommend this (as html) ...
     server.get('/things/:id', function(req, res) {
-
         var thingId = req.params.id;
         var thing = Things.get(thingId);
-
-        if (req.isJSONRequest) {
-            
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(thing.toJSON()));
-
-        } else {
-
-            var thingView = new ThingView({'model': thing});
-            
-            res.render(baseHtmlFile, generatePageContentAndTitle(thingView));
-        }
+        var thingView = new ThingView({'model': thing});
+        res.render(baseHtmlFile, generatePageContentAndTitle(thingView));
     });
-
-    // I'm not sure if I recommend this (as html) ...
+    
     server.get('/things/:id/edit', function(req, res) {
         var id = req.params.id;
-
         var thingEditView = new ThingEditView({'model': Things.get(id)});
-        
         res.render(baseHtmlFile, generatePageContentAndTitle(thingEditView));
     });
 
-    server.post('/things', function(req, res) {
+    server.get('/api/things', function(req, res) {
+        res.writeHead(200, {"Content-Type": "application/json"});
+        res.end(JSON.stringify(Things.sort().toJSON()));
+    });
+    
+    server.get('/api/things/:id', function(req, res) {
+        var thingId = req.params.id;
+        var thing = Things.get(thingId);
+        res.writeHead(200, {"Content-Type": "application/json"});
+        res.end(JSON.stringify(thing.toJSON()));
+    });
+    
+    server.post('/api/things', function(req, res) {
         getJSONFromRequestBody(req).then(function(thingRaw) {
 
             var thing = new Thing();
@@ -205,8 +189,8 @@ function(
             res.end(JSON.stringify(thing));
         });
     });
-
-    server.put('/things/:id', function(req, res) {
+    
+    server.put('/api/things/:id', function(req, res) {
         var id = req.params.id;
 
         getJSONFromRequestBody(req).then(function(thingRaw) {
