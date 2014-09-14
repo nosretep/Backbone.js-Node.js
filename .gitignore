@@ -8,3 +8,4 @@ test-reports.xml
 dist/
 html-report/
 cobertura-coverage.xml
+coverage-final.json
