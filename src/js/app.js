@@ -7,6 +7,7 @@ requirejs([
     'models/generic',
     'collections/thing_list',
     'views/layout',
+    'views/home',
     'views/thing',
     'views/thing_list',
     'views/thing_new',
@@ -22,6 +23,7 @@ requirejs([
         Generic,
         ThingList,
         LayoutView,
+        HomeView,
         ThingView,
         ThingListView,
         ThingNewView,
@@ -41,11 +43,16 @@ requirejs([
         // Create Router class ...
         var AppRouter = Backbone.Router.extend({
             routes: {
+            	'': 'homePage',
                 'things': 'thingsIndex',
                 'things/new': 'thingNew',
                 'things/:id': 'thingShow',
                 'things/:id/edit': 'thingEdit',
                 '*path' : 'genericPage'
+            },
+            homePage: function() {
+                var homeView = new HomeView();
+                layoutView.setContent(homeView);
             },
             genericPage: function(path) {
             	var generic = new Generic(genericJSON[path]);

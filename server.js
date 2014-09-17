@@ -36,6 +36,7 @@ requirejs([
     'models/generic',
     'collections/thing_list',
     'views/layout',
+    'views/home',
     'views/header',
     'views/footer',
     'views/thing',
@@ -58,6 +59,7 @@ function(
     Generic,
     ThingList,
     LayoutView,
+    HomeView,
     HeaderView,
     FooterView,
     ThingView,
@@ -69,7 +71,8 @@ function(
 
     var argv = optimist.argv;
     var config = argv['config'] || 'local';
-    var baseHtmlFile = (argv['dist']) ? 'dist/index.html' : 'src/index.html';
+    var dist = argv['dist'];
+    var baseHtmlFile = (dist) ? 'dist/index.html' : 'src/index.html';
 
     // Preload some Things ...
     var Things = new ThingList([
@@ -84,7 +87,7 @@ function(
     var server = express();
 
  // development only
-    if ('development' == server.get('env')) {
+    if ('development' == server.get('env') && !dist) {
         // Less configuration ...
         server.use(require('less-middleware')({
             src: __dirname + '/src/less',
@@ -122,22 +125,34 @@ function(
         res.sendFile('configs/' + config + '.json', { root: __dirname });
     });
 
-    // Now make sure that static files are set (order important note 'js/env.json' above) ...
-    server.use('/js', express.static(__dirname + '/src/js'));
-    server.use('/css', express.static(__dirname + '/src/css'));
-    
-    // Applicable when 'dist=true' ...
-    server.get('/all.min.js', function(req, res) {
-        res.sendFile('dist/all.min.js', { root: __dirname });
-    });
+    if (dist) {
+    	
+        // Applicable when 'dist=true' ...
+        server.get('/all.min.js', function(req, res) {
+            res.sendFile('dist/all.min.js', { root: __dirname });
+        });
 
-    // Applicable when 'dist=true' ...
-    server.get('/all.min.css', function(req, res) {
-        res.sendFile('dist/all.min.css', { root: __dirname });
-    });
+        // Applicable when 'dist=true' ...
+        server.get('/all.min.css', function(req, res) {
+            res.sendFile('dist/all.min.css', { root: __dirname });
+        });    	
+        
+        server.use('/img', express.static(__dirname + '/dist/img'));
+        server.use('/fonts', express.static(__dirname + '/dist/fonts'));
+        
+    } else {
+    	
+	    // Now make sure that static files are set (order important note 'js/env.json' above) ...
+	    server.use('/js', express.static(__dirname + '/src/js'));
+	    server.use('/css', express.static(__dirname + '/src/css'));
+	    server.use('/img', express.static(__dirname + '/src/img'));
+	    server.use('/fonts', express.static(__dirname + '/src/fonts'));
+	    
+    }
     
     server.get('/', function(req, res) {
-        res.redirect('/things')
+        var homeView = new HomeView();
+    	res.render(baseHtmlFile, generatePageContentAndTitle(homeView));
     });
 
     server.get('/things', function(req, res) {
@@ -207,13 +222,10 @@ function(
     
     server.get('/*', function(req, res) {
     	var path = req.params[0];
-    	
     	var generic = new Generic(genericJSON[path]);
-    	
     	var genericView = new GenericView({
     		'model' : generic
     	});
-    	
     	res.render(baseHtmlFile, generatePageContentAndTitle(genericView));
     });
         
@@ -275,4 +287,3 @@ function(
     };
 
 });
-

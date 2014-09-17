@@ -1,4 +1,8 @@
 {
+    "home" : {
+        "title": "Home",
+        "content": "Temporary home page."
+    },
     "about" : {
         "title" : "About",
         "content" : "About page content"
