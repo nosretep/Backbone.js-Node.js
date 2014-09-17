@@ -2,9 +2,9 @@ define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_edit.html
     function (_, Backbone, ProtoView, thingEditViewTemplate) {
 		return ProtoView.extend({
 			title: 'Thing edit',
+			className: 'thing_edit',
             template: _.template(thingEditViewTemplate),
             render : function() {
-                this.$el.addClass('thing_edit');
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },

@@ -4,9 +4,9 @@ define(['underscore', 'backbone', 'views/proto', 'text!templates/thing.html'],
 			getTitle: function() {
 				return this.model.get('title');
 			},
+			className: 'thing',
             template: _.template(thingViewTemplate),
             render : function() {
-                this.$el.addClass('thing');
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             }

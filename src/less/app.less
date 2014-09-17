@@ -11,7 +11,7 @@ body {
 }
 
 #home_carousel, div.carousel-inner, div.item {
-    max-height: 400px;
+    max-height: @main-content-max-height;
     overflow: hidden;
 }
 
@@ -22,7 +22,15 @@ body {
 }
 
 div#content {
-    min-height: 400px;
+    min-height: @main-content-max-height;
+}
+
+div#content > div {
+    padding: 15px 50px;
+}
+
+div#content > div.home_content {
+    padding: 0px;
 }
 
 @import "header.less";

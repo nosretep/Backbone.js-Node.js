@@ -2,9 +2,9 @@ define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_list.html
     function (_, Backbone, ProtoView, thingListViewTemplate, ThingListItemView) {
 		return ProtoView.extend({
 			title: 'Thing list',
+			className: 'things',
             template: _.template(thingListViewTemplate),
             render : function() {
-                this.$el.addClass('things');
                 this.$el.html(this.template());
                 this.collection.each(this.appendThing, this);
                 return this;
