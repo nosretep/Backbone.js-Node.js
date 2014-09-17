@@ -16,8 +16,6 @@ define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_new.html'
                 e.stopPropagation();
                 
                 var title = this.$el.find('input').val();
-
-                var title = this.$el.find('input').val();
                 this.model.set('title', title);
                 
                 if (this.model.isValid()) {

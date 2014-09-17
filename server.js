@@ -198,10 +198,16 @@ function(
                 thing.set('id', guid());
                 thing.set('created', new Date());
                 
-            Things.add(thing);
+            // TODO: rethink client/server validation for models ...
+            if (thing.isValid()) {
+            	Things.add(thing);
+            	res.writeHead(200, {"Content-Type": "application/json"});
+                res.end(JSON.stringify(thing));            	
+            } else {
+            	res.writeHead(409, {"Content-Type": "application/json"});
+                res.end(JSON.stringify({"error":thing.validationError}));            	
+            }
 
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(thing));
         });
     });
     
@@ -213,10 +219,17 @@ function(
             var thing = Things.get(id);
             var title = thingRaw.title;
 
-            thing.set('title', title);
-
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(thing));
+            // TODO: rethink client/server validation for models ...
+            if ((thing.clone().set('title', title)).isValid()) {
+            	thing.set('title', title);
+            	Things.add(thing);
+            	res.writeHead(200, {"Content-Type": "application/json"});
+                res.end(JSON.stringify(thing));            	
+            } else {
+            	res.writeHead(409, {"Content-Type": "application/json"});
+                res.end(JSON.stringify({"error":thing.validationError}));            	
+            }
+            
         });
     });
     
