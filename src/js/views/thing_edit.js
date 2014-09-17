@@ -17,9 +17,14 @@ define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_edit.html
 
                 var title = this.$el.find('input').val();
                 this.model.set('title', title);
-                this.model.save().done(function() {
-                    App.appRouter.navigate('/things', true);
-                });
+                
+                if (this.model.isValid()) {
+	                this.model.save().done(function() {
+	                    App.appRouter.navigate('/things', true);
+	                });
+                } else {
+                	alert(this.model.validationError);
+                };
             }
         });
     }
