@@ -1,4 +1,7 @@
-var jsdom = require("jsdom").jsdom;
+var requirejs = require('requirejs')
+	jsdom = require("jsdom").jsdom;
+
+
 jsdom.env({
 	html : "<html><body></body></html>",
 	done : function(errs, window) {
@@ -6,7 +9,7 @@ jsdom.env({
 	}
 });
 
-var requirejs = require('requirejs');
+
 requirejs.config({
     nodeRequire: require,
     baseUrl: './src/js',
@@ -14,7 +17,8 @@ requirejs.config({
         'models': 'models',
         'collections' : 'collections',
         'text': 'libs/text',
-        'json': 'libs/json'
+        'json': 'libs/json',
+        'db' : '../../db'
     }
 });
 
@@ -29,6 +33,7 @@ requirejs([
     'body-parser',
     'express-error-handler',
     'optimist',
+    'db',
     'static-favicon',
     'jquery',
     'backbone',
@@ -53,6 +58,7 @@ function(
     bodyParser,
     errorHandler,
     optimist,
+    Db,
     favicon,
     $,
     Backbone,
@@ -82,7 +88,7 @@ function(
         {'title' : 'Thing 2', 'id' : '8f80bbfb-ccac-26d6-5055-5120f69fe80b', 'created' : new Date()},
         {'title' : 'Thing 3', 'id' : 'dd543e76-2585-55ad-f4a5-afe77014d71c', 'created' : new Date()}
     ]);
-
+    
     // Fake a logged in user for the meantime ...
     var loggedInUser = new User({ 'username' : 'Example User'});
 
@@ -159,8 +165,11 @@ function(
     });
 
     server.get('/things', function(req, res) {
-        var thingListView = new ThingListView({'collection': Things});
-        res.render(baseHtmlFile, generatePageContentAndTitle(thingListView));
+    	Db.Things.findAll().then(function(data) {
+    		var Things = new ThingList(data);
+            var thingListView = new ThingListView({'collection': Things});
+            res.render(baseHtmlFile, generatePageContentAndTitle(thingListView));
+    	});
     });
     
     server.get('/things/new', function(req, res) {
@@ -170,42 +179,60 @@ function(
 
     server.get('/things/:id', function(req, res) {
         var thingId = req.params.id;
-        var thing = Things.get(thingId);
-        var thingView = new ThingView({'model': thing});
-        res.render(baseHtmlFile, generatePageContentAndTitle(thingView));
+    	Db.Things.findById(thingId).then(function(data) {
+    		var thing = new Thing(data);
+            var thingView = new ThingView({'model': thing});
+            res.render(baseHtmlFile, generatePageContentAndTitle(thingView));
+    	});
     });
     
     server.get('/things/:id/edit', function(req, res) {
-        var id = req.params.id;
-        var thingEditView = new ThingEditView({'model': Things.get(id)});
-        res.render(baseHtmlFile, generatePageContentAndTitle(thingEditView));
+        var thingId = req.params.id;
+    	Db.Things.findById(thingId).then(function(data) {
+    		var thing = new Thing(data);
+            var thingEditView = new ThingEditView({'model': thing});
+            res.render(baseHtmlFile, generatePageContentAndTitle(thingEditView));
+    	});
     });
 
     server.get('/api/things', function(req, res) {
-        res.writeHead(200, {"Content-Type": "application/json"});
-        res.end(JSON.stringify(Things.sort().toJSON()));
+    	Db.Things.findAll().then(function(data) {
+    		var Things = new ThingList(data);
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(Things.sort().toJSON()));
+    	});
     });
     
     server.get('/api/things/:id', function(req, res) {
         var thingId = req.params.id;
-        var thing = Things.get(thingId);
-        res.writeHead(200, {"Content-Type": "application/json"});
-        res.end(JSON.stringify(thing.toJSON()));
+    	Db.Things.findById(thingId).then(function(data) {
+    		var thing = new Thing(data);
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(thing.toJSON()));
+    	});
     });
     
     server.post('/api/things', function(req, res) {
         getJSONFromRequestBody(req).then(function(thingRaw) {
-
+        	
             var thing = new Thing();
             	thing.set('title', thingRaw.title)
-                thing.set('id', guid());
-                thing.set('created', new Date());
+                thing.set('created', (new Date()).getTime());
                 
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
-            	Things.add(thing);
-            	res.writeHead(200, {"Content-Type": "application/json"});
-                res.end(JSON.stringify(thing));            	
+            	
+            	Db.Things.add(thing.toJSON())
+            		.then(function(data) {
+	                	var thing = Things.add(data);
+	                	res.writeHead(200, {"Content-Type": "application/json"});
+	                    res.end(JSON.stringify(thing));  
+	            	})
+	            	.fail(function(err) {
+		            	res.writeHead(409, {"Content-Type": "application/json"});
+		                res.end(JSON.stringify({"error":JSON.stringify(err)}));
+	            	});
+          	
             } else {
             	res.writeHead(409, {"Content-Type": "application/json"});
                 res.end(JSON.stringify({"error":thing.validationError}));            	
@@ -219,15 +246,22 @@ function(
 
         getJSONFromRequestBody(req).then(function(thingRaw) {
 
-            var thing = Things.get(id);
-            var title = thingRaw.title;
+            var thing = new Thing(thingRaw);
 
             // TODO: rethink client/server validation for models ...
-            if ((thing.clone().set('title', title)).isValid()) {
-            	thing.set('title', title);
-            	Things.add(thing);
-            	res.writeHead(200, {"Content-Type": "application/json"});
-                res.end(JSON.stringify(thing));            	
+            if (thing.isValid()) {
+                
+            	Db.Things.update(thing.toJSON())
+	        		.then(function(data) {
+	                	var thing = Things.add(data);
+	                	res.writeHead(200, {"Content-Type": "application/json"});
+	                    res.end(JSON.stringify(thing));  
+	            	})
+	            	.fail(function(err) {
+		            	res.writeHead(409, {"Content-Type": "application/json"});
+		                res.end(JSON.stringify({"error":JSON.stringify(err)}));
+	            	});
+                
             } else {
             	res.writeHead(409, {"Content-Type": "application/json"});
                 res.end(JSON.stringify({"error":thing.validationError}));            	
