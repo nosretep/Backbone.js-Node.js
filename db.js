@@ -1,9 +1,10 @@
 define([
 	'mongodb', 
 	'jquery', 
-	'underscore'],
+	'underscore',
+	'sanitizer'],
 
-	function(mongo, $, _) {    
+	function(mongo, $, _, sanitizer) {    
 
 		var Server = mongo.Server,
 	    	Db = mongo.Db,
@@ -23,9 +24,15 @@ define([
 			}
 		});
 
-		function _idToId(item) {
+		function fixId(item) {
 			item.id = item._id;
 			delete item._id;
+			return item;
+		}
+		
+		function scrubContent(item) {
+			item.title = sanitizer.sanitize(item.title);
+			item.title = sanitizer.escape(item.title);
 			return item;
 		}
 	
@@ -35,7 +42,8 @@ define([
 					var deferred = $.Deferred();
 					db.collection('things', function(err, collection) {
 						collection.findOne({'_id' : new BSON.ObjectID(id) }, function(err, item) {
-							_idToId(item);
+							scrubContent(item);
+							fixId(item);
 							deferred.resolve(item);
 						});
 					});
@@ -47,7 +55,8 @@ define([
 					db.collection('things', function(err, collection) {
 						collection.find().toArray(function(err, items) {
 							_.each(items, function(item) {
-								_idToId(item);
+								scrubContent(item);
+								fixId(item);
 							});
 							deferred.resolve(items);
 						});
@@ -63,7 +72,8 @@ define([
 								deferred.reject(err);
 							} else {
 								var item = results[0];
-								_idToId(item);
+								scrubContent(item);
+								fixId(item);
 								deferred.resolve(item);
 							}
 						});
@@ -80,6 +90,7 @@ define([
 							if (err) {
 								deferred.reject(err);
 							} else {
+								scrubContent(data);
 								data.id = id;
 								deferred.resolve(data);
 							}
