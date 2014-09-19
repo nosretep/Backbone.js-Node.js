@@ -29,6 +29,7 @@ requirejs([
     'body-parser',
     'express-error-handler',
     'optimist',
+    'static-favicon',
     'jquery',
     'backbone',
     'models/user',
@@ -52,6 +53,7 @@ function(
     bodyParser,
     errorHandler,
     optimist,
+    favicon,
     $,
     Backbone,
     User,
@@ -102,7 +104,8 @@ function(
     }
 
     // Configure server ...
-    server.set('port', process.env.PORT);
+    server.set('port', (process.env.PORT || 5000));
+    server.use(favicon());
     server.engine('.html', require('ejs').__express);
     server.set('views', __dirname + '/');
 
