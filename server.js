@@ -102,7 +102,7 @@ function(
     }
 
     // Configure server ...
-    server.set('port', 8888);
+    server.set('port', (process.env.PORT || 5000))
     server.engine('.html', require('ejs').__express);
     server.set('views', __dirname + '/');
 
