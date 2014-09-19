@@ -104,7 +104,7 @@ function(
     }
 
     // Configure server ...
-    server.set('port', (process.env.PORT || 5000));
+    server.set('port', process.env.PORT);
     server.use(favicon());
     server.engine('.html', require('ejs').__express);
     server.set('views', __dirname + '/');
