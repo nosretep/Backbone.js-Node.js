@@ -97,9 +97,6 @@ function(
         {'title' : 'Thing 3', 'id' : 'dd543e76-2585-55ad-f4a5-afe77014d71c', 'created' : new Date()}
     ]);
     
-    // Fake a logged in user for the meantime ...
-    var loggedInUser = new User({ 'username' : 'Example User'});
-    
     var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
     var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
     var FacebookStrategy = passportFacebook.Strategy;
@@ -215,20 +212,20 @@ function(
     
     server.get('/', function(req, res) {
         var homeView = new HomeView();
-    	res.render(baseHtmlFile, generatePageContentAndTitle(homeView));
+    	res.render(baseHtmlFile, generatePageContentAndTitle(req, homeView));
     });
     
     server.get('/things', ensureAuthenticated, function(req, res) {
     	Db.Things.findAll().then(function(data) {
     		var Things = new ThingList(data);
             var thingListView = new ThingListView({'collection': Things});
-            res.render(baseHtmlFile, generatePageContentAndTitle(thingListView));
+            res.render(baseHtmlFile, generatePageContentAndTitle(req, thingListView));
     	});
     });
     
     server.get('/things/new', function(req, res) {
         var thingNewView = new ThingNewView({'model': new Thing()});
-        res.render(baseHtmlFile, generatePageContentAndTitle(thingNewView));
+        res.render(baseHtmlFile, generatePageContentAndTitle(req, thingNewView));
     });
 
     server.get('/things/:id', function(req, res) {
@@ -236,7 +233,7 @@ function(
     	Db.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
             var thingView = new ThingView({'model': thing});
-            res.render(baseHtmlFile, generatePageContentAndTitle(thingView));
+            res.render(baseHtmlFile, generatePageContentAndTitle(req, thingView));
     	});
     });
     
@@ -245,7 +242,7 @@ function(
     	Db.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
             var thingEditView = new ThingEditView({'model': thing});
-            res.render(baseHtmlFile, generatePageContentAndTitle(thingEditView));
+            res.render(baseHtmlFile, generatePageContentAndTitle(req, thingEditView));
     	});
     });
 
@@ -330,14 +327,20 @@ function(
     	var genericView = new GenericView({
     		'model' : generic
     	});
-    	res.render(baseHtmlFile, generatePageContentAndTitle(genericView));
+    	res.render(baseHtmlFile, generatePageContentAndTitle(req, genericView));
     });
         
     http.createServer(server).listen(server.get('port'), function(){
         console.log('Express server listening on port ' + server.get('port'));
     }); 
 
-    function generatePageContentAndTitle(view) {
+    function generatePageContentAndTitle(req, view) {
+
+        var loggedInUser = new User({ 'username' : 'Not logged in'});
+        
+        if (req.session.passport && req.session.passport.user) {
+        	loggedInUser.set('username', req.session.passport.user.displayName);
+        }
 
         var layoutView = new LayoutView();
             layoutView.render();
