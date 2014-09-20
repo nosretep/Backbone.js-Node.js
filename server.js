@@ -90,9 +90,6 @@ function(
     var dist = argv['dist'];
     var baseHtmlFile = (dist) ? 'dist/index.html' : 'src/index.html';
     
-    // Fake a logged in user for the meantime ...
-    var loggedInUser = new User({ 'username' : 'Example User'});
-    
     var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
     var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
     var FacebookStrategy = passportFacebook.Strategy;
@@ -330,7 +327,7 @@ function(
     }); 
 
     function generatePageContentAndTitle(req, view) {
-    	
+
         var loggedInUser = new User({ 'username' : 'Not logged in'});
         
         if (req.session.passport && req.session.passport.user) {
