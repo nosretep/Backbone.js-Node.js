@@ -7,7 +7,7 @@ function (Backbone, Thing) {
         model: Thing,
         url: '/api/things',
         comparator: function(model) {
-            return -(new Date(model.get('created')).getTime());
+            return -(model.get('created'));
         }
     });
     return ThingList;
