@@ -1,4 +1,8 @@
 {
+    "login" : {
+        "title": "Login",
+        "content": "Go to <a href=\"/auth/facebook\">login</a>"
+    },
     "home" : {
         "title": "Home",
         "content": "Temporary home page."
