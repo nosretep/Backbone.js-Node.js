@@ -32,4 +32,9 @@
         "title" : "Benefits ~ Shareable",
         "content" : "Shareable because users can grab the url from the browser's address bar."
     }
+    ,
+    "error_404": {
+        "title" : "404 page",
+        "content" : "Page not found"
+    }
 }

@@ -55,7 +55,8 @@ requirejs([
                 layoutView.setContent(homeView);
             },
             genericPage: function(path) {
-            	var generic = new Generic(genericJSON[path]);
+            	var pageDetails = genericJSON[path] || genericJSON['error_404'];
+            	var generic = new Generic(pageDetails);
                 var genericView = new GenericView({
                     'model': generic
                 });

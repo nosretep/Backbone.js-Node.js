@@ -263,7 +263,8 @@ function(
     
     server.get('/*', function(req, res) {
     	var path = req.params[0];
-    	var generic = new Generic(genericJSON[path]);
+    	var pageDetails = genericJSON[path] || genericJSON['error_404'];
+    	var generic = new Generic(pageDetails);
     	var genericView = new GenericView({
     		'model' : generic
     	});
