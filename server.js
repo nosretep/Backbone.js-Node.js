@@ -217,7 +217,6 @@ function(
             	
             	DAO.Things.add(thing.toJSON())
             		.then(function(data) {
-	                	var thing = Things.add(data);
 	                	res.writeHead(200, {"Content-Type": "application/json"});
 	                    res.end(JSON.stringify(thing));  
 	            	})
@@ -246,7 +245,6 @@ function(
                 
             	DAO.Things.update(thing.toJSON())
 	        		.then(function(data) {
-	                	var thing = Things.add(data);
 	                	res.writeHead(200, {"Content-Type": "application/json"});
 	                    res.end(JSON.stringify(thing));  
 	            	})
