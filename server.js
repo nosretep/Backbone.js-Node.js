@@ -30,10 +30,14 @@ requirejs([ 'jquery', 'backbone' ], function($, Backbone) {
 requirejs([
     'http', 
     'express',
+    'express-session',
     'body-parser',
+    'cookie-parser',
     'express-error-handler',
     'optimist',
     'dao',
+    'passport',
+    'passport-facebook',
     'serve-favicon',
     'jquery',
     'backbone',
@@ -55,10 +59,14 @@ requirejs([
 function(
     http,
     express,
+    session,
     bodyParser,
+    cookieParser,
     errorHandler,
     optimist,
     DAO,
+    passport,
+    passportFacebook,
     favicon,
     $,
     Backbone,
@@ -84,6 +92,31 @@ function(
     
     // Fake a logged in user for the meantime ...
     var loggedInUser = new User({ 'username' : 'Example User'});
+    
+    var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
+    var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
+    var FacebookStrategy = passportFacebook.Strategy;
+
+    passport.serializeUser(function(user, done) {
+    	done(null, user);
+	});
+
+	passport.deserializeUser(function(obj, done) {
+		done(null, obj);
+	});
+    
+	passport.use(new FacebookStrategy(
+		{
+			clientID : FACEBOOK_APP_ID,
+			clientSecret : FACEBOOK_APP_SECRET,
+			callbackURL : 'http://localhost:' + process.env.PORT + '/auth/facebook/callback'
+		}, 
+		function(accessToken, refreshToken, profile, done) {
+			process.nextTick(function() {
+				return done(null, profile);
+			});
+		})
+	);
 
     var server = express();
 
@@ -118,8 +151,16 @@ function(
     server.use(bodyParser.urlencoded({
     	extended: true
 	}));
-    
+    server.use(cookieParser());
     server.use(bodyParser.json());
+    server.use(session({
+		secret : 'tasty pudding snacks',
+		resave : true,
+		saveUninitialized : true
+	}));
+    
+    server.use(passport.initialize());
+    server.use(passport.session());
 
     // Make sure that environment specific data is available at route to 'js/env.json' ...
     server.get('/js/data/config.json', function(req, res) {
@@ -154,12 +195,25 @@ function(
 	    
     }
     
+    function ensureAuthenticated(req, res, next) {
+    	if (req.isAuthenticated()) { 
+    		return next(); 
+    	}
+		res.redirect('/login')
+	}
+
+    server.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect : '/login' }), function(req, res) {
+		res.redirect('/things');
+	});
+    
+    server.get('/auth/facebook', passport.authenticate('facebook'));
+    
     server.get('/', function(req, res) {
         var homeView = new HomeView();
     	res.render(baseHtmlFile, generatePageContentAndTitle(homeView));
     });
 
-    server.get('/things', function(req, res) {
+    server.get('/things', ensureAuthenticated, function(req, res) {
     	DAO.Things.findAll().then(function(data) {
     		var Things = new ThingList(data);
             var thingListView = new ThingListView({'collection': Things});
