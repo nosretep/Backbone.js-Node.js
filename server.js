@@ -81,13 +81,6 @@ function(
     var config = argv['config'] || 'local';
     var dist = argv['dist'];
     var baseHtmlFile = (dist) ? 'dist/index.html' : 'src/index.html';
-
-    // Preload some Things ...
-    var Things = new ThingList([
-        {'title' : 'Thing 1', 'id' : '26b8adcc-c390-b5bd-162a-8c245471f582', 'created' : new Date()},
-        {'title' : 'Thing 2', 'id' : '8f80bbfb-ccac-26d6-5055-5120f69fe80b', 'created' : new Date()},
-        {'title' : 'Thing 3', 'id' : 'dd543e76-2585-55ad-f4a5-afe77014d71c', 'created' : new Date()}
-    ]);
     
     // Fake a logged in user for the meantime ...
     var loggedInUser = new User({ 'username' : 'Example User'});
