@@ -18,7 +18,7 @@ requirejs.config({
         'collections' : 'collections',
         'text': 'libs/text',
         'json': 'libs/json',
-        'db' : '../../db'
+        'dao' : '../../dao'
     }
 });
 
@@ -33,7 +33,7 @@ requirejs([
     'body-parser',
     'express-error-handler',
     'optimist',
-    'db',
+    'dao',
     'static-favicon',
     'jquery',
     'backbone',
@@ -58,7 +58,7 @@ function(
     bodyParser,
     errorHandler,
     optimist,
-    Db,
+    DAO,
     favicon,
     $,
     Backbone,
@@ -158,7 +158,7 @@ function(
     });
 
     server.get('/things', function(req, res) {
-    	Db.Things.findAll().then(function(data) {
+    	DAO.Things.findAll().then(function(data) {
     		var Things = new ThingList(data);
             var thingListView = new ThingListView({'collection': Things});
             res.render(baseHtmlFile, generatePageContentAndTitle(thingListView));
@@ -172,7 +172,7 @@ function(
 
     server.get('/things/:id', function(req, res) {
         var thingId = req.params.id;
-    	Db.Things.findById(thingId).then(function(data) {
+    	DAO.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
             var thingView = new ThingView({'model': thing});
             res.render(baseHtmlFile, generatePageContentAndTitle(thingView));
@@ -181,7 +181,7 @@ function(
     
     server.get('/things/:id/edit', function(req, res) {
         var thingId = req.params.id;
-    	Db.Things.findById(thingId).then(function(data) {
+    	DAO.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
             var thingEditView = new ThingEditView({'model': thing});
             res.render(baseHtmlFile, generatePageContentAndTitle(thingEditView));
@@ -189,7 +189,7 @@ function(
     });
 
     server.get('/api/things', function(req, res) {
-    	Db.Things.findAll().then(function(data) {
+    	DAO.Things.findAll().then(function(data) {
     		var Things = new ThingList(data);
             res.writeHead(200, {"Content-Type": "application/json"});
             res.end(JSON.stringify(Things.sort().toJSON()));
@@ -198,7 +198,7 @@ function(
     
     server.get('/api/things/:id', function(req, res) {
         var thingId = req.params.id;
-    	Db.Things.findById(thingId).then(function(data) {
+    	DAO.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
             res.writeHead(200, {"Content-Type": "application/json"});
             res.end(JSON.stringify(thing.toJSON()));
@@ -215,7 +215,7 @@ function(
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
             	
-            	Db.Things.add(thing.toJSON())
+            	DAO.Things.add(thing.toJSON())
             		.then(function(data) {
 	                	var thing = Things.add(data);
 	                	res.writeHead(200, {"Content-Type": "application/json"});
@@ -244,7 +244,7 @@ function(
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
                 
-            	Db.Things.update(thing.toJSON())
+            	DAO.Things.update(thing.toJSON())
 	        		.then(function(data) {
 	                	var thing = Things.add(data);
 	                	res.writeHead(200, {"Content-Type": "application/json"});
