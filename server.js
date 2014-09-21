@@ -118,7 +118,7 @@ function(
 		{
 			clientID : FACEBOOK_APP_ID,
 			clientSecret : FACEBOOK_APP_SECRET,
-			callbackURL : 'http://localhost:' + process.env.PORT + '/auth/facebook/callback'
+			callbackURL : 'http://' + (process.env.HOST || 'localhost') + ':' + process.env.PORT + '/auth/facebook/callback'
 		}, 
 		function(accessToken, refreshToken, profile, done) {
 			process.nextTick(function() {
