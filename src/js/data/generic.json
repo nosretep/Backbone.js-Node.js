@@ -1,7 +1,7 @@
 {
     "login" : {
         "title": "Login",
-        "content": "Go to <a href=\"/auth/facebook\">login</a>"
+        "content": "Go to <a href=\"/auth/facebook\">login through Facebook</a>"
     },
     "home" : {
         "title": "Home",
