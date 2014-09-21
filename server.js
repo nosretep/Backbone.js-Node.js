@@ -309,7 +309,6 @@ function(
                 
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
-            	
             	DAO.Things.add(thing.toJSON())
             		.then(function(data) {
 	                	res.writeHead(200, {"Content-Type": "application/json"});
@@ -375,13 +374,16 @@ function(
         console.log('Express server listening on port ' + server.get('port'));
     }); 
 
+    function getSessionUser(req) {
+    	if (req.session.passport && req.session.passport.user) {
+    		return req.session.passport.user;
+    	}
+    	return null;
+    }
+    
     function generatePageContentAndTitle(req, view) {
 
-        var loggedInUser = new User();
-        
-        if (req.session.passport && req.session.passport.user) {
-        	loggedInUser = new User(req.session.passport.user);
-        }
+        var loggedInUser = new User(getSessionUser(req));
 
         var layoutView = new LayoutView({'model' : loggedInUser});
             layoutView.render();
