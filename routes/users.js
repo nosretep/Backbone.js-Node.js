@@ -1,20 +1,20 @@
 define([
+    'routes/utils',
 	'dao/dao',
 	'models/user',
 	'views/user'], 
 	function(
+		RoutesUtils,
 		DAO,
 		User,
 		UserView) {
-	
-    return function(routeMethods) {
     	
         function userGetHtml(req, res) {
             var userId = req.params.id;
         	DAO.Users.findById(userId).then(function(data) {
         		var user = new User(data);
                 var userView = new UserView({'model': user});
-                res.render(routeMethods.getBaseHtmlFile(), routeMethods.generatePageContentAndTitle(req, userView));
+                res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, userView));
         	});
         }
 
@@ -35,6 +35,5 @@ define([
             	get : userGetJson
         	}
         }    	
-    }
 	
 });

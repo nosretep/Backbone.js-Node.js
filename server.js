@@ -62,7 +62,7 @@ function(
     var config = argv['config'] || 'local';
     var dist = argv['dist'];
     var baseHtmlFile = (dist) ? 'dist/index.html' : 'src/index.html';
-    var routes = new Routes(baseHtmlFile);
+    var routes = Routes;
 
     var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
     var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
@@ -119,6 +119,8 @@ function(
     	req.isJSONRequest = false;
         if(/application\/json/.test(req.get('accept'))) {
         	req.isJSONRequest = true;
+        } else if (/text\/html/.test(req.get('accept'))) {
+        	req.baseHtmlFile = baseHtmlFile;
         }
         next();
     });

@@ -8,6 +8,7 @@ define([
     'views/home',
     'views/generic',
     'json!data/generic.json',
+    'routes/utils',
     'routes/things',
     'routes/users'
     ],
@@ -21,74 +22,14 @@ define([
 	    HomeView,
 	    GenericView,
 	    genericJSON,
+	    RoutesUtils,
 		RoutesThings,
 		RoutesUsers) {
 
-	return function(baseHtmlFile) {
-		
-		function getBaseHtmlFile() {
-			return baseHtmlFile;
-		}
-		
-	    function getSessionUser(req) {
-	    	if (req.session.passport && req.session.passport.user) {
-	    		return req.session.passport.user;
-	    	}
-	    	return null;
-	    }
-	    
-	    function generatePageContentAndTitle(req, view) {
-
-	        var loggedInUser = new User(getSessionUser(req));
-
-	        var layoutView = new LayoutView({'model' : loggedInUser});
-	            layoutView.render();
-
-	        var headerView = new HeaderView({'model' : loggedInUser});
-	            headerView.render();
-	            
-	        var footerView = new FooterView({'model' : loggedInUser});
-	        	footerView.render();
-
-	            layoutView.$el.find('header').append(headerView.$el);
-	            layoutView.$el.find('footer').append(footerView.$el);
-	            
-	            layoutView.setContent(view);
-	            
-	        return {
-	        	'content' : layoutView.$el.html(),
-	        	'title' : view.getTitle()
-	        }
-
-	    };
-
-	    function getJSONFromRequestBody(req) {
-	        var defer = $.Deferred();
-	        if (req.body) {
-	            defer.resolve(req.body);
-	        } else {
-	            var dataStr = '';
-	            req.addListener('data', function(chunk) {
-	                dataStr += chunk;
-	            });
-	            req.addListener('end', function() {
-	                defer.resolve(JSON.parse(dataStr));
-	            });
-	        }
-	        return defer.promise();
-	    };
-	    
-	    var routeMethods = {
-    		getBaseHtmlFile : function() { return getBaseHtmlFile() },
-    		getSessionUser : getSessionUser,
-    		generatePageContentAndTitle : generatePageContentAndTitle,
-    		getJSONFromRequestBody : getJSONFromRequestBody
-	    }
-		
 		return {
 	    	index: function(req, res) {
 	            var homeView = new HomeView();
-	        	res.render(getBaseHtmlFile(), generatePageContentAndTitle(req, homeView));
+	        	res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, homeView));
 	        },
 	        logout: function(req, res) {
 	        	req.logout();
@@ -101,11 +42,10 @@ define([
 	        	var genericView = new GenericView({
 	        		'model' : generic
 	        	});
-	        	res.render(getBaseHtmlFile(), generatePageContentAndTitle(req, genericView));
+	        	res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, genericView));
 	        },
-			things: new RoutesThings(routeMethods),
-			users: new RoutesUsers(routeMethods)
+			things: RoutesThings,
+			users: RoutesUsers
 		}
-	}
 	
 });
