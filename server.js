@@ -35,7 +35,7 @@ requirejs([
     'cookie-parser',
     'express-error-handler',
     'optimist',
-    'dao',
+    'dao/dao',
     'passport',
     'passport-facebook',
     'serve-favicon',
