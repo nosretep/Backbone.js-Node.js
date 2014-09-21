@@ -18,7 +18,8 @@ requirejs.config({
         'collections' : 'collections',
         'text': 'libs/text',
         'json': 'libs/json',
-        'dao' : '../../dao'
+        'dao' : '../../dao',
+        'routes' : '../../routes'
     }
 });
 
@@ -36,26 +37,11 @@ requirejs([
     'express-error-handler',
     'optimist',
     'dao/dao',
+    'routes/routes',
     'passport',
     'passport-facebook',
     'serve-favicon',
-    'jquery',
-    'backbone',
-    'models/user',
-    'models/thing',
-    'models/generic',
-    'collections/thing_list',
-    'views/layout',
-    'views/home',
-    'views/header',
-    'views/footer',
-    'views/thing',
-    'views/thing_list',
-    'views/thing_new',
-    'views/thing_edit',
-    'views/generic',
-    'views/user',
-    'json!data/generic.json'], 
+    'models/user'], 
 
 function(
     http,
@@ -66,43 +52,17 @@ function(
     errorHandler,
     optimist,
     DAO,
+    Routes,
     passport,
     passportFacebook,
     favicon,
-    $,
-    Backbone,
-    User,
-    Thing,
-    Generic,
-    ThingList,
-    LayoutView,
-    HomeView,
-    HeaderView,
-    FooterView,
-    ThingView,
-    ThingListView,
-    ThingNewView,
-    ThingEditView,
-    GenericView,
-    UserView,
-    genericJSON) {
+    User) {
 
     var argv = optimist.argv;
     var config = argv['config'] || 'local';
     var dist = argv['dist'];
     var baseHtmlFile = (dist) ? 'dist/index.html' : 'src/index.html';
-    
-    var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
-    var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
-    var FacebookStrategy = passportFacebook.Strategy;
-
-    passport.serializeUser(function(user, done) {
-    	done(null, user);
-	});
-
-	passport.deserializeUser(function(obj, done) {
-		done(null, obj);
-	});
+    var routes = new Routes(baseHtmlFile);
 
     var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
     var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
@@ -214,7 +174,6 @@ function(
     	if (req.isAuthenticated()) { 
     		return next(); 
     	}
-    	
     	if (!req.isJSONRequest) {
     		res.redirect('/login')
     	} else {
@@ -228,201 +187,25 @@ function(
 	});
     
     server.get('/auth/facebook', passport.authenticate('facebook'));
-    
-    server.get('/', function(req, res) {
-        var homeView = new HomeView();
-    	res.render(baseHtmlFile, generatePageContentAndTitle(req, homeView));
-    });
-    
-    server.get('/users/:id', ensureAuthenticated, function(req, res) {
-        var userId = req.params.id;
-    	DAO.Users.findById(userId).then(function(data) {
-    		var user = new User(data);
-            var userView = new UserView({'model': user});
-            res.render(baseHtmlFile, generatePageContentAndTitle(req, userView));
-    	});
-    });
-
-    server.get('/things', ensureAuthenticated, function(req, res) {
-    	DAO.Things.findAll().then(function(data) {
-    		var Things = new ThingList(data);
-            var thingListView = new ThingListView({'collection': Things});
-            res.render(baseHtmlFile, generatePageContentAndTitle(req, thingListView));
-    	});
-    });
-    
-    server.get('/things/new', ensureAuthenticated, function(req, res) {
-        var thingNewView = new ThingNewView({'model': new Thing()});
-        res.render(baseHtmlFile, generatePageContentAndTitle(req, thingNewView));
-    });
-
-    server.get('/things/:id', ensureAuthenticated, function(req, res) {
-        var thingId = req.params.id;
-    	DAO.Things.findById(thingId).then(function(data) {
-    		var thing = new Thing(data);
-            var thingView = new ThingView({'model': thing});
-            res.render(baseHtmlFile, generatePageContentAndTitle(req, thingView));
-    	});
-    });
-    
-    server.get('/things/:id/edit', ensureAuthenticated, function(req, res) {
-        var thingId = req.params.id;
-    	DAO.Things.findById(thingId).then(function(data) {
-    		var thing = new Thing(data);
-            var thingEditView = new ThingEditView({'model': thing});
-            res.render(baseHtmlFile, generatePageContentAndTitle(req, thingEditView));
-    	});
-    });
-
-    server.get('/api/users/:id', ensureAuthenticated, function(req, res) {
-        var userId = req.params.id;
-    	DAO.Users.findById(userId).then(function(data) {
-    		var user = new User(data);
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(user.toJSON()));
-    	});
-    });
-    
-    server.get('/api/things', ensureAuthenticated, function(req, res) {
-    	DAO.Things.findAll().then(function(data) {
-    		var Things = new ThingList(data);
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(Things.sort().toJSON()));
-    	});
-    });
-    
-    server.get('/api/things/:id', ensureAuthenticated, function(req, res) {
-        var thingId = req.params.id;
-    	DAO.Things.findById(thingId).then(function(data) {
-    		var thing = new Thing(data);
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(thing.toJSON()));
-    	});
-    });
-    
-    server.post('/api/things', ensureAuthenticated, function(req, res) {
-        getJSONFromRequestBody(req).then(function(thingRaw) {
-        	
-            var thing = new Thing();
-            	thing.set('title', thingRaw.title)
-                thing.set('created', (new Date()).getTime());
-                
-            // TODO: rethink client/server validation for models ...
-            if (thing.isValid()) {
-            	DAO.Things.add(thing.toJSON())
-            		.then(function(data) {
-	                	res.writeHead(200, {"Content-Type": "application/json"});
-	                    res.end(JSON.stringify(thing));  
-	            	})
-	            	.fail(function(err) {
-		            	res.writeHead(409, {"Content-Type": "application/json"});
-		                res.end(JSON.stringify({"error":JSON.stringify(err)}));
-	            	});
-          	
-            } else {
-            	res.writeHead(409, {"Content-Type": "application/json"});
-                res.end(JSON.stringify({"error":thing.validationError}));            	
-            }
-
-        });
-    });
-    
-    server.put('/api/things/:id', ensureAuthenticated, function(req, res) {
-        var id = req.params.id;
-
-        getJSONFromRequestBody(req).then(function(thingRaw) {
-
-            var thing = new Thing(thingRaw);
-
-            // TODO: rethink client/server validation for models ...
-            if (thing.isValid()) {
-                
-            	DAO.Things.update(thing.toJSON())
-	        		.then(function(data) {
-	                	res.writeHead(200, {"Content-Type": "application/json"});
-	                    res.end(JSON.stringify(thing));  
-	            	})
-	            	.fail(function(err) {
-		            	res.writeHead(409, {"Content-Type": "application/json"});
-		                res.end(JSON.stringify({"error":JSON.stringify(err)}));
-	            	});
-                
-            } else {
-            	res.writeHead(409, {"Content-Type": "application/json"});
-                res.end(JSON.stringify({"error":thing.validationError}));            	
-            }
-            
-        });
-    });
-    
+    server.get('/', routes.index);
+    server.get('/users/:id', ensureAuthenticated, routes.users.html.get);
+    server.get('/api/users/:id', ensureAuthenticated, routes.users.json.get);
+    server.get('/things', ensureAuthenticated, routes.things.html.index);
+    server.get('/things/new', ensureAuthenticated, routes.things.html.create);
+    server.get('/things/:id', ensureAuthenticated, routes.things.html.get);
+    server.get('/things/:id/edit', ensureAuthenticated, routes.things.html.update);
+    server.get('/api/things', ensureAuthenticated, routes.things.json.index);
+    server.get('/api/things/:id', ensureAuthenticated, routes.things.json.get);
+    server.post('/api/things', ensureAuthenticated, routes.things.json.create);
+    server.put('/api/things/:id', ensureAuthenticated, routes.things.json.update);
     server.get('/logout', function(req, res) {
     	req.logout();
     	res.redirect('/');
     });
-    
-    server.get('/*', function(req, res) {
-    	var path = req.params[0];
-    	var pageDetails = genericJSON[path] || genericJSON['error_404'];
-    	var generic = new Generic(pageDetails);
-    	var genericView = new GenericView({
-    		'model' : generic
-    	});
-    	res.render(baseHtmlFile, generatePageContentAndTitle(req, genericView));
-    });
+    server.get('/*', routes.catchAll);
         
     http.createServer(server).listen(server.get('port'), function(){
         console.log('Express server listening on port ' + server.get('port'));
     }); 
-
-    function getSessionUser(req) {
-    	if (req.session.passport && req.session.passport.user) {
-    		return req.session.passport.user;
-    	}
-    	return null;
-    }
-    
-    function generatePageContentAndTitle(req, view) {
-
-        var loggedInUser = new User(getSessionUser(req));
-
-        var layoutView = new LayoutView({'model' : loggedInUser});
-            layoutView.render();
-
-        var headerView = new HeaderView({'model' : loggedInUser});
-            headerView.render();
-            
-        var footerView = new FooterView({'model' : loggedInUser});
-        	footerView.render();
-
-            layoutView.$el.find('header').append(headerView.$el);
-            layoutView.$el.find('footer').append(footerView.$el);
-            
-            layoutView.setContent(view);
-            
-        return {
-        	'content' : layoutView.$el.html(),
-        	'title' : view.getTitle()
-        }
-
-    };
-
-    function getJSONFromRequestBody(req) {
-        
-        var defer = $.Deferred();
-
-        if (req.body) {
-            defer.resolve(req.body);
-        } else {
-            var dataStr = '';
-            req.addListener('data', function(chunk) {
-                dataStr += chunk;
-            });
-            req.addListener('end', function() {
-                defer.resolve(JSON.parse(dataStr));
-            });
-        }
-
-        return defer.promise();
-    };
 
 });
