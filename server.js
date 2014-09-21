@@ -12,14 +12,14 @@ jsdom.env({
 
 requirejs.config({
     nodeRequire: require,
-    baseUrl: './src/js',
+    baseUrl: 			'./src/js', 		/* shared with client */
     paths: {
-        'models': 'models',
-        'collections' : 'collections',
-        'text': 'libs/text',
-        'json': 'libs/json',
-        'dao' : '../../dao',
-        'routes' : '../../routes'
+        'models'		: 'models', 		/* shared with client */
+        'collections' 	: 'collections', 	/* shared with client */
+        'text'			: 'libs/text', 		/* shared with client */
+        'json'			: 'libs/json', 		/* shared with client */
+        'dao' 			: '../../dao',		/* server only */
+        'routes' 		: '../../routes'	/* server only */
     }
 });
 
