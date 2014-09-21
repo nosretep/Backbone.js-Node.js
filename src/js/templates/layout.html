@@ -11,7 +11,9 @@
 	        </div>
 	        <div class="navbar-collapse collapse">
 	            <ul class="nav navbar-nav">
-	                <li><a href="/things" class="app_link">Things</a></li>
+                    <% if (typeof id !== 'undefined') { %>
+	                   <li><a href="/things" class="app_link">Things</a></li>
+	                <% } %>
 	                <li><a href="/about" class="app_link">About</a></li>
 	                <li><a href="/contact" class="app_link">Contact</a></li>
                     <li class="dropdown">

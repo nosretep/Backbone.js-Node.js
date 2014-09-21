@@ -1,1 +1,5 @@
-footer username: <span id="username"><%= username %></span>
+<% if (typeof id !== 'undefined') { %>
+    footer username: <span id="display_name"><%= display_name %></span> <a href="/logout">Logout</a>
+<% } else { %>
+    <a href="/login" class="app_link">Login</a>
+<% } %>

@@ -7,7 +7,7 @@ define([
             return ProtoView.extend({
                 template: _.template(layoutViewTemplate),
                 render : function() {
-                    this.$el.html(this.template());
+                    this.$el.html(this.template(this.model.toJSON()));
                     return this;
                 },
                 setContent: function(view) {

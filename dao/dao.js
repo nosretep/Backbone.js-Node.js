@@ -3,18 +3,19 @@ define([
 	'jquery', 
 	'underscore',
 	'sanitizer',
-	'dao/things'],
+	'dao/things',
+	'dao/users'],
 
 	function(
 			mongo, 
 			$, 
 			_, 
 			sanitizer, 
-			DAOThings) {    
+			DAOThings,
+			DAOUsers) {    
 
 		var Server = mongo.Server,
-	    	Db = mongo.Db,
-	    	BSON = mongo.BSONPure;
+	    	Db = mongo.Db;
 
 		var db_domain = process.env.DB_DOMAIN || '127.0.0.1';
 		var db_port = process.env.DB_PORT || '27017';
@@ -47,7 +48,8 @@ define([
 		});
 
 		return {
-			Things: new DAOThings(db)
+			Things: new DAOThings(db),
+			Users: new DAOUsers(db)
 		}
 	
 });

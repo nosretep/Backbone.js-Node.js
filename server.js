@@ -122,7 +122,10 @@ function(
 		}, 
 		function(accessToken, refreshToken, profile, done) {
 			process.nextTick(function() {
-				return done(null, profile);
+				DAO.Users.findOrCreate(profile).then(function(data) {
+					var user = new User(data);
+					return done(null, user);					
+				});
 			});
 		})
 	);
@@ -208,7 +211,13 @@ function(
     	if (req.isAuthenticated()) { 
     		return next(); 
     	}
-		res.redirect('/login')
+    	
+    	if (!req.isJSONRequest) {
+    		res.redirect('/login')
+    	} else {
+            res.writeHead(401, {"Content-Type": "application/json"});
+            res.end(JSON.stringify({'error' : 'User not authenticated'}));
+    	}
 	}
 
     server.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect : '/login' }), function(req, res) {
@@ -230,12 +239,12 @@ function(
     	});
     });
     
-    server.get('/things/new', function(req, res) {
+    server.get('/things/new', ensureAuthenticated, function(req, res) {
         var thingNewView = new ThingNewView({'model': new Thing()});
         res.render(baseHtmlFile, generatePageContentAndTitle(req, thingNewView));
     });
 
-    server.get('/things/:id', function(req, res) {
+    server.get('/things/:id', ensureAuthenticated, function(req, res) {
         var thingId = req.params.id;
     	DAO.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
@@ -244,7 +253,7 @@ function(
     	});
     });
     
-    server.get('/things/:id/edit', function(req, res) {
+    server.get('/things/:id/edit', ensureAuthenticated, function(req, res) {
         var thingId = req.params.id;
     	DAO.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
@@ -253,7 +262,7 @@ function(
     	});
     });
 
-    server.get('/api/things', function(req, res) {
+    server.get('/api/things', ensureAuthenticated, function(req, res) {
     	DAO.Things.findAll().then(function(data) {
     		var Things = new ThingList(data);
             res.writeHead(200, {"Content-Type": "application/json"});
@@ -261,7 +270,7 @@ function(
     	});
     });
     
-    server.get('/api/things/:id', function(req, res) {
+    server.get('/api/things/:id', ensureAuthenticated, function(req, res) {
         var thingId = req.params.id;
     	DAO.Things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
@@ -270,7 +279,7 @@ function(
     	});
     });
     
-    server.post('/api/things', function(req, res) {
+    server.post('/api/things', ensureAuthenticated, function(req, res) {
         getJSONFromRequestBody(req).then(function(thingRaw) {
         	
             var thing = new Thing();
@@ -298,7 +307,7 @@ function(
         });
     });
     
-    server.put('/api/things/:id', function(req, res) {
+    server.put('/api/things/:id', ensureAuthenticated, function(req, res) {
         var id = req.params.id;
 
         getJSONFromRequestBody(req).then(function(thingRaw) {
@@ -326,6 +335,11 @@ function(
         });
     });
     
+    server.get('/logout', function(req, res) {
+    	req.logout();
+    	res.redirect('/');
+    });
+    
     server.get('/*', function(req, res) {
     	var path = req.params[0];
     	var pageDetails = genericJSON[path] || genericJSON['error_404'];
@@ -342,13 +356,13 @@ function(
 
     function generatePageContentAndTitle(req, view) {
 
-        var loggedInUser = new User({ 'username' : 'Not logged in'});
+        var loggedInUser = new User();
         
         if (req.session.passport && req.session.passport.user) {
-        	loggedInUser.set('username', req.session.passport.user.displayName);
+        	loggedInUser = new User(req.session.passport.user);
         }
 
-        var layoutView = new LayoutView();
+        var layoutView = new LayoutView({'model' : loggedInUser});
             layoutView.render();
 
         var headerView = new HeaderView({'model' : loggedInUser});

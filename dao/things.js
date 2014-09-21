@@ -1,12 +1,16 @@
 define([
+    'mongodb',
     'jquery', 
     'underscore',
     'sanitizer'],
 
     function(
+    	mongo,
         $, 
         _,
-        sanitizer) {  
+        sanitizer) {
+	
+		var BSON = mongo.BSONPure;
 
         function fixId(item) {
             item.id = item._id;
