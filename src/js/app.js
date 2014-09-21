@@ -5,6 +5,7 @@ requirejs([
     'config',
     'models/thing',
     'models/generic',
+    'models/user',
     'collections/thing_list',
     'views/layout',
     'views/home',
@@ -13,6 +14,7 @@ requirejs([
     'views/thing_new',
     'views/thing_edit',
     'views/generic',
+    'views/user',
     'json!data/generic.json'],
     function(
         $,
@@ -21,6 +23,7 @@ requirejs([
         Config,
         Thing,
         Generic,
+        User,
         ThingList,
         LayoutView,
         HomeView,
@@ -29,6 +32,7 @@ requirejs([
         ThingNewView,
         ThingEditView,
         GenericView,
+        UserView,
         genericJSON) {
 	
         window.App = {};
@@ -48,6 +52,7 @@ requirejs([
                 'things/new': 'thingNew',
                 'things/:id': 'thingShow',
                 'things/:id/edit': 'thingEdit',
+                'users/:id' : 'userShow',
                 '*path' : 'genericPage'
             },
             homePage: function() {
@@ -61,6 +66,17 @@ requirejs([
                     'model': generic
                 });
                 layoutView.setContent(genericView);
+            },
+            userShow: function(id) {
+                (new User({'id' : id}))
+                .fetch({
+                    'success': function(model) {
+                        var userView = new UserView({
+                            'model': model
+                        });
+                        layoutView.setContent(userView);
+                    }
+                });
             },
             thingsIndex: function() {
                 Things.fetch({

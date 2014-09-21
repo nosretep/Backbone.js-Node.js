@@ -1,7 +1,7 @@
 define(['backbone'], 
     function(Backbone) {
         var User = Backbone.Model.extend({
-	            urlRoot: '/users'
+	            urlRoot: '/api/users'
 	        }
         );
         return User;

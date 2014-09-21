@@ -54,6 +54,7 @@ requirejs([
     'views/thing_new',
     'views/thing_edit',
     'views/generic',
+    'views/user',
     'json!data/generic.json'], 
 
 function(
@@ -83,6 +84,7 @@ function(
     ThingNewView,
     ThingEditView,
     GenericView,
+    UserView,
     genericJSON) {
 
     var argv = optimist.argv;
@@ -231,6 +233,15 @@ function(
         var homeView = new HomeView();
     	res.render(baseHtmlFile, generatePageContentAndTitle(req, homeView));
     });
+    
+    server.get('/users/:id', ensureAuthenticated, function(req, res) {
+        var userId = req.params.id;
+    	DAO.Users.findById(userId).then(function(data) {
+    		var user = new User(data);
+            var userView = new UserView({'model': user});
+            res.render(baseHtmlFile, generatePageContentAndTitle(req, userView));
+    	});
+    });
 
     server.get('/things', ensureAuthenticated, function(req, res) {
     	DAO.Things.findAll().then(function(data) {
@@ -263,6 +274,15 @@ function(
     	});
     });
 
+    server.get('/api/users/:id', ensureAuthenticated, function(req, res) {
+        var userId = req.params.id;
+    	DAO.Users.findById(userId).then(function(data) {
+    		var user = new User(data);
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(user.toJSON()));
+    	});
+    });
+    
     server.get('/api/things', ensureAuthenticated, function(req, res) {
     	DAO.Things.findAll().then(function(data) {
     		var Things = new ThingList(data);

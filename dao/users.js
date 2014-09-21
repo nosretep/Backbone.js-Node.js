@@ -89,7 +89,8 @@ define([
             }
 	
 	        return {
-	        	findOrCreate : findOrCreate
+	        	findOrCreate : findOrCreate,
+	        	findById : findById
 	        }
 	        
 	    }
