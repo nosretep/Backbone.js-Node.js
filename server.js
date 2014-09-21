@@ -102,6 +102,18 @@ function(
 		done(null, obj);
 	});
     
+    var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
+    var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
+    var FacebookStrategy = passportFacebook.Strategy;
+
+    passport.serializeUser(function(user, done) {
+    	done(null, user);
+	});
+
+	passport.deserializeUser(function(obj, done) {
+		done(null, obj);
+	});
+    
 	passport.use(new FacebookStrategy(
 		{
 			clientID : FACEBOOK_APP_ID,
