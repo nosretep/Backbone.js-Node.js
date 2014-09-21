@@ -198,10 +198,7 @@ function(
     server.get('/api/things/:id', ensureAuthenticated, routes.things.json.get);
     server.post('/api/things', ensureAuthenticated, routes.things.json.create);
     server.put('/api/things/:id', ensureAuthenticated, routes.things.json.update);
-    server.get('/logout', function(req, res) {
-    	req.logout();
-    	res.redirect('/');
-    });
+    server.get('/logout', routes.logout);
     server.get('/*', routes.catchAll);
         
     http.createServer(server).listen(server.get('port'), function(){

@@ -90,6 +90,10 @@ define([
 	            var homeView = new HomeView();
 	        	res.render(getBaseHtmlFile(), generatePageContentAndTitle(req, homeView));
 	        },
+	        logout: function(req, res) {
+	        	req.logout();
+	        	res.redirect('/');
+	        },
 	    	catchAll: function(req, res) {
 	        	var path = req.params[0];
 	        	var pageDetails = genericJSON[path] || genericJSON['error_404'];
