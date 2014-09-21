@@ -16,7 +16,7 @@
     "optimist": "^0.6.1",
     "requirejs": "^2.1.15",
     "sanitizer": "^0.1.2",
-    "static-favicon": "^2.0.0-alpha",
+    "serve-favicon": "^2.1.4",
     "underscore": "^1.7.0"
   },
   "devDependencies": {

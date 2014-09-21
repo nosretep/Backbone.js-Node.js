@@ -34,7 +34,7 @@ requirejs([
     'express-error-handler',
     'optimist',
     'dao',
-    'static-favicon',
+    'serve-favicon',
     'jquery',
     'backbone',
     'models/user',
@@ -104,7 +104,6 @@ function(
 
     // Configure server ...
     server.set('port', process.env.PORT);
-    server.use(favicon());
     server.engine('.html', require('ejs').__express);
     server.set('views', __dirname + '/');
 
@@ -142,6 +141,8 @@ function(
         server.use('/img', express.static(__dirname + '/dist/img'));
         server.use('/fonts', express.static(__dirname + '/dist/fonts'));
         
+        server.use(favicon(__dirname + '/dist/favicon.ico'));
+        
     } else {
     	
 	    // Now make sure that static files are set (order important note 'js/env.json' above) ...
@@ -149,6 +150,7 @@ function(
 	    server.use('/css', express.static(__dirname + '/src/css'));
 	    server.use('/img', express.static(__dirname + '/src/img'));
 	    server.use('/fonts', express.static(__dirname + '/src/fonts'));
+	    server.use(favicon(__dirname + '/src/favicon.ico'));
 	    
     }
     

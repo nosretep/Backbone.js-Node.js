@@ -10,7 +10,10 @@ module.exports = function(grunt) {
         grunt.file.mkdir('dist');
         
         // Move the index file into the dist directory ...
-        grunt.file.copy('src/index.html', 'dist/index.html');        
+        grunt.file.copy('src/index.html', 'dist/index.html');
+        
+        // Move the favicon file into the dist directory ...
+        grunt.file.copy('src/favicon.ico', 'dist/favicon.ico');
     });
 
     // Custom task for moving config specific JSON data from 'config/' to '/js/config.json' ...
