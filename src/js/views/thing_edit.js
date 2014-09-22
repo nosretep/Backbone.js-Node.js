@@ -19,9 +19,15 @@ define(['underscore', 'backbone', 'views/proto', 'text!templates/thing_edit.html
                 this.model.set('title', title);
                 
                 if (this.model.isValid()) {
-	                this.model.save().done(function() {
-	                    App.appRouter.navigate('/things', true);
-	                });
+	                this.model.save()
+		                .then(function() {
+		                    App.appRouter.navigate('/things', true);
+		                })
+		                .fail(function(xhr, status, message) {
+		                	if (xhr.status === 404) {
+		                		alert(xhr.statusText);
+		                	}
+		                });
                 } else {
                 	alert(this.model.validationError);
                 };
