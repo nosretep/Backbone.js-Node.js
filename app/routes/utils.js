@@ -1,10 +1,12 @@
 define([
+    'jquery',
     'models/user',
     'views/layout',
     'views/header',
     'views/footer'
     ],
 	function(
+		$,
 		User,
 	    LayoutView,
 	    HeaderView,
