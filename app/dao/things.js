@@ -92,7 +92,9 @@ define([
                     collection.update({'_id' : thing._id, 'creator_id' : thing.creator_id }, thing, {safe : true}, 
                     	function(err, results) {
                     		if (err) {
-								deferred.reject(err);
+								deferred.reject(409, "Error updating resource");
+                    		} else if (results === 0) {
+								deferred.reject(404, "Resource not found");
 							} else {
 							    scrubContent(thing);
 							    fixId(thing);

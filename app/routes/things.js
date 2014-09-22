@@ -118,8 +118,8 @@ define([
 	                	res.writeHead(200, {"Content-Type": "application/json"});
 	                    res.end(JSON.stringify(thing));  
 	            	})
-	            	.fail(function(err) {
-	            		routesUtils.handleErrorJson(req, res, 409, JSON.stringify(err));
+	            	.fail(function(errorStatus, errorMessage) {
+	            		routesUtils.handleErrorJson(req, res, errorStatus, errorMessage);
 	            	});
                 
             } else {
