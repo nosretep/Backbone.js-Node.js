@@ -119,6 +119,7 @@ function(
         if(/application\/json/.test(req.get('accept'))) {
         	req.isJSONRequest = true;
         } else if (/text\/html/.test(req.get('accept'))) {
+//        	console.log(req.url);
         	req.baseHtmlFile = baseHtmlFile;
         }
         next();

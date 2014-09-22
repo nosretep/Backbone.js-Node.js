@@ -5,7 +5,7 @@ define({
 	},
 
 	environments: [
-	   { browserName: 'safari' }, { browserName: 'chrome' }
+	   { browserName: 'chrome' }
 	],
 	
 	webdriver: {
