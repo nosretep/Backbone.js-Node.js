@@ -48,8 +48,8 @@ define([
 		});
 
 		return {
-			Things: new DAOThings(db),
-			Users: new DAOUsers(db)
+			things: new DAOThings(db),
+			users: new DAOUsers(db)
 		}
 	
 });

@@ -51,8 +51,8 @@ function(
     cookieParser,
     errorHandler,
     optimist,
-    DAO,
-    Routes,
+    dao,
+    routes,
     passport,
     passportFacebook,
     favicon,
@@ -62,7 +62,6 @@ function(
     var config = argv['config'] || 'local';
     var dist = argv['dist'];
     var baseHtmlFile = (dist) ? 'dist/index.html' : 'src/index.html';
-    var routes = Routes;
 
     var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
     var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
@@ -85,7 +84,7 @@ function(
 		}, 
 		function(accessToken, refreshToken, profile, done) {
 			process.nextTick(function() {
-				DAO.Users.findOrCreate(profile).then(function(data) {
+				dao.users.findOrCreate(profile).then(function(data) {
 					var user = new User(data);
 					return done(null, user);					
 				});
@@ -176,11 +175,11 @@ function(
     	if (req.isAuthenticated()) { 
     		return next(); 
     	}
+    	
     	if (!req.isJSONRequest) {
     		res.redirect('/login')
     	} else {
-            res.writeHead(401, {"Content-Type": "application/json"});
-            res.end(JSON.stringify({'error' : 'User not authenticated'}));
+            routes.utils.handleErrorJson(req, res, 401, "User not logged in");
     	}
 	}
 

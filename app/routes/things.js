@@ -8,8 +8,8 @@ define([
 	'views/thing_new',
 	'views/thing_edit'], 
 	function(
-		RoutesUtils,
-		DAO,
+		routesUtils,
+		dao,
 		Thing,
 		ThingList,
 		ThingView,
@@ -18,38 +18,46 @@ define([
 	    ThingEditView) {
 
     function thingsIndexHtml(req, res) {
-    	DAO.Things.findAll().then(function(data) {
+    	var user = routesUtils.getSessionUser(req);
+    	dao.things.findAllByUser(user).then(function(data) {
     		var Things = new ThingList(data);
             var thingListView = new ThingListView({'collection': Things});
-            res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, thingListView));
+            res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingListView));
     	});
-    }
-    
-    function thingNewHtml(req, res) {
-        var thingNewView = new ThingNewView({'model': new Thing()});
-        res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, thingNewView));
     }
 
     function thingGetHtml(req, res) {
         var thingId = req.params.id;
-    	DAO.Things.findById(thingId).then(function(data) {
-    		var thing = new Thing(data);
-            var thingView = new ThingView({'model': thing});
-            res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, thingView));
-    	});
+        var user = routesUtils.getSessionUser(req);
+    	dao.things.findById(thingId, user)
+	    	.then(function(data) {
+	    		var thing = new Thing(data);
+	            var thingView = new ThingView({'model': thing});
+	            res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingView));
+	    	})
+	    	.fail(function() {
+	    		// Give them a 403 always ...
+	            routesUtils.handleErrorHtml(req, res, 403);
+	    	});
     }
     
+    function thingNewHtml(req, res) {
+        var thingNewView = new ThingNewView({'model': new Thing()});
+        res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingNewView));
+    }
+
     function thingUpdateHtml(req, res) {
         var thingId = req.params.id;
-    	DAO.Things.findById(thingId).then(function(data) {
+    	dao.things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
             var thingEditView = new ThingEditView({'model': thing});
-            res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, thingEditView));
+            res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingEditView));
     	});
     }
     
     function thingsIndexJson(req, res) {
-    	DAO.Things.findAll().then(function(data) {
+    	var user = routesUtils.getSessionUser(req);
+    	dao.things.findAllByUser(user).then(function(data) {
     		var Things = new ThingList(data);
             res.writeHead(200, {"Content-Type": "application/json"});
             res.end(JSON.stringify(Things.sort().toJSON()));
@@ -58,16 +66,21 @@ define([
     
     function thingGetJson(req, res) {
         var thingId = req.params.id;
-    	DAO.Things.findById(thingId).then(function(data) {
-    		var thing = new Thing(data);
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(thing.toJSON()));
-    	});
+        var user = routesUtils.getSessionUser(req);
+    	dao.things.findById(thingId, user)
+	    	.then(function(data) {
+	    		var thing = new Thing(data);
+	            res.writeHead(200, {"Content-Type": "application/json"});
+	            res.end(JSON.stringify(thing.toJSON()));
+	    	})
+	    	.fail(function() {
+	    		routesUtils.handleErrorJson(req, res, 403, "Unauthorized request");
+	    	});
     }
     
     function thingNewJson(req, res) {
     	
-        RoutesUtils.getJSONFromRequestBody(req).then(function(thingRaw) {
+        routesUtils.getJSONFromRequestBody(req).then(function(thingRaw) {
         	
             var thing = new Thing();
             	thing.set('title', thingRaw.title)
@@ -75,19 +88,18 @@ define([
                 
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
-            	DAO.Things.add(thing.toJSON())
+            	var user = routesUtils.getSessionUser(req);
+            	dao.things.add(thing.toJSON(), user.toJSON())
             		.then(function(data) {
 	                	res.writeHead(200, {"Content-Type": "application/json"});
 	                    res.end(JSON.stringify(thing));  
 	            	})
 	            	.fail(function(err) {
-		            	res.writeHead(409, {"Content-Type": "application/json"});
-		                res.end(JSON.stringify({"error":JSON.stringify(err)}));
+		                routesUtils.handleErrorJson(req, res, 409, JSON.stringify(err));
 	            	});
           	
             } else {
-            	res.writeHead(409, {"Content-Type": "application/json"});
-                res.end(JSON.stringify({"error":thing.validationError}));            	
+            	routesUtils.handleErrorJson(req, res, 409, thing.validationError);
             }
 
         });
@@ -96,26 +108,22 @@ define([
     function thingUpdateJson(req, res) {
         var id = req.params.id;
 
-        RoutesUtils.getJSONFromRequestBody(req).then(function(thingRaw) {
-
+        routesUtils.getJSONFromRequestBody(req).then(function(thingRaw) {
             var thing = new Thing(thingRaw);
-
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
-                
-            	DAO.Things.update(thing.toJSON())
+            	var user = routesUtils.getSessionUser(req);
+            	dao.things.update(thing.toJSON(), user.toJSON())
 	        		.then(function(data) {
 	                	res.writeHead(200, {"Content-Type": "application/json"});
 	                    res.end(JSON.stringify(thing));  
 	            	})
 	            	.fail(function(err) {
-		            	res.writeHead(409, {"Content-Type": "application/json"});
-		                res.end(JSON.stringify({"error":JSON.stringify(err)}));
+	            		routesUtils.handleErrorJson(req, res, 409, JSON.stringify(err));
 	            	});
                 
             } else {
-            	res.writeHead(409, {"Content-Type": "application/json"});
-                res.end(JSON.stringify({"error":thing.validationError}));            	
+            	routesUtils.handleErrorJson(req, res, 409, thing.validationError);           	
             }
             
         });

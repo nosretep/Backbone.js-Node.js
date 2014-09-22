@@ -26,22 +26,30 @@ define([
 
         return function(db) {
         
-            function findById(id) {
+            function findById(id, user) {
                 var deferred = $.Deferred();
+                var _id = new BSON.ObjectID(id);
+                var creator_id = new BSON.ObjectID(user.id);
                 db.collection('things', function(err, collection) {
-                    collection.findOne({'_id' : new BSON.ObjectID(id) }, function(err, item) {
-                        scrubContent(item);
-                        fixId(item);
-                        deferred.resolve(item);
+                    collection.findOne({'_id' : _id, 'creator_id' : creator_id }, function(err, item) {
+                    	if (item) {
+	                        scrubContent(item);
+	                        fixId(item);
+	                        deferred.resolve(item);
+                    	} else if (err) {
+                    		deferred.reject(err);
+                    	} else {
+                    		deferred.reject(/* new exception empty result */);
+                    	}
                     });
                 });
                 return deferred.promise();
             }
             
-            function findAll() {
+            function findAllByUser(user) {
                 var deferred = $.Deferred();
                 db.collection('things', function(err, collection) {
-                    collection.find().toArray(function(err, items) {
+                    collection.find({'creator_id' : new BSON.ObjectID(user.id)}).toArray(function(err, items) {
                         _.each(items, function(item) {
                             scrubContent(item);
                             fixId(item);
@@ -52,10 +60,11 @@ define([
                 return deferred.promise();
             }
             
-            function add(data) {
+            function add(thing, user) {
                 var deferred = $.Deferred();
+                thing.creator_id = new BSON.ObjectID(user.id);
                 db.collection('things', function(err, collection) {
-                    collection.insert(data, { safe : true }, function(err, results) {
+                    collection.insert(thing, { safe : true }, function(err, results) {
                         if (err) {
                             deferred.reject(err);
                         } else {
@@ -69,20 +78,28 @@ define([
                 return deferred.promise();
             }
     
-            function update(data) {
+            function update(thing, user) {
                 var deferred = $.Deferred();
-                var id = data.id;
-                delete data.id;
+                
+                // get 'id' and delete it ...
+                thing._id = new BSON.ObjectID(thing.id);
+                delete thing.id; // make sure 'id' does not get added to thing ...
+                
+                // fix 'creator_id' to ensure it is a BSON.ObjectID
+                thing.creator_id = new BSON.ObjectID(user.id);
+                
                 db.collection('things', function(err, collection) {
-                    collection.update({'_id' : new BSON.ObjectID(id)}, data, {safe : true}, function(err, results) {
-                        if (err) {
-                            deferred.reject(err);
-                        } else {
-                            scrubContent(data);
-                            data.id = id;
-                            deferred.resolve(data);
-                        }
-                    });
+                    collection.update({'_id' : thing._id, 'creator_id' : thing.creator_id }, thing, {safe : true}, 
+                    	function(err, results) {
+                    		if (err) {
+								deferred.reject(err);
+							} else {
+							    scrubContent(thing);
+							    fixId(thing);
+							    deferred.resolve(thing);
+							}
+                    	}
+                    );
                 });
                 return deferred.promise();
             }
@@ -103,7 +120,7 @@ define([
         
             return {
                 findById : findById,
-                findAll : findAll,
+                findAllByUser : findAllByUser,
                 add : add,
                 update : update
             }      

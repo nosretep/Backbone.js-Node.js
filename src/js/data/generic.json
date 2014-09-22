@@ -40,5 +40,9 @@
     "error_404": {
         "title" : "404 page",
         "content" : "Page not found"
+    },
+    "error_403": {
+        "title" : "403 page",
+        "content" : "Unauthorized request"
     }
 }

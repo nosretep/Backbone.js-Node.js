@@ -131,7 +131,6 @@ requirejs([
         // This code ensures that that app links go through the appRouter ...
         $('body').delegate('a.app_link', 'click', function(evt) {
             evt.preventDefault();
-//            evt.stopPropagation();
             var $link = $(this);
             var href = $link.attr('href');
             App.appRouter.navigate(href, true);
@@ -140,8 +139,18 @@ requirejs([
         // Back goes back ...
         $('body').delegate('a.back_link', 'click', function(evt) {
             evt.preventDefault();
-//            evt.stopPropagation();
             window.history.go(-1);
         });
+        
+        $(document).ajaxError(function (e, xhr, options) {
+        	// This should clear everything up, 
+        	if (xhr.status === 401) {
+        		// TODO:
+            	// - loggedInUser object
+            	// - views that show logged in user features should listen to loggedInUser object 
+            	// - add a modal to let user log back in
+        		window.location.href = '/';
+        	}
+		});
 
     });

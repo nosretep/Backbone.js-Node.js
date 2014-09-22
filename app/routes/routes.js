@@ -22,14 +22,14 @@ define([
 	    HomeView,
 	    GenericView,
 	    genericJSON,
-	    RoutesUtils,
-		RoutesThings,
-		RoutesUsers) {
+	    routesUtils,
+		routesThings,
+		routesUsers) {
 
 		return {
 	    	index: function(req, res) {
 	            var homeView = new HomeView();
-	        	res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, homeView));
+	        	res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, homeView));
 	        },
 	        logout: function(req, res) {
 	        	req.logout();
@@ -37,15 +37,20 @@ define([
 	        },
 	    	catchAll: function(req, res) {
 	        	var path = req.params[0];
-	        	var pageDetails = genericJSON[path] || genericJSON['error_404'];
-	        	var generic = new Generic(pageDetails);
-	        	var genericView = new GenericView({
-	        		'model' : generic
-	        	});
-	        	res.render(req.baseHtmlFile, RoutesUtils.generatePageContentAndTitle(req, genericView));
+	        	var pageDetails = genericJSON[path];
+	        	if (pageDetails) {
+		        	var generic = new Generic(pageDetails);
+		        	var genericView = new GenericView({
+		        		'model' : generic
+		        	});
+		        	res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, genericView));
+	    		} else {
+	    			routesUtils.handleErrorHtml(req, res, 404);
+	    		}
 	        },
-			things: RoutesThings,
-			users: RoutesUsers
+			things: routesThings,
+			users: routesUsers,
+			utils: routesUtils
 		}
 	
 });
