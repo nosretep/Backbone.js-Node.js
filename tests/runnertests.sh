@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
 echo Starting self tests...
 
-cd ..
-# Run client tests
-./node_modules/.bin/intern-client config=tests/intern
-
-sleep 2
-
 # Set up selenium server
-cd tests/bin
-java -jar selenium-server-standalone-2.43.0.jar -Dwebdriver.chrome.driver=../../node_modules/chromedriver/bin/chromedriver &
+cd bin
+java -jar selenium-server-standalone-2.43.0.jar -log selenium.log -Dwebdriver.chrome.driver=../../node_modules/chromedriver/bin/chromedriver &
 
 sleep 2
 
@@ -19,7 +13,7 @@ node server.js &
 
 sleep 2
  
-./node_modules/.bin/intern-runner config=tests/intern
+./node_modules/.bin/intern-runner config=tests/runner
 
 
 sleep 2

@@ -1,0 +1,1562 @@
+02:19:13.071 INFO [1] org.openqa.grid.selenium.GridLauncher - Launching a standalone server
+02:19:13.104 INFO [1] org.openqa.selenium.server.SeleniumServer - Writing debug logs to selenium.log
+02:19:13.104 INFO [1] org.openqa.selenium.server.SeleniumServer - Java: Oracle Corporation 24.65-b04
+02:19:13.104 INFO [1] org.openqa.selenium.server.SeleniumServer - OS: Mac OS X 10.9.4 x86_64
+02:19:13.113 INFO [1] org.openqa.selenium.server.SeleniumServer - v2.43.0, with Core v2.43.0. Built from revision 597b76b
+02:19:13.168 INFO [1] org.openqa.selenium.remote.server.DefaultDriverSessions - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
+02:19:13.215 INFO [1] org.openqa.selenium.server.SeleniumServer - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+02:19:13.216 INFO [1] org.openqa.jetty.http.HttpServer - Version Jetty/5.1.x
+02:19:13.216 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+02:19:13.217 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server,/selenium-server]
+02:19:13.217 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/,/]
+02:19:13.229 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.servlet.ServletHandler@2f6b7fcb
+02:19:13.229 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/wd,/wd]
+02:19:13.232 INFO [1] org.openqa.jetty.http.SocketListener - Started SocketListener on 0.0.0.0:4444
+02:19:13.232 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.Server@12329bcb
+02:19:17.310 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]])
+02:19:17.310 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]])
+02:19:17.321 INFO [21] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]
+02:19:17.321 INFO [22] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]
+02:19:17.380 INFO [21] org.openqa.selenium.safari.SafariDriverServer - Server started on port 36285
+02:19:17.388 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Launching Safari
+02:19:17.397 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Waiting for SafariDriver to connect
+02:19:18.006 INFO [25] org.openqa.selenium.safari.SafariDriverChannelHandler - Connection opened
+02:19:18.008 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Driver connected in 611 ms
+02:19:18.055 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]]
+02:19:18.065 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:19:18.098 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:19:18.102 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:19:18.208 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:19:18.213 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:19:18.315 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:19:18.328 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:19:18.426 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:19:18.430 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:19:18.542 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:19:18.549 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:19:18.566 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:19:18.572 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.ready;, [], 1000, 67]])
+02:19:18.702 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]]
+02:19:18.716 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:19:18.845 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:19:18.856 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get local storage size])
+02:19:18.856 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location context])
+02:19:18.857 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [take screenshot])
+02:19:18.858 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: arguments[0](true);, []])
+02:19:19.116 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 7 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 4766ea5c2aac28d67100c5b5ced45a67
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.SqHbHP}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocalStorage.size(RemoteLocalStorage.java:72)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:30)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:19:19.116 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 4766ea5c2aac28d67100c5b5ced45a67
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.SqHbHP}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocationContext.location(RemoteLocationContext.java:38)
+	at org.openqa.selenium.chrome.ChromeDriver.location(ChromeDriver.java:195)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:31)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:19:19.118 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 4766ea5c2aac28d67100c5b5ced45a67
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.SqHbHP}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:19:19.118 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 7 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 4766ea5c2aac28d67100c5b5ced45a67
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.SqHbHP}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:19:19.134 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:19:19.138 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [Long press: null])
+02:19:19.149 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [take screenshot]
+02:19:19.152 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get window size])
+02:19:19.159 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: arguments[0](true);, []]
+02:19:19.164 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:19:19.164 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+java.lang.UnsupportedOperationException: Underlying driver does not implement advanced user interactions yet.
+	at org.openqa.selenium.support.events.EventFiringWebDriver.getTouch(EventFiringWebDriver.java:311)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:40)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:19:19.164 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception: Underlying driver does not implement advanced user interactions yet.
+02:19:19.171 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get window size]
+02:19:19.175 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [set window size])
+02:19:19.284 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [set window size]
+02:19:19.292 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E])
+02:19:19.309 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E]
+02:19:19.312 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get title])
+02:19:19.325 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get title]
+02:19:19.329 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:19:19.349 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:19:19.352 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []])
+02:19:19.356 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []]
+02:19:19.359 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:19:19.377 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:19:19.381 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [fetching available log types])
+02:19:19.382 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:19:19.382 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:19:19.387 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [fetching available log types]
+02:19:19.418 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:19:19.423 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 0 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> tag name: html]])
+02:19:19.424 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:19:19.427 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 0 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> tag name: html]]
+02:19:19.428 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element attribute: 0 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> tag name: html], nonexisting])
+02:19:19.436 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get element attribute: 0 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> tag name: html], nonexisting]
+02:19:19.440 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:19:19.457 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:19:19.461 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:19:19.466 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:19:19.468 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@98e26d12 -> unknown locator]])
+02:19:19.471 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@98e26d12 -> unknown locator]]
+02:19:19.474 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E])
+02:19:19.498 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E]
+02:19:19.501 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []])
+02:19:19.506 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []]
+02:19:19.509 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: document.getElementById("a").style.opacity = "0";, []])
+02:19:19.512 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: document.getElementById("a").style.opacity = "0";, []]
+02:19:19.516 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:19:19.527 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:19:19.529 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 2 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]])
+02:19:19.539 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 2 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]]
+02:19:19.542 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E])
+02:19:19.558 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E]
+02:19:19.561 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:19:19.572 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:19:19.574 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 3 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]])
+02:19:19.585 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 3 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]]
+02:19:19.589 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E])
+02:19:19.612 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E]
+02:19:19.615 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:19:19.623 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:19:19.626 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [submit: 4 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]])
+02:19:19.650 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [submit: 4 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]]
+02:19:19.656 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get current url])
+02:19:19.660 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get current url]
+02:19:19.663 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E])
+02:19:19.685 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E]
+02:19:19.690 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:19:19.720 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:19:19.724 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location: 5 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]])
+02:19:19.730 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get location: 5 [[ChromeDriver: chrome on MAC (4766ea5c2aac28d67100c5b5ced45a67)] -> id: a]]
+02:19:19.734 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank?1])
+02:19:20.029 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank?1]
+02:19:20.034 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [refresh])
+02:19:20.041 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [refresh]
+02:19:20.045 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E])
+02:19:20.113 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.TimeoutException: Timed out waiting for an asynchronous script result after 1001 ms (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.09 seconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: null
+Driver info: org.openqa.selenium.safari.SafariDriver
+Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, secureSsl=true, browserName=safari, takesScreenshot=true, version=7.0.6}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeAsyncScript(RemoteWebDriver.java:526)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:101)
+	at com.sun.proxy.$Proxy1.executeAsyncScript(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.executeAsyncScript(EventFiringWebDriver.java:225)
+	at org.openqa.selenium.remote.server.handler.ExecuteAsyncScript.call(ExecuteAsyncScript.java:55)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:19:20.113 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception: Timed out waiting for an asynchronous script result after 1001 ms (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.09 seconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: null
+Driver info: org.openqa.selenium.safari.SafariDriver
+Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, secureSsl=true, browserName=safari, takesScreenshot=true, version=7.0.6}]
+02:19:20.140 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:19:20.152 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:19:20.159 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:19:20.166 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:19:20.169 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: e1b5c4dd-c2ce-48a6-b3fd-c48f7d192a2f])
+02:19:20.169 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutting down
+02:19:20.169 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Closing connection
+02:19:20.170 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping Safari
+02:19:20.221 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping server
+02:19:20.221 INFO [21] org.openqa.selenium.safari.SafariDriverServer - Stopping server
+02:19:20.226 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Uninstalling extensions
+02:19:20.228 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutdown complete
+02:19:20.228 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: e1b5c4dd-c2ce-48a6-b3fd-c48f7d192a2f]
+02:19:20.327 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E]
+02:19:20.331 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:19:20.345 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:19:20.349 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [mousemove: 6 false])
+02:19:20.360 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [mousemove: 6 false]
+02:19:20.465 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:19:20.485 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:19:20.488 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return counter;, []])
+02:19:20.491 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return counter;, []]
+02:19:20.495 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:19:20.516 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:19:20.520 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:19:20.524 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:19:20.527 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@48cf19d2 -> unknown locator]])
+02:19:20.531 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@48cf19d2 -> unknown locator]]
+02:19:20.535 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:19:20.554 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:19:20.562 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:19:20.566 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:19:20.576 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:19:20.850 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:19:20.853 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:19:20.855 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:19:20.858 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.ready;, [], 1000, 67]])
+02:19:22.111 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.TimeoutException: asynchronous script timeout: result was not received in 1 seconds
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.03 seconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 4766ea5c2aac28d67100c5b5ced45a67
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.SqHbHP}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeAsyncScript(RemoteWebDriver.java:526)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:101)
+	at com.sun.proxy.$Proxy2.executeAsyncScript(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.executeAsyncScript(EventFiringWebDriver.java:225)
+	at org.openqa.selenium.remote.server.handler.ExecuteAsyncScript.call(ExecuteAsyncScript.java:55)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:19:22.112 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception: asynchronous script timeout: result was not received in 1 seconds
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.03 seconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 4766ea5c2aac28d67100c5b5ced45a67
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.SqHbHP}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:19:22.129 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:19:22.131 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:19:22.136 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:19:22.139 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:19:22.142 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: 37685cfd-2799-4704-ac6a-39612921a2db])
+02:19:22.704 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: 37685cfd-2799-4704-ac6a-39612921a2db]
+02:21:26.322 INFO [1] org.openqa.grid.selenium.GridLauncher - Launching a standalone server
+02:21:26.354 INFO [1] org.openqa.selenium.server.SeleniumServer - Writing debug logs to selenium.log
+02:21:26.354 INFO [1] org.openqa.selenium.server.SeleniumServer - Java: Oracle Corporation 24.65-b04
+02:21:26.354 INFO [1] org.openqa.selenium.server.SeleniumServer - OS: Mac OS X 10.9.4 x86_64
+02:21:26.363 INFO [1] org.openqa.selenium.server.SeleniumServer - v2.43.0, with Core v2.43.0. Built from revision 597b76b
+02:21:26.412 INFO [1] org.openqa.selenium.remote.server.DefaultDriverSessions - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
+02:21:26.470 INFO [1] org.openqa.selenium.server.SeleniumServer - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+02:21:26.471 INFO [1] org.openqa.jetty.http.HttpServer - Version Jetty/5.1.x
+02:21:26.471 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+02:21:26.472 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server,/selenium-server]
+02:21:26.472 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/,/]
+02:21:26.484 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.servlet.ServletHandler@4687ace0
+02:21:26.484 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/wd,/wd]
+02:21:26.487 INFO [1] org.openqa.jetty.http.SocketListener - Started SocketListener on 0.0.0.0:4444
+02:21:26.487 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.Server@7a01fdb2
+02:21:30.561 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]])
+02:21:30.561 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]])
+02:21:30.571 INFO [22] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]
+02:21:30.571 INFO [21] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]
+02:21:30.630 INFO [21] org.openqa.selenium.safari.SafariDriverServer - Server started on port 26780
+02:21:30.636 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Launching Safari
+02:21:30.645 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Waiting for SafariDriver to connect
+02:21:31.263 INFO [25] org.openqa.selenium.safari.SafariDriverChannelHandler - Connection opened
+02:21:31.266 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Driver connected in 620 ms
+02:21:31.317 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]]
+02:21:31.327 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:21:31.360 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:21:31.365 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:21:31.468 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:21:31.472 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:21:31.578 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:21:31.592 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:21:31.687 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:21:31.690 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:21:31.804 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:21:31.810 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:21:31.826 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:21:31.831 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:21:31.920 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:21:31.926 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:21:31.943 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:21:31.982 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]]
+02:21:31.997 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:21:31.997 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:21:32.017 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:21:32.032 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: d15cc905-4d35-41a5-a3fe-8fddaf6bd8a4])
+02:21:32.033 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutting down
+02:21:32.033 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Closing connection
+02:21:32.034 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping Safari
+02:21:32.087 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping server
+02:21:32.087 INFO [21] org.openqa.selenium.safari.SafariDriverServer - Stopping server
+02:21:32.093 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Uninstalling extensions
+02:21:32.094 INFO [21] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutdown complete
+02:21:32.094 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: d15cc905-4d35-41a5-a3fe-8fddaf6bd8a4]
+02:21:32.138 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:21:32.150 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get local storage size])
+02:21:32.150 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location context])
+02:21:32.151 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [take screenshot])
+02:21:32.153 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: arguments[0](true);, []])
+02:21:32.153 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:21:32.495 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [take screenshot]
+02:21:32.498 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [Long press: null])
+02:21:32.506 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: arguments[0](true);, []]
+02:21:32.509 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get window size])
+02:21:32.510 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:21:32.510 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+java.lang.UnsupportedOperationException: Underlying driver does not implement advanced user interactions yet.
+	at org.openqa.selenium.support.events.EventFiringWebDriver.getTouch(EventFiringWebDriver.java:311)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:40)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:21:32.512 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception: Underlying driver does not implement advanced user interactions yet.
+02:21:32.516 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 29876eeb90226fd999732a00e8988055
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.LDedQX}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocationContext.location(RemoteLocationContext.java:38)
+	at org.openqa.selenium.chrome.ChromeDriver.location(ChromeDriver.java:195)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:31)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:21:32.516 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 33 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 29876eeb90226fd999732a00e8988055
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.LDedQX}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocalStorage.size(RemoteLocalStorage.java:72)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:30)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:21:32.517 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 29876eeb90226fd999732a00e8988055
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.LDedQX}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:21:32.518 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 33 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 29876eeb90226fd999732a00e8988055
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.LDedQX}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:21:32.518 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get window size]
+02:21:32.523 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [set window size])
+02:21:32.633 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [set window size]
+02:21:32.638 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E])
+02:21:32.655 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E]
+02:21:32.658 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get title])
+02:21:32.661 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get title]
+02:21:32.664 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:21:32.683 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:21:32.687 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []])
+02:21:32.691 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []]
+02:21:32.694 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:21:32.713 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:21:32.717 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [fetching available log types])
+02:21:32.719 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:21:32.719 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:21:32.723 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [fetching available log types]
+02:21:32.760 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:21:32.764 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 0 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> tag name: html]])
+02:21:32.765 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:21:32.768 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element attribute: 0 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> tag name: html], nonexisting])
+02:21:32.768 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 0 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> tag name: html]]
+02:21:32.776 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get element attribute: 0 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> tag name: html], nonexisting]
+02:21:32.784 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:21:32.800 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:21:32.803 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:21:32.808 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:21:32.811 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@18e24a7 -> unknown locator]])
+02:21:32.815 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@18e24a7 -> unknown locator]]
+02:21:32.818 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E])
+02:21:32.839 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E]
+02:21:32.842 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []])
+02:21:32.848 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []]
+02:21:32.850 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: document.getElementById("a").style.opacity = "0";, []])
+02:21:32.853 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: document.getElementById("a").style.opacity = "0";, []]
+02:21:32.856 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:21:32.868 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:21:32.871 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 2 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]])
+02:21:32.881 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 2 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]]
+02:21:32.884 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E])
+02:21:32.901 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E]
+02:21:32.905 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:21:32.910 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:21:32.913 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 3 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]])
+02:21:32.924 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 3 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]]
+02:21:32.927 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E])
+02:21:32.950 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E]
+02:21:32.952 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:21:32.960 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:21:32.964 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [submit: 4 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]])
+02:21:32.986 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [submit: 4 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]]
+02:21:32.988 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get current url])
+02:21:32.992 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get current url]
+02:21:32.996 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E])
+02:21:33.015 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E]
+02:21:33.018 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:21:33.023 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:21:33.026 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location: 5 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]])
+02:21:33.030 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get location: 5 [[ChromeDriver: chrome on MAC (29876eeb90226fd999732a00e8988055)] -> id: a]]
+02:21:33.033 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank?1])
+02:21:33.295 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank?1]
+02:21:33.297 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [refresh])
+02:21:33.303 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [refresh]
+02:21:33.306 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E])
+02:21:33.568 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E]
+02:21:33.572 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:21:33.586 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:21:33.589 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [mousemove: 6 false])
+02:21:33.600 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [mousemove: 6 false]
+02:21:33.705 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:21:33.723 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:21:33.727 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return counter;, []])
+02:21:33.730 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return counter;, []]
+02:21:33.734 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:21:33.753 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:21:33.756 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:21:33.762 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:21:33.765 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@f344931 -> unknown locator]])
+02:21:33.769 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@f344931 -> unknown locator]]
+02:21:33.772 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:21:33.794 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:21:33.801 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:21:33.805 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:21:33.807 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:21:34.094 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:21:34.098 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:21:34.101 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:21:34.104 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:21:34.148 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:21:34.152 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:21:34.153 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:21:34.173 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:21:34.187 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:21:34.190 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: 0ff10139-8df5-40b1-9f99-3ad622b6574f])
+02:21:34.750 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: 0ff10139-8df5-40b1-9f99-3ad622b6574f]
+02:21:57.774 INFO [1] org.openqa.grid.selenium.GridLauncher - Launching a standalone server
+02:21:57.805 INFO [1] org.openqa.selenium.server.SeleniumServer - Writing debug logs to selenium.log
+02:21:57.805 INFO [1] org.openqa.selenium.server.SeleniumServer - Java: Oracle Corporation 24.65-b04
+02:21:57.805 INFO [1] org.openqa.selenium.server.SeleniumServer - OS: Mac OS X 10.9.4 x86_64
+02:21:57.814 INFO [1] org.openqa.selenium.server.SeleniumServer - v2.43.0, with Core v2.43.0. Built from revision 597b76b
+02:21:57.858 INFO [1] org.openqa.selenium.remote.server.DefaultDriverSessions - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
+02:21:57.917 INFO [1] org.openqa.selenium.server.SeleniumServer - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+02:21:57.918 INFO [1] org.openqa.jetty.http.HttpServer - Version Jetty/5.1.x
+02:21:57.919 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+02:21:57.919 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server,/selenium-server]
+02:21:57.919 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/,/]
+02:21:57.932 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.servlet.ServletHandler@4687ace0
+02:21:57.932 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/wd,/wd]
+02:21:57.935 INFO [1] org.openqa.jetty.http.SocketListener - Started SocketListener on 0.0.0.0:4444
+02:21:57.935 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.Server@7a01fdb2
+02:22:02.015 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]])
+02:22:02.015 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]])
+02:22:02.025 INFO [21] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]
+02:22:02.025 INFO [22] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]
+02:22:02.085 INFO [22] org.openqa.selenium.safari.SafariDriverServer - Server started on port 35562
+02:22:02.091 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Launching Safari
+02:22:02.100 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Waiting for SafariDriver to connect
+02:22:02.706 INFO [25] org.openqa.selenium.safari.SafariDriverChannelHandler - Connection opened
+02:22:02.708 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Driver connected in 607 ms
+02:22:02.758 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]]
+02:22:02.768 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:22:02.800 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:22:02.804 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:22:02.910 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:22:02.915 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:22:03.019 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:22:03.029 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:22:03.128 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:22:03.133 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:22:03.239 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:22:03.246 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:22:03.262 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:22:03.268 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:22:03.350 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:22:03.356 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:22:03.359 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:22:03.368 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:22:03.387 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:22:03.401 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: 873bcc9c-57de-452d-bdfc-368ad25a228e])
+02:22:03.402 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutting down
+02:22:03.402 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Closing connection
+02:22:03.402 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping Safari
+02:22:03.425 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]]
+02:22:03.441 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:22:03.458 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping server
+02:22:03.458 INFO [22] org.openqa.selenium.safari.SafariDriverServer - Stopping server
+02:22:03.463 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Uninstalling extensions
+02:22:03.464 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutdown complete
+02:22:03.464 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: 873bcc9c-57de-452d-bdfc-368ad25a228e]
+02:22:03.593 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:22:03.608 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location context])
+02:22:03.608 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get local storage size])
+02:22:03.614 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [take screenshot])
+02:22:03.615 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:22:03.617 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: arguments[0](true);, []])
+02:22:03.617 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: e3e5a0a86e579099fbbcd71f9ee25065
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.CpTWo5}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocationContext.location(RemoteLocationContext.java:38)
+	at org.openqa.selenium.chrome.ChromeDriver.location(ChromeDriver.java:195)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:31)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:22:03.621 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: e3e5a0a86e579099fbbcd71f9ee25065
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.CpTWo5}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:22:03.625 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 9 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: e3e5a0a86e579099fbbcd71f9ee25065
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.CpTWo5}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocalStorage.size(RemoteLocalStorage.java:72)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:30)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:22:03.627 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 9 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: e3e5a0a86e579099fbbcd71f9ee25065
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.CpTWo5}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:22:03.650 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [Long press: null])
+02:22:03.651 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get window size])
+02:22:03.916 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [take screenshot]
+02:22:03.920 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:22:03.932 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: arguments[0](true);, []]
+02:22:03.932 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+java.lang.UnsupportedOperationException: Underlying driver does not implement advanced user interactions yet.
+	at org.openqa.selenium.support.events.EventFiringWebDriver.getTouch(EventFiringWebDriver.java:311)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:40)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:22:03.932 WARN [14] org.openqa.selenium.remote.server.DriverServlet - Exception: Underlying driver does not implement advanced user interactions yet.
+02:22:03.940 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get window size]
+02:22:03.944 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [set window size])
+02:22:04.053 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [set window size]
+02:22:04.058 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E])
+02:22:04.075 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E]
+02:22:04.079 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get title])
+02:22:04.087 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get title]
+02:22:04.090 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:22:04.120 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:22:04.124 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []])
+02:22:04.134 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []]
+02:22:04.138 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:22:04.157 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:22:04.161 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [fetching available log types])
+02:22:04.163 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:22:04.163 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:22:04.168 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [fetching available log types]
+02:22:04.190 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:22:04.193 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element attribute: 0 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> tag name: html], nonexisting])
+02:22:04.195 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:22:04.198 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 0 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> tag name: html]])
+02:22:04.204 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get element attribute: 0 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> tag name: html], nonexisting]
+02:22:04.207 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 0 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> tag name: html]]
+02:22:04.210 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:22:04.230 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:22:04.233 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:22:04.237 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:22:04.240 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@a7bd3bef -> unknown locator]])
+02:22:04.243 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@a7bd3bef -> unknown locator]]
+02:22:04.246 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E])
+02:22:04.269 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E]
+02:22:04.273 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []])
+02:22:04.277 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []]
+02:22:04.282 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: document.getElementById("a").style.opacity = "0";, []])
+02:22:04.285 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: document.getElementById("a").style.opacity = "0";, []]
+02:22:04.288 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:22:04.299 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:22:04.303 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 2 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]])
+02:22:04.312 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 2 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]]
+02:22:04.319 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E])
+02:22:04.335 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E]
+02:22:04.339 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:22:04.345 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:22:04.348 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 3 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]])
+02:22:04.359 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 3 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]]
+02:22:04.362 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E])
+02:22:04.384 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E]
+02:22:04.387 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:22:04.394 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:22:04.398 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [submit: 4 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]])
+02:22:04.421 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [submit: 4 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]]
+02:22:04.423 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get current url])
+02:22:04.427 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get current url]
+02:22:04.431 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E])
+02:22:04.447 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E]
+02:22:04.451 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:22:04.456 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:22:04.459 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location: 5 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]])
+02:22:04.463 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get location: 5 [[ChromeDriver: chrome on MAC (e3e5a0a86e579099fbbcd71f9ee25065)] -> id: a]]
+02:22:04.466 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank?1])
+02:22:04.725 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank?1]
+02:22:04.728 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [refresh])
+02:22:04.734 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [refresh]
+02:22:04.737 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E])
+02:22:04.973 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E]
+02:22:04.977 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:22:04.992 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:22:04.996 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [mousemove: 6 false])
+02:22:05.006 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [mousemove: 6 false]
+02:22:05.112 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:22:05.131 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:22:05.133 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return counter;, []])
+02:22:05.137 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return counter;, []]
+02:22:05.141 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:22:05.159 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:22:05.163 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:22:05.176 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:22:05.180 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@5943f5df -> unknown locator]])
+02:22:05.187 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@5943f5df -> unknown locator]]
+02:22:05.189 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:22:05.206 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:22:05.214 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:22:05.220 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:22:05.223 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:22:05.506 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:22:05.510 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:22:05.513 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:22:05.516 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:22:05.524 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:22:05.527 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:22:05.529 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:22:05.537 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:22:05.542 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:22:05.545 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: c3bc837e-4757-413b-b7d4-5eaa80240343])
+02:22:06.105 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: c3bc837e-4757-413b-b7d4-5eaa80240343]
+02:23:31.535 INFO [1] org.openqa.grid.selenium.GridLauncher - Launching a standalone server
+02:23:31.566 INFO [1] org.openqa.selenium.server.SeleniumServer - Writing debug logs to selenium.log
+02:23:31.567 INFO [1] org.openqa.selenium.server.SeleniumServer - Java: Oracle Corporation 24.65-b04
+02:23:31.567 INFO [1] org.openqa.selenium.server.SeleniumServer - OS: Mac OS X 10.9.4 x86_64
+02:23:31.575 INFO [1] org.openqa.selenium.server.SeleniumServer - v2.43.0, with Core v2.43.0. Built from revision 597b76b
+02:23:31.645 INFO [1] org.openqa.selenium.remote.server.DefaultDriverSessions - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
+02:23:31.678 INFO [1] org.openqa.selenium.server.SeleniumServer - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+02:23:31.679 INFO [1] org.openqa.jetty.http.HttpServer - Version Jetty/5.1.x
+02:23:31.680 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+02:23:31.680 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/selenium-server,/selenium-server]
+02:23:31.680 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/,/]
+02:23:31.693 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.servlet.ServletHandler@7c572f78
+02:23:31.693 INFO [1] org.openqa.jetty.util.Container - Started HttpContext[/wd,/wd]
+02:23:31.696 INFO [1] org.openqa.jetty.http.SocketListener - Started SocketListener on 0.0.0.0:4444
+02:23:31.696 INFO [1] org.openqa.jetty.util.Container - Started org.openqa.jetty.jetty.Server@3e578b06
+02:23:35.770 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]])
+02:23:35.770 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]])
+02:23:35.779 INFO [22] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]
+02:23:35.779 INFO [21] org.openqa.selenium.remote.server.DefaultDriverProvider - Creating a new session for Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]
+02:23:35.840 INFO [22] org.openqa.selenium.safari.SafariDriverServer - Server started on port 6179
+02:23:35.846 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Launching Safari
+02:23:35.856 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Waiting for SafariDriver to connect
+02:23:36.465 INFO [25] org.openqa.selenium.safari.SafariDriverChannelHandler - Connection opened
+02:23:36.467 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Driver connected in 611 ms
+02:23:36.515 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=safari, name=tests/runner, selenium-version=2.43.0}]]
+02:23:36.528 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:23:36.560 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:23:36.565 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:23:36.670 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:23:36.673 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:23:36.777 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:23:36.788 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:23:36.887 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:23:36.892 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/about])
+02:23:36.990 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/about]
+02:23:36.997 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:23:37.012 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:23:37.019 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:23:37.119 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:23:37.126 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:23:37.139 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:23:37.147 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:23:37.173 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:23:37.174 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [new session: Capabilities [{idle-timeout=60, browserName=chrome, name=tests/runner, selenium-version=2.43.0}]]
+02:23:37.204 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:23:37.210 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:23:37.282 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:23:37.298 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:23:37.312 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:23:37.329 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:23:37.337 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:23:37.371 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location context])
+02:23:37.371 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [take screenshot])
+02:23:37.372 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get local storage size])
+02:23:37.373 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: arguments[0](true);, []])
+02:23:37.395 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:23:37.398 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:23:37.641 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 426f52d85ed1a768b60792e8e8820f3b
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.eW2rzq}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocationContext.location(RemoteLocationContext.java:38)
+	at org.openqa.selenium.chrome.ChromeDriver.location(ChromeDriver.java:195)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:31)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocationContext.call(GetLocationContext.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:23:37.643 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Location must be set before it can be retrieved
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 426f52d85ed1a768b60792e8e8820f3b
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.eW2rzq}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:23:37.654 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [Long press: null])
+02:23:37.721 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [take screenshot]
+02:23:37.723 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get window size])
+02:23:37.726 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 426f52d85ed1a768b60792e8e8820f3b
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.eW2rzq}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
+	at org.openqa.selenium.remote.html5.RemoteLocalStorage.size(RemoteLocalStorage.java:72)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:30)
+	at org.openqa.selenium.remote.server.handler.html5.GetLocalStorageSize.call(GetLocalStorageSize.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:23:37.727 WARN [50] org.openqa.selenium.remote.server.DriverServlet - Exception: unknown error: Runtime.evaluate threw exception: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+  (Session info: chrome=37.0.2062.122)
+  (Driver info: chromedriver=2.10.267517,platform=Mac OS X 10.9.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds
+Build info: version: '2.43.0', revision: '597b76b', time: '2014-09-09 20:52:14'
+System info: host: 'Stellars-MacBook-Pro.local', ip: '192.168.0.109', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.4', java.version: '1.7.0_67'
+Session ID: 426f52d85ed1a768b60792e8e8820f3b
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=/var/folders/s_/x_7_zy1d09z44lr_94w8mn1r0000gn/T/.org.chromium.Chromium.eW2rzq}, rotatable=false, locationContextEnabled=true, version=37.0.2062.122, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, nativeEvents=true, webStorageEnabled=true, applicationCacheEnabled=false, takesScreenshot=true}]
+02:23:37.734 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:23:37.737 INFO [52] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: arguments[0](true);, []]
+02:23:37.741 INFO [14] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:23:37.741 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception thrown
+java.lang.UnsupportedOperationException: Underlying driver does not implement advanced user interactions yet.
+	at org.openqa.selenium.support.events.EventFiringWebDriver.getTouch(EventFiringWebDriver.java:311)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:40)
+	at org.openqa.selenium.remote.server.handler.interactions.touch.LongPressOnElement.call(LongPressOnElement.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:169)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+02:23:37.741 WARN [13] org.openqa.selenium.remote.server.DriverServlet - Exception: Underlying driver does not implement advanced user interactions yet.
+02:23:37.747 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:23:37.748 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get window size]
+02:23:37.754 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:23:37.756 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [set window size])
+02:23:37.760 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:23:37.763 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: 91c37a31-5eb4-48e1-9ec3-d8dc0945265b])
+02:23:37.764 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutting down
+02:23:37.764 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Closing connection
+02:23:37.764 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping Safari
+02:23:37.816 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Stopping server
+02:23:37.817 INFO [22] org.openqa.selenium.safari.SafariDriverServer - Stopping server
+02:23:37.824 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Uninstalling extensions
+02:23:37.825 INFO [22] org.openqa.selenium.safari.SafariDriverCommandExecutor - Shutdown complete
+02:23:37.825 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: 91c37a31-5eb4-48e1-9ec3-d8dc0945265b]
+02:23:37.864 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [set window size]
+02:23:37.870 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E])
+02:23:37.891 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Ctitle%3Ea%3C%2Ftitle%3E]
+02:23:37.895 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get title])
+02:23:37.899 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get title]
+02:23:37.902 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:23:37.945 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:23:37.949 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []])
+02:23:37.953 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function () {
+						var bbox = document.getElementById('a').getBoundingClientRect();
+						return bbox.right - bbox.left === 4;
+					}).apply(this, arguments);, []]
+02:23:37.957 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:23:37.976 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:23:37.981 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Executing: [fetching available log types])
+02:23:37.983 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:23:37.983 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:23:37.989 INFO [13] org.openqa.selenium.remote.server.DriverServlet - Done: [fetching available log types]
+02:23:38.012 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:23:38.016 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element attribute: 0 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> tag name: html], nonexisting])
+02:23:38.018 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:23:38.021 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 0 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> tag name: html]])
+02:23:38.027 INFO [51] org.openqa.selenium.remote.server.DriverServlet - Done: [get element attribute: 0 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> tag name: html], nonexisting]
+02:23:38.030 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 0 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> tag name: html]]
+02:23:38.033 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:23:38.050 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:23:38.057 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:23:38.061 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:23:38.064 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@3e32fd19 -> unknown locator]])
+02:23:38.067 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [tag name: 1 [org.openqa.selenium.remote.RemoteWebElement@3e32fd19 -> unknown locator]]
+02:23:38.072 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E])
+02:23:38.098 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22opacity%3A%20.1%3B%22%3Ea%3C%2Fdiv%3E]
+02:23:38.101 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []])
+02:23:38.106 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: var o = document.getElementById("a").style.opacity; return o && o.charAt(0) === "0";, []]
+02:23:38.109 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: document.getElementById("a").style.opacity = "0";, []])
+02:23:38.112 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: document.getElementById("a").style.opacity = "0";, []]
+02:23:38.115 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:23:38.127 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:23:38.130 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 2 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]])
+02:23:38.140 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 2 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]]
+02:23:38.144 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E])
+02:23:38.162 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22left%3A%200%3B%20position%3A%20absolute%3B%20top%3A%20-1000px%3B%22%3Ea%3C%2Fdiv%3E]
+02:23:38.165 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:23:38.178 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:23:38.180 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [is displayed: 3 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]])
+02:23:38.191 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [is displayed: 3 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]]
+02:23:38.194 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E])
+02:23:38.224 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cform%20method%3D%22get%22%20action%3D%22about%3Ablank%22%3E%3Cinput%20id%3D%22a%22%20type%3D%22submit%22%20name%3D%22a%22%20value%3D%22a%22%3E%3C%2Fform%3E]
+02:23:38.228 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:23:38.236 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:23:38.239 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [submit: 4 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]])
+02:23:38.263 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [submit: 4 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]]
+02:23:38.266 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get current url])
+02:23:38.275 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get current url]
+02:23:38.279 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E])
+02:23:38.296 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cdiv%20id%3D%22a%22%20style%3D%22margin%3A%203000px%3B%22%3E%3C%2Fdiv%3E]
+02:23:38.300 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.id: a])
+02:23:38.309 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.id: a]
+02:23:38.312 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get location: 5 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]])
+02:23:38.316 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get location: 5 [[ChromeDriver: chrome on MAC (426f52d85ed1a768b60792e8e8820f3b)] -> id: a]]
+02:23:38.319 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank?1])
+02:23:38.574 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank?1]
+02:23:38.579 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [refresh])
+02:23:38.585 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [refresh]
+02:23:38.590 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E])
+02:23:38.845 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cscript%3Ecounter%20%3D%200%3B%20var%20d%20%3D%20document%3B%20d.onclick%20%3D%20d.onmousedown%20%3D%20d.onmouseup%20%3D%20function%20()%20%7B%20counter%2B%2B%3B%20%7D%3B%3C%2Fscript%3E]
+02:23:38.849 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [find element: By.tagName: html])
+02:23:38.865 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [find element: By.tagName: html]
+02:23:38.869 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [mousemove: 6 false])
+02:23:38.879 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [mousemove: 6 false]
+02:23:38.985 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [doubleclick: no args])
+02:23:39.004 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [doubleclick: no args]
+02:23:39.007 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return counter;, []])
+02:23:39.010 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return counter;, []]
+02:23:39.013 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E])
+02:23:39.032 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%3Cstyle%3E%23a%7Bwidth%3A8px%3Bheight%3A8px%3B-ms-transform%3Ascale(0.5)%3B-moz-transform%3Ascale(0.5)%3B-webkit-transform%3Ascale(0.5)%3Btransform%3Ascale(0.5)%3B%7D%3C%2Fstyle%3E%3Cdiv%20id%3D%22a%22%3E%3C%2Fdiv%3E]
+02:23:39.036 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return document.getElementById("a");, []])
+02:23:39.047 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return document.getElementById("a");, []]
+02:23:39.049 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@c45d596c -> unknown locator]])
+02:23:39.060 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get element size: 7 [org.openqa.selenium.remote.RemoteWebElement@c45d596c -> unknown locator]]
+02:23:39.062 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: about:blank])
+02:23:39.079 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: about:blank]
+02:23:39.085 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:23:39.092 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:23:39.095 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/about])
+02:23:39.372 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/about]
+02:23:39.376 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:23:39.379 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:23:39.382 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:23:39.392 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:23:39.395 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:23:39.397 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:23:39.403 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:23:39.406 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:23:39.410 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [get: http://localhost:8888/things])
+02:23:39.515 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [get: http://localhost:8888/things]
+02:23:39.520 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 1000])
+02:23:39.523 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 1000]
+02:23:39.526 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]])
+02:23:39.534 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute async script: return (function (poller, args, timeout, pollInterval, done) {
+					/* jshint evil:true */
+					poller = new Function(poller);
+
+					var endTime = Number(new Date()) + timeout;
+
+					(function poll() {
+						var result = poller.apply(this, args);
+
+						/*jshint evil:true */
+						if (result != null) {
+							done(result);
+						}
+						else if (Number(new Date()) < endTime) {
+							setTimeout(poll, pollInterval);
+						}
+						else {
+							done(null);
+						}
+					})();
+				}).apply(this, arguments);, [return window.location.href;, [], 1000, 67]]
+02:23:39.537 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [script wait: 0])
+02:23:39.539 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [script wait: 0]
+02:23:39.551 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []])
+02:23:39.554 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [execute script: return (function getCoverageData() {
+		/*global __internCoverage:false */
+		return typeof __internCoverage !== 'undefined' && JSON.stringify(__internCoverage);
+	}).apply(this, arguments);, []]
+02:23:39.556 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Executing: [delete session: ea15a7bc-f486-4469-99ac-b072d2d276f0])
+02:23:40.114 INFO [50] org.openqa.selenium.remote.server.DriverServlet - Done: [delete session: ea15a7bc-f486-4469-99ac-b072d2d276f0]
