@@ -9,7 +9,7 @@ define([
 	'views/thing_edit'], 
 	function(
 		routesUtils,
-		dao,
+		DAO,
 		Thing,
 		ThingList,
 		ThingView,
@@ -19,7 +19,7 @@ define([
 
     function thingsIndexHtml(req, res) {
     	var user = routesUtils.getSessionUser(req);
-    	dao.things.findAllByUser(user).then(function(data) {
+    	DAO.things.findAllByUser(user).then(function(data) {
     		var Things = new ThingList(data);
             var thingListView = new ThingListView({'collection': Things});
             res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingListView));
@@ -29,7 +29,7 @@ define([
     function thingGetHtml(req, res) {
         var thingId = req.params.id;
         var user = routesUtils.getSessionUser(req);
-    	dao.things.findById(thingId, user)
+    	DAO.things.findById(thingId, user)
 	    	.then(function(data) {
 	    		var thing = new Thing(data);
 	            var thingView = new ThingView({'model': thing});
@@ -48,7 +48,7 @@ define([
 
     function thingUpdateHtml(req, res) {
         var thingId = req.params.id;
-    	dao.things.findById(thingId).then(function(data) {
+    	DAO.things.findById(thingId).then(function(data) {
     		var thing = new Thing(data);
             var thingEditView = new ThingEditView({'model': thing});
             res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingEditView));
@@ -57,7 +57,7 @@ define([
     
     function thingsIndexJson(req, res) {
     	var user = routesUtils.getSessionUser(req);
-    	dao.things.findAllByUser(user).then(function(data) {
+    	DAO.things.findAllByUser(user).then(function(data) {
     		var Things = new ThingList(data);
             res.writeHead(200, {"Content-Type": "application/json"});
             res.end(JSON.stringify(Things.sort().toJSON()));
@@ -67,7 +67,7 @@ define([
     function thingGetJson(req, res) {
         var thingId = req.params.id;
         var user = routesUtils.getSessionUser(req);
-    	dao.things.findById(thingId, user)
+    	DAO.things.findById(thingId, user)
 	    	.then(function(data) {
 	    		var thing = new Thing(data);
 	            res.writeHead(200, {"Content-Type": "application/json"});
@@ -89,7 +89,7 @@ define([
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
             	var user = routesUtils.getSessionUser(req);
-            	dao.things.add(thing.toJSON(), user.toJSON())
+            	DAO.things.add(thing.toJSON(), user.toJSON())
             		.then(function(data) {
 	                	res.writeHead(200, {"Content-Type": "application/json"});
 	                    res.end(JSON.stringify(thing));  
@@ -113,7 +113,7 @@ define([
             // TODO: rethink client/server validation for models ...
             if (thing.isValid()) {
             	var user = routesUtils.getSessionUser(req);
-            	dao.things.update(thing.toJSON(), user.toJSON())
+            	DAO.things.update(thing.toJSON(), user.toJSON())
 	        		.then(function(data) {
 	                	res.writeHead(200, {"Content-Type": "application/json"});
 	                    res.end(JSON.stringify(thing));  

@@ -51,7 +51,7 @@ function(
     cookieParser,
     errorHandler,
     optimist,
-    dao,
+    DAO,
     routes,
     passport,
     passportFacebook,
@@ -84,7 +84,7 @@ function(
 		}, 
 		function(accessToken, refreshToken, profile, done) {
 			process.nextTick(function() {
-				dao.users.findOrCreate(profile).then(function(data) {
+				DAO.users.findOrCreate(profile).then(function(data) {
 					var user = new User(data);
 					return done(null, user);					
 				});
