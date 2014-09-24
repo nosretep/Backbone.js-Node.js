@@ -1,97 +1,51 @@
 define([
+    'myPackage/tests/functional/utils',
     'intern!object',
     'intern/chai!assert',
     'intern/chai!expect',
-    'intern/dojo/node!leadfoot/helpers/pollUntil'
-], function (registerSuite, assert, expect, pollUntil) {
-
-	function logout(runner) {
-		return runner.remote
-		.setPageLoadTimeout(3000)
-        .setFindTimeout(3000)
-		.get(require.toUrl('http://localhost:8888/logout'))
-		.end();
-	};
-	
-	function login(runner) {		
-		return runner.remote
-		.setPageLoadTimeout(3000)
-        .setFindTimeout(3000)
-		.get(require.toUrl('http://localhost:8888/auth/facebook'))
-			  .findById('email')
-			  .click()
-			  .type('one_wbmbzja_testerson@tfbnw.net')
-			  .end()
-			.findById('pass')
-			  .click()
-			  .type('p4ssw0rd')
-			  .end()
-			.findByCssSelector('#login_form input[type=submit]')
-			  .click()
-			  .end();
-	};
+    'intern/dojo/node!leadfoot/helpers/pollUntil',
+    'intern/dojo/Deferred'
+], function (Utils, registerSuite, assert, expect, pollUntil, Deferred) {
 	
     registerSuite({
     	
     	'Login to Facebook': function() {
-    		return logout(this)
-    			.then(login(this))
+    		var runner = this;
+    		return Utils.logout_login(runner)
     			.then(pollUntil('return window.location.href;', 1000))
     			.then(function (href) {
-    				expect(href).to.contain('http://localhost:8888/things')
+    					expect(href).to.contain('http://localhost:8888/things');
 			    	}, function (error) {
-			    		// element was not found
-			    	});
+			    		console.log(JSON.stringify(error));
+			    		assert.fail('failed to get window.location.href');
+			    	})
     	}
     
     	,
     	
     	'Unprotected page': function() {
-	        return logout(this)
-				.setPageLoadTimeout(3000)
-		        .setFindTimeout(3000)
+	        return Utils.logout(this)
 	            .get(require.toUrl('http://localhost:8888/about'))
 	            .then(pollUntil('return window.location.href;', 1000))
 				.then(function (href) {
 						assert.equal(href, 'http://localhost:8888/about');
 				    }, function (error) {
-				        // element was not found
+				    	assert.fail('failed to get window.location.href');
 				    });
     	}
     	
     	,
     	
         'Protected page': function () {
-	        return logout(this)
-				.setPageLoadTimeout(3000)
-		        .setFindTimeout(3000)
+	        return Utils.logout(this)
 	            .get(require.toUrl('http://localhost:8888/things'))
 	            .then(pollUntil('return window.location.href;', 1000))
 				.then(function (href) {
 						assert.equal(href, 'http://localhost:8888/login');
 				    }, function (error) {
-				        // element was not found
+				    	assert.fail('failed to get window.location.href');
 				    });
         }
 
     });
 });
-
-
-//.findByCssSelector('.thing:last-child')
-//.moveMouseTo()
-//.getVisibleText()
-//.then(function (text) {
-//    assert.strictEqual(text, 'Thing 3',
-//        'Adding a comment should display the comment. Showed instead ' + text)
-//})
-//.findByCssSelector('a')
-//.click()
-//.then(pollUntil('return document.title;', 5000))
-//.then(function (title) {
-//        assert.equal(title, 'Thing 3');
-//    }, function (error) {
-//        // element was not found
-//    })
-
-//}

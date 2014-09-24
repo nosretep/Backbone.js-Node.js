@@ -8,13 +8,13 @@ java -jar selenium-server-standalone-2.43.0.jar -log selenium.log -Dwebdriver.ch
 sleep 2
 
 # Run server
+
 cd ../..
 node server.js &
 
 sleep 2
  
 ./node_modules/.bin/intern-runner config=tests/runner
-
 
 sleep 2
 

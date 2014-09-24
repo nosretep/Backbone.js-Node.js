@@ -4,14 +4,20 @@ define({
 		'selenium-version': '2.43.0'
 	},
 
-	environments: [
-	   { browserName: 'chrome' }
-	],
+	environments : [ {
+		browserName : 'chrome',
+		chromeOptions : {
+			excludeSwitches : [ "ignore-certificate-errors" ]
+		}
+	} ],
 	
 	webdriver: {
 		host: 'localhost',
 		port: 4444
 	},
+	
+	// Maximum number of simultaneous integration tests that should be executed on the remote WebDriver service
+	maxConcurrency: 1,
 	
 	loader: {
 		packages: [ 
