@@ -80,7 +80,7 @@ function(
 			clientID : FACEBOOK_APP_ID,
 			clientSecret : FACEBOOK_APP_SECRET,
 			// FIXME: PORT means something different on heroku than on localhost, fix that ambiguity in some way ...
-			callbackURL : 'http://' + (process.env.HOST || ('localhost' + ':' + process.env.PORT)) + '/auth/facebook/callback'
+			callbackURL : 'http://' + process.env.HOST + '/auth/facebook/callback'
 		}, 
 		function(accessToken, refreshToken, profile, done) {
 			process.nextTick(function() {

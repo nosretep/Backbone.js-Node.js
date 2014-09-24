@@ -1,11 +1,14 @@
 define([
+    'myPackage/tests/functional/configs',
     'myPackage/tests/functional/utils',
     'intern!object',
     'intern/chai!assert',
     'intern/chai!expect',
     'intern/dojo/node!leadfoot/helpers/pollUntil',
     'intern/dojo/Deferred'
-], function (Utils, registerSuite, assert, expect, pollUntil, Deferred) {
+], function (Configs, Utils, registerSuite, assert, expect, pollUntil, Deferred) {
+	
+	console.log(Configs);
 	
     registerSuite({
     	
@@ -14,7 +17,7 @@ define([
     		return Utils.logout_login(runner)
     			.then(pollUntil('return window.location.href;', 1000))
     			.then(function (href) {
-    					expect(href).to.contain('http://localhost:8888/things');
+    					expect(href).to.contain('http://' + Configs.host + '/things');
 			    	}, function (error) {
 			    		console.log(JSON.stringify(error));
 			    		assert.fail('failed to get window.location.href');
@@ -25,10 +28,10 @@ define([
     	
     	'Unprotected page': function() {
 	        return Utils.logout(this)
-	            .get(require.toUrl('http://localhost:8888/about'))
+	            .get(require.toUrl('http://' + Configs.host + '/about'))
 	            .then(pollUntil('return window.location.href;', 1000))
 				.then(function (href) {
-						assert.equal(href, 'http://localhost:8888/about');
+						assert.equal(href, 'http://' + Configs.host + '/about');
 				    }, function (error) {
 				    	assert.fail('failed to get window.location.href');
 				    });
@@ -38,10 +41,10 @@ define([
     	
         'Protected page': function () {
 	        return Utils.logout(this)
-	            .get(require.toUrl('http://localhost:8888/things'))
+	            .get(require.toUrl('http://' + Configs.host + '/things'))
 	            .then(pollUntil('return window.location.href;', 1000))
 				.then(function (href) {
-						assert.equal(href, 'http://localhost:8888/login');
+						assert.equal(href, 'http://' + Configs.host + '/login');
 				    }, function (error) {
 				    	assert.fail('failed to get window.location.href');
 				    });
