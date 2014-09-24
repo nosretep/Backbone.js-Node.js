@@ -8,8 +8,6 @@ define([
     'intern/dojo/Deferred'
 ], function (Configs, Utils, registerSuite, assert, expect, pollUntil, Deferred) {
 	
-	console.log(Configs);
-	
     registerSuite({
     	
     	'Login to Facebook': function() {
