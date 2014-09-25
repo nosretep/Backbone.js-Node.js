@@ -22,4 +22,4 @@ ps -ef | grep "node server.js" | awk '{print $2}' | xargs kill
 
 sleep 2
 
-# ps -ef | grep "java -jar selenium-server-standalone-2.43.0.jar" | awk '{print $2}' | xargs kill
+ps -ef | grep "java -jar selenium-server-standalone-2.43.0.jar" | awk '{print $2}' | xargs kill

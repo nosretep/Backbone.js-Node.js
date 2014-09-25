@@ -21,7 +21,6 @@ define(['myPackage/tests/functional/configs',
 	}
 	
 	function logout(runner) {
-		console.log(runner.remote);
 		return runner.remote
 		.get(require.toUrl('http://' + Configs.host + '/logout'))
 		.get(require.toUrl('https://facebook.com'))
