@@ -131,8 +131,7 @@ requirejs([
         // This code ensures that that app links go through the appRouter ...
         $('body').delegate('a.app_link', 'click', function(evt) {
             evt.preventDefault();
-            var $link = $(this);
-            var href = $link.attr('href');
+            var href = this.getAttribute('href');
             App.appRouter.navigate(href, true);
         });
         

@@ -1,1 +1,5 @@
-define([ 'tests/functional/auth' ]);
+define([ 
+	'tests/functional/things'
+	,
+	'tests/functional/auth'
+]);

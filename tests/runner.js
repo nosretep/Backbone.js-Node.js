@@ -7,6 +7,7 @@ define({
 	environments : [ {
 		browserName : 'chrome',
 		chromeOptions : {
+			args : ["test-type"],
 			excludeSwitches : [ "ignore-certificate-errors" ]
 		}
 	} ],
@@ -15,9 +16,6 @@ define({
 		host: 'localhost',
 		port: 4444
 	},
-	
-	// Maximum number of simultaneous integration tests that should be executed on the remote WebDriver service
-	maxConcurrency: 1,
 	
 	loader: {
 		packages: [ 
@@ -28,7 +26,7 @@ define({
 	// Functional test suite(s) to run in each browser once non-functional tests are completed
 	functionalSuites: [ 'myPackage/tests/functional' ],
 
-	reporters: [ 'console', 'runner' ],
+//	reporters: [ 'console', 'runner' ],
 	
 	excludeInstrumentation: /^(configs|dist|html-report|node_modules|test|tests|src\/js\/libs)\//
 });
