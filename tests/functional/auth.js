@@ -41,22 +41,7 @@ define([
     	
     	
     	'Login to Facebook': function() {
-    		var runner = this;
-//    		return Utils.logout_login(runner)
-    		return this.remote
-			.get(require.toUrl('http://' + Configs.host + '/logout'))
-			.get(require.toUrl('http://' + Configs.host + '/auth/facebook'))
-				.findById('email')
-					.click()
-					.type(Configs.fb.username)
-					.end()
-				.findById('pass')
-					.click()
-					.type(Configs.fb.password)
-					.end()
-				.findByCssSelector('#login_form input[type=submit]')
-					.click()
-					.end()
+    		return Utils.logoutThenLogin(this)
     			.then(pollUntil('return window.location.href;', null, 5000, 100))
     			.then(function (href) {
     					expect(href).to.contain('http://' + Configs.host + '/things');

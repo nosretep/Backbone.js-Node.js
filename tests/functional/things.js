@@ -52,15 +52,10 @@ define([
     		var title2 = 'title2 ' + (new Date()).toString();
     		
     		this.remote.getCookies().then(function(cookies) {
-    			for (var i = 0; i < cookies.length; i++) {
-    				if (cookies[i].name === 'connect.sid') {
-    					var connect_sid = cookies[i].value; 
-    				}
-    			}
         		xhr.post(require.toUrl('http://' + Configs.host + '/api/things'), {
         			headers: {
         				'Content-Type': 'application/json',
-        				'Cookie': 'connect.sid=' + connect_sid
+        				'Cookie': Utils.cookieQuerystring(cookies)
         			},
         			data: JSON.stringify({
         				title: title1

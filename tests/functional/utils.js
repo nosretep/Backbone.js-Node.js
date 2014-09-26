@@ -1,7 +1,17 @@
 define(['myPackage/tests/functional/configs', 
         'intern/dojo/node!leadfoot/helpers/pollUntil'], function (Configs, pollUntil) {
 	
-	function logout_login(runner) {
+	function cookieQuerystring(cookies) {
+		for (var i = 0; i < cookies.length; i++) {
+			if (cookies[i].name === 'connect.sid') {
+				var connect_sid = cookies[i].value; 
+			}
+		}
+		// obviously add to this as needed in future ...
+		return 'connect.sid=' + connect_sid;
+	}
+	
+	function logoutThenLogin(runner) {
 		return runner.remote
 		.get(require.toUrl('http://' + Configs.host + '/logout'))
 		.get(require.toUrl('https://facebook.com'))
@@ -46,6 +56,7 @@ define(['myPackage/tests/functional/configs',
 	return {
 		logout : logout,
 		login : login,
-		logout_login: logout_login
+		logoutThenLogin: logoutThenLogin,
+		cookieQuerystring: cookieQuerystring
 	}
 });
