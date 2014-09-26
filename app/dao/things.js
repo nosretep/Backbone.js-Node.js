@@ -49,7 +49,7 @@ define([
             function findAllByUser(user) {
                 var deferred = $.Deferred();
                 db.collection('things', function(err, collection) {
-                    collection.find({'creator_id' : new BSON.ObjectID(user.id)}).toArray(function(err, items) {
+                    collection.find({'creator_id' : new BSON.ObjectID(user.id)}).sort({'created':-1}).limit(10).toArray(function(err, items) {
                         _.each(items, function(item) {
                             scrubContent(item);
                             fixId(item);

@@ -3,9 +3,9 @@ define([
     'myPackage/tests/functional/utils',
     'intern!object',
     'intern/chai!assert',
-    'intern/chai!expect',
-    'intern/dojo/node!leadfoot/helpers/pollUntil'
-], function (Configs, Utils, registerSuite, assert, expect, pollUntil) {
+    'intern/dojo/node!leadfoot/helpers/pollUntil',
+    'intern/dojo/request/node'
+], function (Configs, Utils, registerSuite, assert, pollUntil, xhr) {
 	
     registerSuite({
     	
@@ -44,6 +44,76 @@ define([
 				            'Newly created thing should have correct title');
 				    });
 	    		
+    	},
+    	
+    	'Edit existing thing': function() {
+    		
+    		var title1 = 'title1 ' + (new Date()).toString();
+    		var title2 = 'title2 ' + (new Date()).toString();
+    		
+    		this.remote.getCookies().then(function(cookies) {
+    			for (var i = 0; i < cookies.length; i++) {
+    				if (cookies[i].name === 'connect.sid') {
+    					var connect_sid = cookies[i].value; 
+    				}
+    			}
+        		xhr.post(require.toUrl('http://' + Configs.host + '/api/things'), {
+        			headers: {
+        				'Content-Type': 'application/json',
+        				'Cookie': 'connect.sid=' + connect_sid
+        			},
+        			data: JSON.stringify({
+        				title: title1
+        			})
+        		})
+    		});
+
+    		return this.remote.get('http://' + Configs.host + '/things')
+    			.findByCssSelector('li.thing.list-group-item:first-child')
+					.getVisibleText()
+				    .then(function (text) {
+				        assert.strictEqual(text, title1,
+				            'Newly created thing should have correct title');
+				    })
+				.end()
+				.sleep(1000)
+				.findByCssSelector('li.thing.list-group-item:first-child a')
+				    .click()
+				    .end()
+				.sleep(1000)
+				.findByCssSelector('div.thing span.thing_title')
+					.getVisibleText()
+					.then(function(text) {
+				        assert.strictEqual(text, title1,
+			            'Newly created thing should have correct title');						
+					})
+				.end()
+				.findByCssSelector('div.thing a.edit_thing')
+					.click()
+					.end()
+				.sleep(1000)
+				.findByCssSelector('div.thing_edit input[name="title"]')
+					.getProperty('value')
+					.then(function(text) {
+				        assert.strictEqual(text, title1,
+			            'Newly created thing should have correct title');
+					})
+					.click()
+					.clearValue()
+					.type(title2)
+					.end()
+	    		.sleep(1000)
+    			.findByCssSelector('button.update')
+	    			.click()
+	    			.end()
+	    		.sleep(1000)
+    			.findByCssSelector('li.thing.list-group-item')
+					.getVisibleText()
+				    .then(function (text) {
+				        assert.strictEqual(text, title2,
+				            'Newly created thing should have correct title');
+				    });
+    		
     	}
 
     });
