@@ -1,22 +1,32 @@
 nodejs-requirejs-express-backbonejs
 ===================================
 
-Reusing Backbone.js models/collections/views on the web client and server with Node.js, RequireJS, and Express
-
-## Backbone.js, Node.js, RequireJS, and Express ...
-http://backbonejs.org/
+Prototype one page web app, with RESTful API server, that also renders HTML at the client.
 
 http://nodejs.org/
-
-http://requirejs.org/
-
 http://expressjs.com/
+http://requirejs.org/
+http://backbonejs.org/
+http://www.mongodb.org/
 
 
 ## Install libraries ...
 
 ```bash
 npm install # looks to package.json ...
+```
+
+
+## Mandatory configs
+```bash
+export HOST= # for example localhost:8888
+export PORT= # for example 8888
+export FACEBOOK_APP_ID= # app requires Facebook connect
+export FACEBOOK_APP_SECRET= # app requires Facebook connect
+export DB_DOMAIN= # mongodb domain/ip
+export DB_PORT= # mongodb port
+export DB_USERNAME= # mongodb username
+export DB_PASSWORD= # mongodb password
 ```
 
 ## Run server with 'local' configuration ...
