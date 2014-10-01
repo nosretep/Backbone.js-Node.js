@@ -1,13 +1,18 @@
-nodejs-requirejs-express-backbonejs
+Backbone.js-Node.js
 ===================================
 
 Prototype one page web app, with RESTful API server, that also renders HTML at the client.
 
 http://nodejs.org/
+
 http://expressjs.com/
+
 http://requirejs.org/
+
 http://backbonejs.org/
+
 http://www.mongodb.org/
+
 
 
 ## Install libraries ...
