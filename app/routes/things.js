@@ -48,7 +48,8 @@ define([
 
     function thingUpdateHtml(req, res) {
         var thingId = req.params.id;
-        DAO.things.findById(thingId).then(function(data) {
+        var user = routesUtils.getSessionUser(req);
+        DAO.things.findById(thingId, user).then(function(data) {
             var thing = new Thing(data);
             var thingEditView = new ThingEditView({'model': thing});
             res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingEditView));
