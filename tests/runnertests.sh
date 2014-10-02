@@ -3,9 +3,9 @@ echo Starting self tests...
 
 # Set up selenium server
 cd bin
-java -jar selenium-server-standalone-2.43.0.jar -log selenium.log -Dwebdriver.chrome.driver=../../node_modules/chromedriver/bin/chromedriver &
+#java -jar selenium-server-standalone-2.43.0.jar -log selenium.log -Dwebdriver.chrome.driver=../../node_modules/chromedriver/bin/chromedriver &
 
-sleep 5
+#sleep 5
 
 # Run server
 
@@ -22,4 +22,4 @@ ps -ef | grep "node server.js" | awk '{print $2}' | xargs kill
 
 sleep 2
 
-ps -ef | grep "java -jar selenium-server-standalone-2.43.0.jar" | awk '{print $2}' | xargs kill
+#ps -ef | grep "java -jar selenium-server-standalone-2.43.0.jar" | awk '{print $2}' | xargs kill

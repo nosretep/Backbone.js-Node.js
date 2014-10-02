@@ -34,7 +34,7 @@ requirejs([
         GenericView,
         UserView,
         genericJSON) {
-	
+    
         window.App = {};
 
         var Things = new ThingList();
@@ -47,7 +47,7 @@ requirejs([
         // Create Router class ...
         var AppRouter = Backbone.Router.extend({
             routes: {
-            	'': 'homePage',
+                '': 'homePage',
                 'things': 'thingsIndex',
                 'things/new': 'thingNew',
                 'things/:id': 'thingShow',
@@ -60,8 +60,8 @@ requirejs([
                 layoutView.setContent(homeView);
             },
             genericPage: function(path) {
-            	var pageDetails = genericJSON[path] || genericJSON['error_404'];
-            	var generic = new Generic(pageDetails);
+                var pageDetails = genericJSON[path] || genericJSON.error_404;
+                var generic = new Generic(pageDetails);
                 var genericView = new GenericView({
                     'model': generic
                 });
@@ -86,7 +86,7 @@ requirejs([
                         });
                         layoutView.setContent(thingListView);
                     }
-                })
+                });
             },
             thingShow: function(id) {
                 (new Thing({'id' : id}))
@@ -124,8 +124,8 @@ requirejs([
         // If we're being served from 'file://' then pushState false ...
         Backbone.history.start({
             pushState: true,
-            silent: false 	// this means that the router will route to mapped method
-            				// important for setting up events within view.
+            silent: false     // this means that the router will route to mapped method
+                            // important for setting up events within view.
         });
 
         // This code ensures that that app links go through the appRouter ...
@@ -142,14 +142,14 @@ requirejs([
         });
         
         $(document).ajaxError(function (e, xhr, options) {
-        	// This should clear everything up, 
-        	if (xhr.status === 401) {
-        		// TODO:
-            	// - loggedInUser object
-            	// - views that show logged in user features should listen to loggedInUser object 
-            	// - add a modal to let user log back in
-        		window.location.href = '/';
-        	}
-		});
+            // This should clear everything up, 
+            if (xhr.status === 401) {
+                // TODO:
+                // - loggedInUser object
+                // - views that show logged in user features should listen to loggedInUser object 
+                // - add a modal to let user log back in
+                window.location.href = '/';
+            }
+        });
 
     });

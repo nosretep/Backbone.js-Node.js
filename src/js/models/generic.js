@@ -1,8 +1,8 @@
 define(['backbone'], 
     function(Backbone) {
         return Backbone.Model.extend({
-	            urlRoot: '/api/generic'
-	        }
+                urlRoot: '/api/generic'
+            }
         );
     }
 );

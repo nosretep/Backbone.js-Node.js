@@ -8,37 +8,37 @@ define([
     'views/generic',
     'json!data/generic.json'
     ],
-	function(
-		$,
-		User,
-		Generic,
-	    LayoutView,
-	    HeaderView,
-	    FooterView,
-	    GenericView,
-	    genericJSON) {
-	
-	function handleErrorHtml(req, res, errorCode) {
-    	var pageDetails = genericJSON['error_' + errorCode];
-    	var generic = new Generic(pageDetails);
-    	var genericView = new GenericView({
-    		'model' : generic
-    	});
-    	res.status(errorCode);
-    	res.render(req.baseHtmlFile, generatePageContentAndTitle(req, genericView));
-	}
-	
-	function handleErrorJson(req, res, errorCode, errorMessage) {
-		res.writeHead(errorCode, {"Content-Type": "application/json"});
+    function(
+        $,
+        User,
+        Generic,
+        LayoutView,
+        HeaderView,
+        FooterView,
+        GenericView,
+        genericJSON) {
+    
+    function handleErrorHtml(req, res, errorCode) {
+        var pageDetails = genericJSON['error_' + errorCode];
+        var generic = new Generic(pageDetails);
+        var genericView = new GenericView({
+            'model' : generic
+        });
+        res.status(errorCode);
+        res.render(req.baseHtmlFile, generatePageContentAndTitle(req, genericView));
+    }
+    
+    function handleErrorJson(req, res, errorCode, errorMessage) {
+        res.writeHead(errorCode, {"Content-Type": "application/json"});
         res.end(JSON.stringify({"error" : errorMessage}));
-	}
+    }
 
     function getSessionUser(req) {
-    	var user = new User();
-    	if (req.session.passport && req.session.passport.user) {
-    		user = new User(req.session.passport.user);
-    	}
-    	return user;
+        var user = new User();
+        if (req.session.passport && req.session.passport.user) {
+            user = new User(req.session.passport.user);
+        }
+        return user;
     }
     
     function generatePageContentAndTitle(req, view) {
@@ -52,7 +52,7 @@ define([
             headerView.render();
             
         var footerView = new FooterView({'model' : loggedInUser});
-        	footerView.render();
+            footerView.render();
 
             layoutView.$el.find('header').append(headerView.$el);
             layoutView.$el.find('footer').append(footerView.$el);
@@ -60,11 +60,11 @@ define([
             layoutView.setContent(view);
             
         return {
-        	'content' : layoutView.$el.html(),
-        	'title' : view.getTitle()
-        }
+            'content' : layoutView.$el.html(),
+            'title' : view.getTitle()
+        };
 
-    };
+    }
 
     function getJSONFromRequestBody(req) {
         var defer = $.Deferred();
@@ -80,14 +80,14 @@ define([
             });
         }
         return defer.promise();
-    };
+    }
     
     return {
-    	handleErrorHtml : handleErrorHtml,
-    	handleErrorJson : handleErrorJson,
-		getSessionUser : getSessionUser,
-		generatePageContentAndTitle : generatePageContentAndTitle,
-		getJSONFromRequestBody : getJSONFromRequestBody
-    }
+        handleErrorHtml : handleErrorHtml,
+        handleErrorJson : handleErrorJson,
+        getSessionUser : getSessionUser,
+        generatePageContentAndTitle : generatePageContentAndTitle,
+        getJSONFromRequestBody : getJSONFromRequestBody
+    };
 
 });

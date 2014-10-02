@@ -10,3 +10,4 @@ html-report/
 cobertura-coverage.xml
 coverage-final.json
 tests/bin/selenium.log*
+.settings/

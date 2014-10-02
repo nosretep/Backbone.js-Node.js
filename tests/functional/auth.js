@@ -38,8 +38,7 @@ define([
         }
 
     	,
-    	
-    	
+
     	'Login to Facebook': function() {
     		return Utils.logoutThenLogin(this)
     			.then(pollUntil('return window.location.href;', null, 5000, 100))

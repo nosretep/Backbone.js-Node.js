@@ -51,6 +51,7 @@ define([
     		var title1 = 'title1 ' + (new Date()).toString();
     		var title2 = 'title2 ' + (new Date()).toString();
     		
+    		// Create a thing directly to API ...
     		this.remote.getCookies().then(function(cookies) {
         		xhr.post(require.toUrl('http://' + Configs.host + '/api/things'), {
         			headers: {
@@ -68,7 +69,7 @@ define([
 					.getVisibleText()
 				    .then(function (text) {
 				        assert.strictEqual(text, title1,
-				            'Newly created thing should have correct title');
+				            'Original title on thing list view');
 				    })
 				.end()
 				.sleep(1000)
@@ -80,7 +81,7 @@ define([
 					.getVisibleText()
 					.then(function(text) {
 				        assert.strictEqual(text, title1,
-			            'Newly created thing should have correct title');						
+			            'Original title on thing view');						
 					})
 				.end()
 				.findByCssSelector('div.thing a.edit_thing')
@@ -91,7 +92,7 @@ define([
 					.getProperty('value')
 					.then(function(text) {
 				        assert.strictEqual(text, title1,
-			            'Newly created thing should have correct title');
+			            'Original title in thing edit view');
 					})
 					.click()
 					.clearValue()
@@ -106,7 +107,7 @@ define([
 					.getVisibleText()
 				    .then(function (text) {
 				        assert.strictEqual(text, title2,
-				            'Newly created thing should have correct title');
+				            'New title on thing list view');
 				    });
     		
     	}

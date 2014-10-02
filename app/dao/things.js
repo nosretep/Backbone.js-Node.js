@@ -5,12 +5,12 @@ define([
     'sanitizer'],
 
     function(
-    	mongo,
+        mongo,
         $, 
         _,
         sanitizer) {
-	
-		var BSON = mongo.BSONPure;
+    
+        var BSON = mongo.BSONPure;
 
         function fixId(item) {
             item.id = item._id;
@@ -32,15 +32,15 @@ define([
                 var creator_id = new BSON.ObjectID(user.id);
                 db.collection('things', function(err, collection) {
                     collection.findOne({'_id' : _id, 'creator_id' : creator_id }, function(err, item) {
-                    	if (item) {
-	                        scrubContent(item);
-	                        fixId(item);
-	                        deferred.resolve(item);
-                    	} else if (err) {
-                    		deferred.reject(err);
-                    	} else {
-                    		deferred.reject(/* new exception empty result */);
-                    	}
+                        if (item) {
+                            scrubContent(item);
+                            fixId(item);
+                            deferred.resolve(item);
+                        } else if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.reject(/* new exception empty result */);
+                        }
                     });
                 });
                 return deferred.promise();
@@ -90,17 +90,17 @@ define([
                 
                 db.collection('things', function(err, collection) {
                     collection.update({'_id' : thing._id, 'creator_id' : thing.creator_id }, thing, {safe : true}, 
-                    	function(err, results) {
-                    		if (err) {
-								deferred.reject(409, "Error updating resource");
-                    		} else if (results === 0) {
-								deferred.reject(404, "Resource not found");
-							} else {
-							    scrubContent(thing);
-							    fixId(thing);
-							    deferred.resolve(thing);
-							}
-                    	}
+                        function(err, results) {
+                            if (err) {
+                                deferred.reject(409, "Error updating resource");
+                            } else if (results === 0) {
+                                deferred.reject(404, "Resource not found");
+                            } else {
+                                scrubContent(thing);
+                                fixId(thing);
+                                deferred.resolve(thing);
+                            }
+                        }
                     );
                 });
                 return deferred.promise();
@@ -125,7 +125,7 @@ define([
                 findAllByUser : findAllByUser,
                 add : add,
                 update : update
-            }      
-        }
+            };      
+        };
     
 });

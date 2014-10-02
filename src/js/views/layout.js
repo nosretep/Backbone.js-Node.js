@@ -18,9 +18,9 @@ define([
                     
                     // FIXME: not a fan of this ...
                     if (typeof document !== 'undefined') {
-                    	document.title = view.getTitle();
-                    	this.$el.closest('html').find('title').html(view.getTitle());
-                    };
+                        document.title = view.getTitle();
+                        this.$el.closest('html').find('title').html(view.getTitle());
+                    }
                 }
             });
         }

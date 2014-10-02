@@ -6,9 +6,9 @@ define([
     'backbone'],
     function (_, Backbone) {
         return Backbone.View.extend({
-        	getTitle: function() {
-        		return this.title;
-        	},
+            getTitle: function() {
+                return this.title;
+            },
             addBindings: function(args) {},
             removeBindings: function() {},
             setInitValues: function(args) {},
