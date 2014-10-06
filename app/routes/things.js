@@ -1,21 +1,7 @@
-define([
-    'routes/utils',
-    'dao/dao',
-    'models/thing',
-    'collections/thing_list',
-    'views/thing',
-    'views/thing_list',
-    'views/thing_new',
-    'views/thing_edit'], 
-    function(
-        routesUtils,
-        DAO,
-        Thing,
-        ThingList,
-        ThingView,
-        ThingListView,
-        ThingNewView,
-        ThingEditView) {
+define([ 'routes/utils', 'dao/dao', 'models/thing', 'collections/thing_list',
+        'views/thing', 'views/thing_list', 'views/thing_new',
+        'views/thing_edit' ], function(routesUtils, DAO, Thing, ThingList,
+        ThingView, ThingListView, ThingNewView, ThingEditView) {
 
     function thingsIndexHtml(req, res) {
         var user = routesUtils.getSessionUser(req);
@@ -40,7 +26,7 @@ define([
                 routesUtils.handleErrorHtml(req, res, 403);
             });
     }
-    
+
     function thingNewHtml(req, res) {
         var thingNewView = new ThingNewView({'model': new Thing()});
         res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingNewView));
@@ -55,7 +41,7 @@ define([
             res.render(req.baseHtmlFile, routesUtils.generatePageContentAndTitle(req, thingEditView));
         });
     }
-    
+
     function thingsIndexJson(req, res) {
         var user = routesUtils.getSessionUser(req);
         DAO.things.findAllByUser(user).then(function(data) {
@@ -64,7 +50,7 @@ define([
             res.end(JSON.stringify(Things.sort().toJSON()));
         });
     }
-    
+
     function thingGetJson(req, res) {
         var thingId = req.params.id;
         var user = routesUtils.getSessionUser(req);
@@ -78,11 +64,9 @@ define([
                 routesUtils.handleErrorJson(req, res, 403, "Unauthorized request");
             });
     }
-    
+
     function thingNewJson(req, res) {
-        
         routesUtils.getJSONFromRequestBody(req).then(function(thingRaw) {
-            
             var thing = new Thing();
                 thing.set('title', thingRaw.title);
                 thing.set('created', (new Date()).getTime());
@@ -102,13 +86,11 @@ define([
             } else {
                 routesUtils.handleErrorJson(req, res, 409, thing.validationError);
             }
-
         });
     }
-    
+
     function thingUpdateJson(req, res) {
         var id = req.params.id;
-
         routesUtils.getJSONFromRequestBody(req).then(function(thingRaw) {
             var thing = new Thing(thingRaw);
             // TODO: rethink client/server validation for models ...
@@ -129,7 +111,7 @@ define([
             
         });
     }
-    
+
     return {
         html : {
             index : thingsIndexHtml,
@@ -141,8 +123,8 @@ define([
             index : thingsIndexJson,
             get : thingGetJson,
             create : thingNewJson,
-            update : thingUpdateJson                
+            update : thingUpdateJson
         }
     };
-    
+
 });

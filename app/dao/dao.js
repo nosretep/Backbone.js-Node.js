@@ -1,18 +1,7 @@
-define([
-    'mongodb', 
-    'jquery', 
-    'underscore',
-    'sanitizer',
-    'dao/things',
-    'dao/users'],
+define([ 'mongodb', 'jquery', 'underscore', 'sanitizer', 'dao/things',
+        'dao/users' ],
 
-    function(
-            mongo, 
-            $, 
-            _, 
-            sanitizer, 
-            DAOThings,
-            DAOUsers) {    
+function(mongo, $, _, sanitizer, DAOThings, DAOUsers) {
 
         var Server = mongo.Server,
             Db = mongo.Db;
@@ -37,11 +26,10 @@ define([
                 if (db_username && db_password) {
                     db.authenticate(db_username, db_password, function(err, res) {
                         onOpen(db);
-                    });                    
+                    });
                 } else {
                     onOpen(db);
                 }
-                
             } else {
                 console.log(err.message);
             }
@@ -52,5 +40,5 @@ define([
             things: new DAOThings(db),
             users: new DAOUsers(db)
         };
-    
+
 });

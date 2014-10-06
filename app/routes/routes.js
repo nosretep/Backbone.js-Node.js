@@ -1,30 +1,9 @@
-define([
-    'jquery',
-    'models/user',
-    'models/generic',
-    'views/layout',
-    'views/header',
-    'views/footer',
-    'views/home',
-    'views/generic',
-    'json!data/generic.json',
-    'routes/utils',
-    'routes/things',
-    'routes/users'
-    ],
-    function(
-        $,
-        User,
-        Generic,
-        LayoutView,
-        HeaderView,
-        FooterView,
-        HomeView,
-        GenericView,
-        genericJSON,
-        routesUtils,
-        routesThings,
-        routesUsers) {
+define([ 'jquery', 'models/user', 'models/generic', 'views/layout',
+        'views/header', 'views/footer', 'views/home', 'views/generic',
+        'json!data/generic.json', 'routes/utils', 'routes/things',
+        'routes/users' ], function($, User, Generic, LayoutView, HeaderView,
+        FooterView, HomeView, GenericView, genericJSON, routesUtils,
+        routesThings, routesUsers) {
 
         return {
             index: function(req, res) {
@@ -52,5 +31,4 @@ define([
             users: routesUsers,
             utils: routesUtils
         };
-    
 });

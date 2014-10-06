@@ -1,15 +1,7 @@
-define([
-    'mongodb',
-    'jquery', 
-    'underscore',
-    'sanitizer'],
+define([ 'mongodb', 'jquery', 'underscore', 'sanitizer' ],
 
-    function(
-        mongo,
-        $, 
-        _,
-        sanitizer) {
-    
+function(mongo, $, _, sanitizer) {
+
         var BSON = mongo.BSONPure;
 
         function fixId(item) {
@@ -17,7 +9,7 @@ define([
             delete item._id;
             return item;
         }
-        
+
         function scrubContent(item) {
             item.title = sanitizer.sanitize(item.title);
             item.title = sanitizer.escape(item.title);
@@ -25,7 +17,6 @@ define([
         }
 
         return function(db) {
-        
             function findById(id, user) {
                 var deferred = $.Deferred();
                 var _id = new BSON.ObjectID(id);
@@ -45,7 +36,7 @@ define([
                 });
                 return deferred.promise();
             }
-            
+
             function findAllByUser(user) {
                 var deferred = $.Deferred();
                 db.collection('things', function(err, collection) {
@@ -59,7 +50,7 @@ define([
                 });
                 return deferred.promise();
             }
-            
+
             function add(thing, user) {
                 var deferred = $.Deferred();
                 thing.creator_id = new BSON.ObjectID(user.id);
@@ -77,17 +68,17 @@ define([
                 });
                 return deferred.promise();
             }
-    
+
             function update(thing, user) {
                 var deferred = $.Deferred();
-                
+
                 // get 'id' and delete it ...
                 thing._id = new BSON.ObjectID(thing.id);
                 delete thing.id; // make sure 'id' does not get added to thing ...
-                
+
                 // fix 'creator_id' to ensure it is a BSON.ObjectID
                 thing.creator_id = new BSON.ObjectID(user.id);
-                
+
                 db.collection('things', function(err, collection) {
                     collection.update({'_id' : thing._id, 'creator_id' : thing.creator_id }, thing, {safe : true}, 
                         function(err, results) {
@@ -119,13 +110,13 @@ define([
 //                  });
 //              });
 //          }
-        
+
             return {
                 findById : findById,
                 findAllByUser : findAllByUser,
                 add : add,
                 update : update
-            };      
+            };
         };
-    
+
 });

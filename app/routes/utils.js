@@ -1,23 +1,8 @@
-define([
-    'jquery',
-    'models/user',
-    'models/generic',
-    'views/layout',
-    'views/header',
-    'views/footer',
-    'views/generic',
-    'json!data/generic.json'
-    ],
-    function(
-        $,
-        User,
-        Generic,
-        LayoutView,
-        HeaderView,
-        FooterView,
-        GenericView,
-        genericJSON) {
-    
+define([ 'jquery', 'models/user', 'models/generic', 'views/layout',
+        'views/header', 'views/footer', 'views/generic',
+        'json!data/generic.json' ], function($, User, Generic, LayoutView,
+        HeaderView, FooterView, GenericView, genericJSON) {
+
     function handleErrorHtml(req, res, errorCode) {
         var pageDetails = genericJSON['error_' + errorCode];
         var generic = new Generic(pageDetails);
@@ -27,7 +12,7 @@ define([
         res.status(errorCode);
         res.render(req.baseHtmlFile, generatePageContentAndTitle(req, genericView));
     }
-    
+
     function handleErrorJson(req, res, errorCode, errorMessage) {
         res.writeHead(errorCode, {"Content-Type": "application/json"});
         res.end(JSON.stringify({"error" : errorMessage}));
@@ -40,25 +25,20 @@ define([
         }
         return user;
     }
-    
+
     function generatePageContentAndTitle(req, view) {
-
         var loggedInUser = getSessionUser(req);
-
         var layoutView = new LayoutView({'model' : loggedInUser});
             layoutView.render();
-
         var headerView = new HeaderView({'model' : loggedInUser});
             headerView.render();
-            
         var footerView = new FooterView({'model' : loggedInUser});
             footerView.render();
 
             layoutView.$el.find('header').append(headerView.$el);
             layoutView.$el.find('footer').append(footerView.$el);
-            
             layoutView.setContent(view);
-            
+
         return {
             'content' : layoutView.$el.html(),
             'title' : view.getTitle()
@@ -81,7 +61,7 @@ define([
         }
         return defer.promise();
     }
-    
+
     return {
         handleErrorHtml : handleErrorHtml,
         handleErrorJson : handleErrorJson,

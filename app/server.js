@@ -1,6 +1,4 @@
-var requirejs = require('requirejs'),
-    jsdom = require("jsdom").jsdom;
-
+var requirejs = require('requirejs'), jsdom = require("jsdom").jsdom;
 
 jsdom.env({
     html : "<html><body></body></html>",
@@ -9,20 +7,19 @@ jsdom.env({
     }
 });
 
-
 requirejs.config({
-    nodeRequire: require,
-    baseUrl:             '.', /* shared with client */
-    paths: {
-        'models'            : 'src/js/models', /* shared with client */
-        'collections'		: 'src/js/collections', /* shared with client */
-        'views'				: 'src/js/views', /* shared with client */
-        'templates'			: 'src/js/templates', /* shared with client */
-        'data'				: 'src/js/data', /* shared with client */
-        'text'				: 'src/js/libs/text', /* shared with client */
-        'json'				: 'src/js/libs/json', /* shared with client */
-        'dao'				: 'app/dao', /* server only */
-        'routes'			: 'app/routes' /* server only */
+    nodeRequire : require,
+    baseUrl : '.', /* shared with client */
+    paths : {
+        'models' : 'src/js/models', /* shared with client */
+        'collections' : 'src/js/collections', /* shared with client */
+        'views' : 'src/js/views', /* shared with client */
+        'templates' : 'src/js/templates', /* shared with client */
+        'data' : 'src/js/data', /* shared with client */
+        'text' : 'src/js/libs/text', /* shared with client */
+        'json' : 'src/js/libs/json', /* shared with client */
+        'dao' : 'app/dao', /* server only */
+        'routes' : 'app/routes' /* server only */
     }
 });
 
@@ -31,35 +28,13 @@ requirejs([ 'jquery', 'backbone' ], function($, Backbone) {
     Backbone.$ = $;
 });
 
-requirejs([
-    'http', 
-    'express',
-    'express-session',
-    'body-parser',
-    'cookie-parser',
-    'express-error-handler',
-    'optimist',
-    'dao/dao',
-    'routes/routes',
-    'passport',
-    'passport-facebook',
-    'serve-favicon',
-    'models/user'], 
+requirejs([ 'http', 'express', 'express-session', 'body-parser',
+        'cookie-parser', 'express-error-handler', 'optimist', 'dao/dao',
+        'routes/routes', 'passport', 'passport-facebook', 'serve-favicon',
+        'models/user' ],
 
-function(
-    http,
-    express,
-    session,
-    bodyParser,
-    cookieParser,
-    errorHandler,
-    optimist,
-    DAO,
-    routes,
-    passport,
-    passportFacebook,
-    favicon,
-    User) {
+function(http, express, session, bodyParser, cookieParser, errorHandler,
+        optimist, DAO, routes, passport, passportFacebook, favicon, User) {
 
     var argv = optimist.argv;
     var config = argv.config || 'local';
@@ -77,36 +52,33 @@ function(
     passport.deserializeUser(function(obj, done) {
         done(null, obj);
     });
-    
-    passport.use(new FacebookStrategy(
-        {
-            clientID : FACEBOOK_APP_ID,
-            clientSecret : FACEBOOK_APP_SECRET,
-            // FIXME: PORT means something different on heroku than on localhost, fix that ambiguity in some way ...
-            callbackURL : 'http://' + process.env.HOST + '/auth/facebook/callback'
-        }, 
-        function(accessToken, refreshToken, profile, done) {
-            process.nextTick(function() {
-                DAO.users.findOrCreate(profile).then(function(data) {
-                    var user = new User(data);
-                    return done(null, user);                    
-                });
+
+    passport.use(new FacebookStrategy({
+        clientID : FACEBOOK_APP_ID,
+        clientSecret : FACEBOOK_APP_SECRET,
+        // FIXME: PORT means something different on heroku than on localhost, fix that ambiguity in some way ...
+        callbackURL : 'http://' + process.env.HOST + '/auth/facebook/callback'
+    }, function(accessToken, refreshToken, profile, done) {
+        process.nextTick(function() {
+            DAO.users.findOrCreate(profile).then(function(data) {
+                var user = new User(data);
+                return done(null, user);
             });
-        })
-    );
+        });
+    }));
 
     var server = express();
 
- // development only
+    // development only
     if ('development' == server.get('env') && !dist) {
         // Less configuration ...
         server.use(require('less-middleware')({
-            src: __dirname + '/../src/less',
-            dest: __dirname + '/../src/css',
-            prefix: '/css',
-            compress: true
-//            ,
-//            debug: true
+            src : __dirname + '/../src/less',
+            dest : __dirname + '/../src/css',
+            prefix : '/css',
+            compress : true
+        //            ,
+        //            debug: true
         }));
         // Non pretty error handling when in development ...
         server.use(errorHandler());
@@ -117,19 +89,19 @@ function(
     server.engine('.html', require('ejs').__express);
     server.set('views', __dirname + '/../');
 
-    server.use(function (req, res, next) {
+    server.use(function(req, res, next) {
         req.isJSONRequest = false;
-        if(/application\/json/.test(req.get('accept'))) {
+        if (/application\/json/.test(req.get('accept'))) {
             req.isJSONRequest = true;
         } else if (/text\/html/.test(req.get('accept'))) {
-//            console.log(req.url);
+            //            console.log(req.url);
             req.baseHtmlFile = baseHtmlFile;
         }
         next();
     });
 
     server.use(bodyParser.urlencoded({
-        extended: true
+        extended : true
     }));
     server.use(cookieParser());
     server.use(bodyParser.json());
@@ -138,48 +110,50 @@ function(
         resave : true,
         saveUninitialized : true
     }));
-    
+
     server.use(passport.initialize());
     server.use(passport.session());
 
     // Make sure that environment specific data is available at route to 'js/env.json' ...
     server.get('/js/data/config.json', function(req, res) {
-        res.sendFile('configs/' + config + '.json', { root: __dirname + '/../' });
+        res.sendFile('configs/' + config + '.json', {
+            root : __dirname + '/../'
+        });
     });
 
     if (dist) {
-        
         // Applicable when 'dist=true' ...
         server.get('/all.min.js', function(req, res) {
-            res.sendFile('dist/all.min.js', { root: __dirname + '/../' });
+            res.sendFile('dist/all.min.js', {
+                root : __dirname + '/../'
+            });
         });
 
         // Applicable when 'dist=true' ...
         server.get('/all.min.css', function(req, res) {
-            res.sendFile('dist/all.min.css', { root: __dirname + '/../' });
-        });        
-        
+            res.sendFile('dist/all.min.css', {
+                root : __dirname + '/../'
+            });
+        });
         server.use('/img', express.static(__dirname + '/../dist/img'));
         server.use('/fonts', express.static(__dirname + '/../dist/fonts'));
-        
+
         server.use(favicon(__dirname + '/../dist/favicon.ico'));
-        
+
     } else {
-        
+
         // Now make sure that static files are set (order important note 'js/env.json' above) ...
         server.use('/js', express.static(__dirname + '/../src/js'));
         server.use('/css', express.static(__dirname + '/../src/css'));
         server.use('/img', express.static(__dirname + '/../src/img'));
         server.use('/fonts', express.static(__dirname + '/../src/fonts'));
         server.use(favicon(__dirname + '/../src/favicon.ico'));
-        
     }
-    
+
     function ensureAuthenticated(req, res, next) {
-        if (req.isAuthenticated()) { 
-            return next(); 
+        if (req.isAuthenticated()) {
+            return next();
         }
-        
         if (!req.isJSONRequest) {
             res.redirect('/login');
         } else {
@@ -187,10 +161,12 @@ function(
         }
     }
 
-    server.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect : '/login' }), function(req, res) {
+    server.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        failureRedirect : '/login'
+    }), function(req, res) {
         res.redirect('/things');
     });
-    
+
     server.get('/auth/facebook', passport.authenticate('facebook'));
     server.get('/', routes.index);
     server.get('/users/:id', ensureAuthenticated, routes.users.html.get);
@@ -205,9 +181,9 @@ function(
     server.put('/api/things/:id', ensureAuthenticated, routes.things.json.update);
     server.get('/logout', routes.logout);
     server.get('/*', routes.catchAll);
-        
-    http.createServer(server).listen(server.get('port'), function(){
+
+    http.createServer(server).listen(server.get('port'), function() {
         console.log('Express server listening on port ' + server.get('port'));
-    }); 
+    });
 
 });
