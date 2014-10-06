@@ -12,17 +12,17 @@ jsdom.env({
 
 requirejs.config({
     nodeRequire: require,
-    baseUrl:             '.',             /* shared with client */
+    baseUrl:             '.', /* shared with client */
     paths: {
-        'models'			: 'src/js/models',             /* shared with client */
-        'collections'     	: 'src/js/collections',         /* shared with client */
-        'views'            	: 'src/js/views',             /* shared with client */
-        'templates'         : 'src/js/templates',             /* shared with client */
-        'data'         		: 'src/js/data',             /* shared with client */
-        'text'            	: 'src/js/libs/text',             /* shared with client */
-        'json'            	: 'src/js/libs/json',             /* shared with client */
-        'dao'             	: 'app/dao',        /* server only */
-        'routes'         	: 'app/routes'    /* server only */
+        'models'            : 'src/js/models', /* shared with client */
+        'collections'		: 'src/js/collections', /* shared with client */
+        'views'				: 'src/js/views', /* shared with client */
+        'templates'			: 'src/js/templates', /* shared with client */
+        'data'				: 'src/js/data', /* shared with client */
+        'text'				: 'src/js/libs/text', /* shared with client */
+        'json'				: 'src/js/libs/json', /* shared with client */
+        'dao'				: 'app/dao', /* server only */
+        'routes'			: 'app/routes' /* server only */
     }
 });
 
